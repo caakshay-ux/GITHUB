@@ -19,8 +19,9 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 | Schedule OS - CY2025 | Interest & dividends for calendar year 2025 |
 | Schedule OS - FY2025-26 | Interest & dividends for FY 2025-26 (ITR income) |
 | FTC - Withholding Tax | Foreign tax withheld (Schedule FSI/TR input) |
-| Capital Gains FY2025-26 | FIFO CG with **actual buy dates** from inception (AY 2026-27) |
-| Capital Gains FY2024-25 | FIFO CG for prior FY (AY 2025-26) — TSLA/BLBD |
+| Capital Gains FY2025-26 | **Formula-driven** FIFO CG — editable FX (yellow); Gain = Sale−Comm−Cost INR |
+| Capital Gains FY2024-25 | **Formula-driven** FIFO CG for prior FY (AY 2025-26) |
+| FX Lookup | Editable SBI TT USD/INR & EUR/INR rates + FCY→USD cross rates |
 | FIFO Lots Register | Lot qty / acquisition date / cost as of 31-Dec-2024 & 31-Mar-2025 |
 | CG Summary by Symbol | Symbol-wise STCG/LTCG summary (FY2025-26) |
 | Notes for CA | Assumptions, caveats, action items |
