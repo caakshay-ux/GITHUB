@@ -2,7 +2,7 @@
 
 This repository contains workings to convert Interactive Brokers (IBKR) Activity Statements into Indian ITR schedules for a resident individual assessee.
 
-## Client deliverable (AY 2026-27)
+## Client deliverable (AY 2026-27 / AY 2025-26)
 
 **Assessee:** Ray G Stephanos  
 **IBKR Account:** U15124027 (Advisor: Financial Hospital Advisory LLP)  
@@ -15,18 +15,26 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 | A3 | Schedule FA – Foreign equity/debt interests (INR) for CY 2025 |
 | A3 (USD reference) | Same holdings in USD before FX conversion |
 | FX Rates (USD-INR) | SBI TT Buy rates used + methodology notes |
-| A2 Custodial Account | Schedule FA – IBKR custodial account |
+| A2 Custodial Account | Schedule FA – IBKR custodial account (opened 06-Sep-2024) |
 | Schedule OS - CY2025 | Interest & dividends for calendar year 2025 |
 | Schedule OS - FY2025-26 | Interest & dividends for FY 2025-26 (ITR income) |
 | FTC - Withholding Tax | Foreign tax withheld (Schedule FSI/TR input) |
-| Capital Gains FY2025-26 | FIFO capital gains with Rule 115 INR conversion |
-| CG Summary by Symbol | Symbol-wise STCG/LTCG summary |
+| Capital Gains FY2025-26 | FIFO CG with **actual buy dates** from inception (AY 2026-27) |
+| Capital Gains FY2024-25 | FIFO CG for prior FY (AY 2025-26) — TSLA/BLBD |
+| FIFO Lots Register | Lot qty / acquisition date / cost as of 31-Dec-2024 & 31-Mar-2025 |
+| CG Summary by Symbol | Symbol-wise STCG/LTCG summary (FY2025-26) |
 | Notes for CA | Assumptions, caveats, action items |
 
 ### Source inputs
 
-- `input_Annual_Statement_Ray.csv` — IBKR Activity Statement CY 2025 (01-Jan-2025 to 31-Dec-2025)
-- `input_Fiscal_Statement_Ray.csv` — IBKR Activity Statement FY 2025-26 (01-Apr-2025 to 31-Mar-2026)
+- `input_Inception_FY2024-25_Ray.csv` — IBKR Activity Statement since funding (01-Apr-2024 to 31-Mar-2025)
+- `input_Annual_Statement_Ray.csv` — IBKR Activity Statement CY 2025
+- `input_Fiscal_Statement_Ray.csv` — IBKR Activity Statement FY 2025-26
+
+### FIFO method
+
+Lots are rebuilt from inception buys. Splits applied (LRCX 10:1 on 02-Oct-2024; NFLX 10:1 on 17-Nov-2025).  
+Cost = IBKR trade Basis; sale = Proceeds; sell commission deducted. INR via Rule 115.
 
 ### Regenerate
 
@@ -37,7 +45,6 @@ python3 scripts/prepare_schedule_fa_ray.py
 
 ### Key caveats (read Notes for CA)
 
-1. Pre-2025 lot acquisition dates are placeholders (`2024-07-01`) — replace from prior IBKR statements before finalising LTCG vs STCG.
-2. SBI TT Buy rates are month-end card compilations — confirm exact card rates on sbi.co.in for filing.
-3. Peak NAV uses max(start, end) because the Activity Statement has no daily NAV series — use PortfolioAnalyst for true peak.
-4. Foreign listed shares (no Indian STT): holding period > 24 months → LTCG @ 12.5% (post 23-Jul-2024); else STCG at slab rates.
+1. SBI TT Buy rates are month-end card compilations — confirm exact card rates on sbi.co.in for filing.
+2. Peak NAV uses max(start, end) — use PortfolioAnalyst for true peak.
+3. Foreign listed shares (no Indian STT): holding period > 24 months → LTCG @ 12.5% (post 23-Jul-2024); else STCG at slab rates. Account funded Sep-2024 → all FY2025-26 disposals are STCG.

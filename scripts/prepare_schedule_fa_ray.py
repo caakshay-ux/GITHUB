@@ -3,14 +3,12 @@
 Prepare Schedule FA (A2/A3), capital gains and dividend/interest workings
 for Ray G Stephanos (IBKR U15124027) from Activity Statements.
 
-Reporting basis:
-  - Schedule FA          : Calendar Year 2025 (Annual statement)
-  - Capital gains / OS   : FY 2025-26 = 01-Apr-2025 to 31-Mar-2026 (Fiscal + Annual)
-FX:
-  - Schedule FA values   : SBI TT Buying Rate on relevant date (month-end proxy where
-                           exact card rate not loaded; Dec-31 rates for year-end)
-  - Income (Rule 115)    : SBI TT Buying Rate on last day of month preceding the
-                           month of receipt / transfer
+Source statements:
+  - Inception / FY 2024-25 (01-Apr-2024 to 31-Mar-2025) — true buy dates & opening lots
+  - Annual CY 2025 (01-Jan-2025 to 31-Dec-2025) — Schedule FA
+  - Fiscal FY 2025-26 (01-Apr-2025 to 31-Mar-2026) — ITR income & capital gains
+
+FIFO capital gains use actual acquisition dates from inception trades (no placeholders).
 """
 
 from __future__ import annotations
@@ -20,7 +18,7 @@ import re
 from collections import defaultdict, deque
 from copy import deepcopy
 from dataclasses import dataclass, field
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from pathlib import Path
 
 from openpyxl import Workbook
@@ -28,15 +26,20 @@ from openpyxl.styles import Font, Alignment, Border, Side, PatternFill, numbers
 from openpyxl.utils import get_column_letter
 
 ROOT = Path("/workspace")
+INCEPTION = ROOT / "input_Inception_FY2024-25_Ray.csv"
 ANNUAL = ROOT / "input_Annual_Statement_Ray.csv"
 FISCAL = ROOT / "input_Fiscal_Statement_Ray.csv"
 OUT = ROOT / "output" / "Foreign_Assets_Schedule_FA_Ray_G_Stephanos_AY2026-27.xlsx"
 
 # ---------------------------------------------------------------------------
-# SBI TT Buying rates (USD & EUR) — month-end card rates compiled for CY2025/FY26
+# SBI TT Buying rates (USD & EUR) — month-end card rates
 # Source: public SBI TTBR compilations (CA must verify exact card rate for the date)
 # ---------------------------------------------------------------------------
 SBI_TT_USD = {
+    date(2024, 8, 31): 83.50,
+    date(2024, 9, 30): 83.30,
+    date(2024, 10, 31): 83.68,
+    date(2024, 11, 30): 84.15,
     date(2024, 12, 31): 85.20,
     date(2025, 1, 31): 86.20,
     date(2025, 2, 28): 86.95,
@@ -59,7 +62,11 @@ SBI_TT_USD = {
 }
 
 SBI_TT_EUR = {
-    date(2024, 12, 31): 88.50,  # approx; verify
+    date(2024, 8, 31): 91.72,
+    date(2024, 9, 30): 92.34,
+    date(2024, 10, 31): 90.07,
+    date(2024, 11, 30): 88.26,
+    date(2024, 12, 31): 87.93,
     date(2025, 1, 31): 88.78,
     date(2025, 2, 28): 89.55,
     date(2025, 3, 31): 91.86,
@@ -389,7 +396,7 @@ def extract_orders(sections):
             {
                 "currency": r[2],
                 "symbol": r[3],
-                "datetime": r[4],
+                "datetime": normalize_datetime(r[4]),
                 "date": parse_dt(r[4]),
                 "qty": qty,
                 "price": fnum(r[6]),
@@ -691,41 +698,96 @@ def build_fifo_sales(opening_lots: dict, orders: list, start: date, end: date, s
     return sales, books
 
 
-def opening_lots_from_mtm(mtm, open_ye, orders_before):
-    """
-    Build opening lots as of 01-Jan-2025 from MTM prior qty (for FIFO dating only).
-    Cost on these lots is NOT used for CG (sell-trade Basis is used instead).
-    Acquisition date placeholder: 2024-07-01 — CA to replace from prior statements.
-    """
-    lots = defaultdict(deque)
-    currency_guess = {}
-    for o in orders_before:
-        currency_guess.setdefault(normalize_symbol(o["symbol"]), o["currency"])
-    if open_ye:
-        for sym, p in open_ye.items():
-            currency_guess.setdefault(sym, p["currency"])
-    # Known non-USD names from instrument list / trades
-    hardcoded = {
-        "R6C0d": "EUR", "AIRd": "EUR", "SIEd": "EUR", "NOVd": "EUR", "SAUS": "EUR",
-        "WCBR": "EUR", "W1TB": "EUR", "HYU": "EUR",
-        "1810": "HKD", "1919": "HKD", "3069": "HKD", "3088": "HKD", "3188": "HKD", "3416": "HKD",
-        "4568.T": "JPY",
-    }
-    currency_guess.update(hardcoded)
+def normalize_datetime(s: str) -> str:
+    """Normalize 'YYYY-MM-DD, H:MM:SS' vs 'YYYY-MM-DD, HH:MM:SS' for dedupe."""
+    try:
+        part = s.strip()
+        if "," in part:
+            d, t = part.split(",", 1)
+            bits = t.strip().split(":")
+            if bits and len(bits[0]) == 1:
+                bits[0] = bits[0].zfill(2)
+            return f"{d.strip()}, {':'.join(bits)}"
+        return part
+    except Exception:
+        return s
 
-    for sym, m in mtm.items():
-        pq = m["prior_qty"] or 0
-        if pq == 0:
+
+def merge_orders(*order_lists):
+    """Deduplicate stock orders across statements by symbol/datetime/qty/proceeds."""
+    seen = {}
+    for orders in order_lists:
+        for o in orders:
+            o = dict(o)
+            o["datetime"] = normalize_datetime(o["datetime"])
+            key = (o["symbol"], o["datetime"], o["qty"], round(o["proceeds"] or 0, 6), o["currency"])
+            seen[key] = o
+    return list(seen.values())
+
+
+def merge_splits(*split_lists):
+    seen = {}
+    for splits in split_lists:
+        for s in splits:
+            key = (s["symbol"], s["date"], s["ratio"])
+            seen[key] = s
+    return list(seen.values())
+
+
+def build_lots_as_of(orders, splits, as_of: date):
+    """
+    Replay all buys/sells/splits up to and including as_of, returning FIFO lot books.
+    Cost on lots = IBKR trade Basis (actual cost). Acquisition date = trade date.
+    """
+    books = defaultdict(deque)
+    events = []
+    for o in orders:
+        if o["date"] <= as_of:
+            events.append(("trade", o["date"], o["datetime"], o))
+    for sp in splits:
+        if sp["date"] <= as_of:
+            events.append(("split", sp["date"], "00:00:00", sp))
+    events.sort(key=lambda e: (e[1], e[2], 0 if e[0] == "split" else 1))
+
+    for etype, edate, _etime, payload in events:
+        if etype == "split":
+            for lot in books.get(payload["symbol"], []):
+                lot.qty *= payload["ratio"]
+                # cost unchanged on split
             continue
-        pp = m["prior_price"]
-        if pp is None:
-            continue
-        ccy = currency_guess.get(sym, "USD")
-        cost = pq * pp  # FMV proxy only; CG uses trade Basis
-        lots[sym].append(
-            Lot(pq, cost, ccy, date(2024, 7, 1), "CY2025 opening (acq date TBC from prior IBKR)")
-        )
-    return lots
+        o = payload
+        sym = normalize_symbol(o["symbol"])
+        if o["qty"] > 0:
+            cost = abs(o["basis"]) if o["basis"] is not None else abs(o["proceeds"])
+            books[sym].append(Lot(o["qty"], cost, o["currency"], o["date"], "buy"))
+        else:
+            rem = abs(o["qty"])
+            while rem > 1e-10 and books.get(sym):
+                lot = books[sym][0]
+                take = min(lot.qty, rem)
+                if lot.qty:
+                    lot.cost_local *= (lot.qty - take) / lot.qty
+                lot.qty -= take
+                rem -= take
+                if lot.qty <= 1e-10:
+                    books[sym].popleft()
+            if rem > 1e-6:
+                # oversell without lots — should not happen with complete history
+                pass
+    # drop empty
+    return {k: v for k, v in books.items() if v and sum(L.qty for L in v) > 1e-10}
+
+
+def earliest_acq(books, sym):
+    lots = books.get(sym)
+    if not lots:
+        return None
+    return min(L.acq_date for L in lots)
+
+
+def opening_lots_from_mtm(mtm, open_ye, orders_before):
+    """Deprecated fallback — prefer build_lots_as_of from inception trades."""
+    return build_lots_as_of(orders_before, [], date(2024, 12, 31))
 
 
 def entity_row(sym, fin):
@@ -766,30 +828,54 @@ def autosize(ws, max_width=48):
 def main():
     hA, sA = parse_ibkr(ANNUAL)
     hF, sF = parse_ibkr(FISCAL)
+    hI, sI = parse_ibkr(INCEPTION)
     info = acct_info(sA)
     fin = fin_info(sA)
     fin.update(fin_info(sF))
+    fin.update(fin_info(sI))
 
     mtm = extract_mtm(sA)
     open_ye = extract_open_positions(sA)
     orders_cy = extract_orders(sA)
     orders_fy_all = extract_orders(sF)
-    # Fiscal orders only after 2025-12-31 for extension; for FY combine CY orders from Apr + fiscal 2026
-    orders_all = { (o["symbol"], o["datetime"], o["qty"]): o for o in orders_cy }
-    for o in orders_fy_all:
-        orders_all[(o["symbol"], o["datetime"], o["qty"])] = o
-    orders_merged = list(orders_all.values())
+    orders_inc = extract_orders(sI)
+    orders_merged = merge_orders(orders_inc, orders_cy, orders_fy_all)
+
+    splits = merge_splits(
+        extract_stock_splits(sI),
+        extract_stock_splits(sA),
+        extract_stock_splits(sF),
+    )
+
+    # True FIFO opening books from inception trades
+    lots_ye2024 = build_lots_as_of(orders_merged, splits, date(2024, 12, 31))  # as of 31-Dec-2024 / 01-Jan-2025
+    lots_fy_start = build_lots_as_of(orders_merged, splits, date(2025, 3, 31))  # as of 31-Mar-2025 / 01-Apr-2025
+    # first acquisition date per symbol (ever)
+    first_acq = {}
+    for o in sorted(orders_merged, key=lambda x: (x["date"], x["datetime"])):
+        if o["qty"] <= 0:
+            continue
+        sym = normalize_symbol(o["symbol"])
+        first_acq.setdefault(sym, o["date"])
 
     div_cy = extract_dividends(sA)
     div_fy_all = extract_dividends(sF)
-    # FY dividends = those with date in Apr 2025 - Mar 2026
-    div_fy = [d for d in div_fy_all if date(2025, 4, 1) <= d["date"] <= date(2026, 3, 31)]
     # Prefer annual for overlap accuracy
     div_fy_map = {(d["date"], d["description"], d["amount"]): d for d in div_cy if d["date"] >= date(2025, 4, 1)}
     for d in div_fy_all:
         if date(2025, 4, 1) <= d["date"] <= date(2026, 3, 31):
             div_fy_map[(d["date"], d["description"], d["amount"])] = d
     div_fy = sorted(div_fy_map.values(), key=lambda x: (x["date"], x["description"]))
+
+    # FY2024-25 dividends (for completeness)
+    div_fy2425_map = {}
+    for d in extract_dividends(sI):
+        if date(2024, 4, 1) <= d["date"] <= date(2025, 3, 31):
+            div_fy2425_map[(d["date"], d["description"], d["amount"])] = d
+    for d in div_cy:
+        if date(2024, 4, 1) <= d["date"] <= date(2025, 3, 31):
+            div_fy2425_map[(d["date"], d["description"], d["amount"])] = d
+    div_fy2425 = sorted(div_fy2425_map.values(), key=lambda x: (x["date"], x["description"]))
 
     int_cy = extract_interest(sA)
     int_fy_all = extract_interest(sF)
@@ -799,18 +885,31 @@ def main():
             int_fy_map[(d["date"], d["description"], d["amount"])] = d
     int_fy = sorted(int_fy_map.values(), key=lambda x: (x["date"], x["description"]))
 
+    int_fy2425 = [
+        d for d in extract_interest(sI)
+        if date(2024, 4, 1) <= d["date"] <= date(2025, 3, 31)
+    ]
+
     wht_cy = extract_withholding(sA)
     wht_fy_all = extract_withholding(sF)
     wht_fy = [w for w in wht_fy_all if date(2025, 4, 1) <= w["date"] <= date(2026, 3, 31)]
+    wht_fy2425 = [
+        w for w in extract_withholding(sI)
+        if date(2024, 4, 1) <= w["date"] <= date(2025, 3, 31)
+    ]
 
     nav = {r[0]: fnum(r[1]) for _, r in sA["Change in NAV"]}
     deposits = []
     for kind, r in sA["Deposits & Withdrawals"]:
         if kind == "Data" and r[0] != "Total":
             deposits.append({"currency": r[0], "date": parse_dt(r[1]), "desc": r[2], "amount": fnum(r[3])})
+    deposits_inc = []
+    for kind, r in sI["Deposits & Withdrawals"]:
+        if kind == "Data" and r[0] != "Total":
+            deposits_inc.append({"currency": r[0], "date": parse_dt(r[1]), "desc": r[2], "amount": fnum(r[3])})
 
-    # Opening lots CY
-    opening = opening_lots_from_mtm(mtm, open_ye, orders_cy)
+    # Opening lots for FA/CG dating come from inception replay
+    opening = lots_ye2024
 
     # Apply Jan-Dec 2025 buys/sells for FA sale proceeds & peak tracking
     fa = {}  # symbol -> metrics
@@ -844,7 +943,7 @@ def main():
         if sym in open_ye:
             ccy = open_ye[sym]["currency"]
         else:
-            for o in orders_cy:
+            for o in orders_merged:
                 if normalize_symbol(o["symbol"]) == sym:
                     ccy = o["currency"]
                     break
@@ -854,7 +953,8 @@ def main():
             init_usd = to_usd(init_local, ccy)
             row["initial_usd"] = init_usd
             row["peak_usd"] = init_usd
-            row["acq_date"] = date(2024, 7, 1)  # placeholder for prior holdings
+            # True acquisition date from inception FIFO lots / first buy
+            row["acq_date"] = earliest_acq(lots_ye2024, sym) or first_acq.get(sym)
         row["qty_close"] = cq
         if cq and cp is not None:
             close_local = cq * cp
@@ -934,10 +1034,11 @@ def main():
         if row["initial_usd"] == 0 and row["closing_usd"] == 0 and row["sale_usd"] == 0 and row["div_usd"] == 0:
             continue
         # If acquired in 2025, use acquisition-date rate for initial
-        ad = row["acq_date"] or date(2025, 1, 1)
+        ad = row["acq_date"] or first_acq.get(sym) or date(2025, 1, 1)
+        row["acq_date"] = ad
         if (mtm.get(sym, {}).get("prior_qty") or 0) > 0:
             r_init = rate_init_prior
-            ad_display = "Prior to 01-Jan-2025 (confirm)"
+            ad_display = ad.isoformat()  # true buy date from inception statement
         else:
             r_init = sbi_usd(ad)
             ad_display = ad.isoformat()
@@ -1002,34 +1103,17 @@ def main():
     for r in fa_rows:
         r["sale_inr"] = round(sale_inr_by_sym.get(r["symbol"], 0))
 
-    # ---------------- Capital gains FY 2025-26 ----------------
-    # Build opening lots as of 01-Apr-2025: start from Jan 1 opening, apply Jan-Mar trades + splits
-    splits = extract_stock_splits(sA) + extract_stock_splits(sF)
-    # de-dup splits
-    split_keys = {(s["symbol"], s["date"], s["ratio"]) for s in splits}
-    splits = [{"symbol": a, "date": b, "ratio": c} for a, b, c in sorted(split_keys)]
+    # ---------------- Capital gains FY 2025-26 (FIFO from inception) ----------------
     realized_map = extract_realized_usd(sA)
     realized_map.update(extract_realized_usd(sF))
+    realized_map.update(extract_realized_usd(sI))
     mergers = extract_cash_mergers(sA, realized_map)
+    # Also mergers in inception period (none expected with cash) — include if any
+    mergers += [m for m in extract_cash_mergers(sI, realized_map)
+                if not any(x["symbol"] == m["symbol"] and x["date"] == m["date"] for x in mergers)]
 
-    lots_apr = {k: deque(deepcopy(list(v))) for k, v in opening.items()}
-    for o in sorted(orders_cy, key=lambda x: (x["date"], x["datetime"])):
-        if o["date"] >= date(2025, 4, 1):
-            break
-        sym = normalize_symbol(o["symbol"])
-        if o["qty"] > 0:
-            cost = abs(o["basis"]) if o["basis"] is not None else abs(o["proceeds"])
-            lots_apr.setdefault(sym, deque()).append(Lot(o["qty"], cost, o["currency"], o["date"], "buy"))
-        else:
-            rem = abs(o["qty"])
-            while rem > 1e-10 and lots_apr.get(sym):
-                lot = lots_apr[sym][0]
-                take = min(lot.qty, rem)
-                lot.qty -= take
-                rem -= take
-                if lot.qty <= 1e-10:
-                    lots_apr[sym].popleft()
-    # Apply splits that occurred before FY start (none expected) — handled inside build_fifo for FY window
+    # Opening books as of 01-Apr-2025 = lots after replaying through 31-Mar-2025
+    lots_apr = {k: deque(deepcopy(list(v))) for k, v in lots_fy_start.items()}
 
     fy_orders = [o for o in orders_merged if date(2025, 4, 1) <= o["date"] <= date(2026, 3, 31)]
     sales_fy, _ = build_fifo_sales(
@@ -1038,84 +1122,93 @@ def main():
         date(2025, 4, 1),
         date(2026, 3, 31),
         splits=splits,
-        cash_mergers=mergers,
+        cash_mergers=[m for m in mergers if date(2025, 4, 1) <= m["date"] <= date(2026, 3, 31)],
     )
 
-    cg_rows = []
-    for s in sales_fy:
-        # Convert proceeds & cost to USD:
-        # USD trades: already USD
-        # EUR trades: convert via SBI EUR/INR ÷ USD/INR on Rule115 dates (avoids stale YE FX)
-        # Other CCY: IBKR YE FX to USD (approximate — CA may refine with trade-date FX)
-        if s.currency == "USD":
-            proc_usd = s.proceeds_local
-            cost_usd = s.cost_local
-        elif s.currency == "EUR":
-            # Will convert directly EUR->INR below; keep USD for reference via YE FX
-            proc_usd = to_usd(s.proceeds_local, "EUR")
-            cost_usd = to_usd(s.cost_local, "EUR")
-        else:
-            proc_usd = to_usd(s.proceeds_local, s.currency)
-            cost_usd = to_usd(s.cost_local, s.currency)
+    # FY 2024-25 capital gains (AY 2025-26) — BLBD/TSLA etc.
+    lots_apr2425 = defaultdict(deque)  # account started from zero in FY24-25
+    fy2425_orders = [o for o in orders_merged if date(2024, 4, 1) <= o["date"] <= date(2025, 3, 31)]
+    sales_fy2425, _ = build_fifo_sales(
+        lots_apr2425,
+        fy2425_orders,
+        date(2024, 4, 1),
+        date(2025, 3, 31),
+        splits=splits,
+        cash_mergers=[m for m in mergers if date(2024, 4, 1) <= m["date"] <= date(2025, 3, 31)],
+    )
 
-        sale_rate_usd = rule115_usd(s.sell_date)
-        cost_rate_usd = rule115_usd(s.acq_date)
+    def sales_to_cg_rows(sales):
+        rows = []
+        for s in sales:
+            if s.currency == "USD":
+                proc_usd = s.proceeds_local
+                cost_usd = s.cost_local
+            elif s.currency == "EUR":
+                proc_usd = to_usd(s.proceeds_local, "EUR")
+                cost_usd = to_usd(s.cost_local, "EUR")
+            else:
+                proc_usd = to_usd(s.proceeds_local, s.currency)
+                cost_usd = to_usd(s.cost_local, s.currency)
 
-        if s.currency == "EUR":
-            # Direct EUR -> INR using SBI TT EUR on Rule 115 dates
-            sale_rate_eur = SBI_TT_EUR[month_end_on_or_before(
-                date(s.sell_date.year, s.sell_date.month, 1) - __import__("datetime").timedelta(days=1)
-                if s.sell_date.month > 1 else date(s.sell_date.year - 1, 12, 31),
-                SBI_TT_EUR,
-            )]
-            cost_prev = (
-                date(s.acq_date.year, s.acq_date.month, 1) - __import__("datetime").timedelta(days=1)
-                if s.acq_date.month > 1
-                else date(s.acq_date.year - 1, 12, 31)
+            sale_rate_usd = rule115_usd(s.sell_date)
+            cost_rate_usd = rule115_usd(s.acq_date)
+
+            if s.currency == "EUR":
+                sale_prev = (
+                    date(s.sell_date.year, s.sell_date.month, 1) - timedelta(days=1)
+                    if s.sell_date.month > 1
+                    else date(s.sell_date.year - 1, 12, 31)
+                )
+                cost_prev = (
+                    date(s.acq_date.year, s.acq_date.month, 1) - timedelta(days=1)
+                    if s.acq_date.month > 1
+                    else date(s.acq_date.year - 1, 12, 31)
+                )
+                sale_rate = SBI_TT_EUR[month_end_on_or_before(sale_prev, SBI_TT_EUR)]
+                cost_rate = SBI_TT_EUR[month_end_on_or_before(cost_prev, SBI_TT_EUR)]
+                sale_inr = s.proceeds_local * sale_rate
+                cost_inr = s.cost_local * cost_rate
+                comm_inr = abs(s.comm_usd) * sale_rate_usd
+            else:
+                sale_rate = sale_rate_usd
+                cost_rate = cost_rate_usd
+                sale_inr = proc_usd * sale_rate_usd
+                cost_inr = cost_usd * cost_rate_usd
+                comm_inr = abs(s.comm_usd) * sale_rate_usd
+
+            gain_inr = sale_inr - comm_inr - cost_inr
+            note = ""
+            if s.symbol == "HYU" and s.sell_date == date(2025, 7, 30):
+                note = "Cash merger / redemption — cost from IBKR realized P/L"
+            elif s.symbol == "LRCX" and s.acq_date <= date(2024, 10, 3):
+                note = "LRCX 10-for-1 split on 02/03-Oct-2024 reflected in FIFO qty"
+            rows.append(
+                {
+                    "symbol": s.symbol,
+                    "currency": s.currency,
+                    "qty": round(s.qty, 6),
+                    "acq_date": s.acq_date,
+                    "sell_date": s.sell_date,
+                    "holding_days": s.holding_days,
+                    "type": "LTCG" if s.is_ltcg else "STCG",
+                    "proceeds_local": round(s.proceeds_local, 2),
+                    "cost_local": round(s.cost_local, 2),
+                    "proceeds_usd": round(proc_usd, 2),
+                    "cost_usd": round(cost_usd, 2),
+                    "comm_usd": round(abs(s.comm_usd), 2),
+                    "sale_rate": sale_rate,
+                    "cost_rate": cost_rate,
+                    "sale_inr": round(sale_inr),
+                    "comm_inr": round(comm_inr),
+                    "cost_inr": round(cost_inr),
+                    "gain_inr": round(gain_inr),
+                    "note": note,
+                }
             )
-            cost_rate_eur = SBI_TT_EUR[month_end_on_or_before(cost_prev, SBI_TT_EUR)]
-            sale_inr = s.proceeds_local * sale_rate_eur
-            cost_inr = s.cost_local * cost_rate_eur
-            comm_inr = abs(s.comm_usd) * sale_rate_usd
-            sale_rate = sale_rate_eur
-            cost_rate = cost_rate_eur
-        else:
-            sale_inr = proc_usd * sale_rate_usd
-            cost_inr = cost_usd * cost_rate_usd
-            comm_inr = abs(s.comm_usd) * sale_rate_usd
-            sale_rate = sale_rate_usd
-            cost_rate = cost_rate_usd
+        return rows
 
-        gain_inr = sale_inr - comm_inr - cost_inr
-        cg_rows.append(
-            {
-                "symbol": s.symbol,
-                "currency": s.currency,
-                "qty": round(s.qty, 6),
-                "acq_date": s.acq_date,
-                "sell_date": s.sell_date,
-                "holding_days": s.holding_days,
-                "type": "LTCG" if s.is_ltcg else "STCG",
-                "proceeds_local": round(s.proceeds_local, 2),
-                "cost_local": round(s.cost_local, 2),
-                "proceeds_usd": round(proc_usd, 2),
-                "cost_usd": round(cost_usd, 2),
-                "comm_usd": round(abs(s.comm_usd), 2),
-                "sale_rate": sale_rate,
-                "cost_rate": cost_rate,
-                "sale_inr": round(sale_inr),
-                "comm_inr": round(comm_inr),
-                "cost_inr": round(cost_inr),
-                "gain_inr": round(gain_inr),
-                "note": "Opening lot — confirm acquisition date from prior IBKR statements"
-                if s.acq_date <= date(2024, 12, 31)
-                else (
-                    "Cash merger / redemption — cost from IBKR realized P/L"
-                    if s.symbol == "HYU" and s.sell_date == date(2025, 7, 30)
-                    else ""
-                ),
-            }
-        )
+    cg_rows = sales_to_cg_rows(sales_fy)
+    cg_rows_2425 = sales_to_cg_rows(sales_fy2425)
 
     # ---------------- Build workbook ----------------
     wb = Workbook()
@@ -1224,7 +1317,7 @@ def main():
         "Interactive Brokers LLC (Clearing Broker), Advisor Client via Interactive Brokers (India) / "
         f"Investment Advisor: {info.get('Investment Advisor', '')}",
         "One Pickwick Plaza, Greenwich, CT, USA", "06830", info.get("Account", ""),
-        "Owner - Sole beneficial owner", "Prior to / during 2024 (confirm from account opening docs)",
+        "Owner - Sole beneficial owner", "2024-09-06 (first funding per IBKR deposits)",
     ])
     wsa2.append([])
     wsa2.append([
@@ -1358,10 +1451,53 @@ def main():
     wsc.append([None, None, None, None, None, None, "TOTAL CG (INR)", None, None, None, None, None, None, None, None, stcg + ltcg])
     wsc.append([])
     wsc.append(["IBKR Realized P/L (USD) from Annual Realized Performance (stocks only, CY2025) for cross-check: ~USD 5,411.69 (S/T)."])
-    wsc.append(["Opening lots acquired before 01-Jan-2025 use placeholder acquisition date 01-Jul-2024 for holding-period tests — replace with actual trade dates from prior-year IBKR statements before finalising LTCG/STCG."])
+    wsc.append([
+        "FIFO from inception trades (FY2024-25 statement). Holding period uses actual buy dates. "
+        "Account funded from Sep-2024 — no lot reaches 24 months by 31-Mar-2026, so all FY2025-26 gains are STCG."
+    ])
+    wsc.append([
+        "Cost = IBKR trade Basis allocated FIFO; sale consideration = IBKR Proceeds; sell commission deducted. "
+        "INR via Rule 115 (TT Buy on last day of month preceding event)."
+    ])
     autosize(wsc)
 
-    # CG summary by symbol
+    # Capital Gains FY2024-25
+    wsc2 = wb.create_sheet("Capital Gains FY2024-25")
+    wsc2["A1"] = (
+        "Capital gains on foreign shares/ETFs — FY 2024-25 (AY 2025-26). "
+        "FIFO from inception (account funded Sep-2024). All holdings <24 months → STCG."
+    )
+    wsc2.append([
+        "Symbol", "CCY", "Qty", "Acquisition Date", "Sale Date", "Holding Days", "Type",
+        "Sale Proceeds (USD)", "Cost (USD)", "Comm (USD)",
+        "Sale FX (Rule115)", "Cost FX (Rule115)",
+        "Sale (INR)", "Comm (INR)", "Cost (INR)", "Gain/(Loss) INR", "Notes",
+    ])
+    style_header(wsc2, 2, 17)
+    for r in cg_rows_2425:
+        wsc2.append([
+            r["symbol"], r["currency"], r["qty"], r["acq_date"], r["sell_date"], r["holding_days"], r["type"],
+            r["proceeds_usd"], r["cost_usd"], r["comm_usd"], r["sale_rate"], r["cost_rate"],
+            r["sale_inr"], r["comm_inr"], r["cost_inr"], r["gain_inr"], r["note"],
+        ])
+    stcg2425 = sum(r["gain_inr"] for r in cg_rows_2425 if r["type"] == "STCG")
+    ltcg2425 = sum(r["gain_inr"] for r in cg_rows_2425 if r["type"] == "LTCG")
+    wsc2.append([])
+    wsc2.append([None, None, None, None, None, None, "TOTAL STCG (INR)", None, None, None, None, None, None, None, None, stcg2425])
+    wsc2.append([None, None, None, None, None, None, "TOTAL LTCG (INR)", None, None, None, None, None, None, None, None, ltcg2425])
+    wsc2.append([None, None, None, None, None, None, "TOTAL CG (INR)", None, None, None, None, None, None, None, None, stcg2425 + ltcg2425])
+    autosize(wsc2)
+
+    # FIFO Opening lot register
+    wsl = wb.create_sheet("FIFO Lots Register")
+    wsl["A1"] = "FIFO lot register rebuilt from inception statement (actual acquisition dates & IBKR cost basis)"
+    wsl.append(["As-of", "Symbol", "Qty", "Acquisition Date", "Cost (local)", "Currency", "Source"])
+    style_header(wsl, 2, 7)
+    for label, books in [("31-Dec-2024 (CY2025 open)", lots_ye2024), ("31-Mar-2025 (FY2025-26 open)", lots_fy_start)]:
+        for sym in sorted(books):
+            for L in books[sym]:
+                wsl.append([label, sym, round(L.qty, 6), L.acq_date, round(L.cost_local, 4), L.currency, L.source])
+    autosize(wsl)
     wss = wb.create_sheet("CG Summary by Symbol")
     wss.append(["Symbol", "STCG INR", "LTCG INR", "Total Gain/(Loss) INR", "Sale Proceeds USD", "Cost USD"])
     style_header(wss, 1, 6)
@@ -1382,26 +1518,32 @@ def main():
         ("Account", f"{info.get('Account')} — Interactive Brokers LLC (Advisor Client; Advisor: {info.get('Investment Advisor')})"),
         ("Customer type", info.get("Customer Type")),
         ("Base currency", info.get("Base Currency")),
+        ("Account funded", f"First deposit {deposits_inc[0]['date'].isoformat() if deposits_inc else 'n/a'} (inception statement)"),
         ("Schedule FA period", "Calendar Year 2025 (01-Jan-2025 to 31-Dec-2025) — for ITR AY 2026-27"),
-        ("Income / CG period", "FY 2025-26 (01-Apr-2025 to 31-Mar-2026)"),
-        ("Source data", "IBKR Activity Statement Annual (CY2025) + Fiscal (FY2025-26)"),
+        ("Income / CG period", "FY 2025-26 (01-Apr-2025 to 31-Mar-2026); also FY 2024-25 sheet for prior year"),
+        ("Source data", "IBKR Activity Statements: Inception FY2024-25 + Annual CY2025 + Fiscal FY2025-26"),
+        ("FIFO method", "Actual buy dates & IBKR Basis from inception replay; splits (LRCX 10:1, NFLX 10:1) applied"),
         ("Starting NAV CY2025", f"USD {starting_nav:,.2f}"),
         ("Ending NAV CY2025", f"USD {closing_nav:,.2f}"),
         ("Deposits CY2025", f"USD {sum(d['amount'] for d in deposits):,.2f}"),
+        ("Deposits since inception (to 31-Mar-2025)", f"USD {sum(d['amount'] for d in deposits_inc):,.2f}"),
         ("Dividends CY2025", f"USD {div_usd_tot:,.2f} / INR {div_inr_tot:,.0f} (Rule 115)"),
         ("Interest CY2025", f"USD {int_usd:,.2f} / INR {int_inr:,.0f} (Rule 115)"),
         ("Dividends FY2025-26", f"USD {div_fy_usd:,.2f} / INR {div_fy_inr:,.0f}"),
         ("Interest FY2025-26", f"USD {int_fy_usd:,.2f} / INR {int_fy_inr:,.0f}"),
-        ("STCG (INR)", f"{stcg:,.0f}"),
-        ("LTCG (INR)", f"{ltcg:,.0f}"),
+        ("STCG FY2025-26 (INR)", f"{stcg:,.0f}"),
+        ("LTCG FY2025-26 (INR)", f"{ltcg:,.0f}"),
+        ("STCG FY2024-25 (INR)", f"{stcg2425:,.0f}"),
+        ("LTCG FY2024-25 (INR)", f"{ltcg2425:,.0f}"),
         ("A1 Foreign Bank/Depository", "Generally N/A separately — multi-currency cash sits inside IBKR custodial account (A2)"),
-        ("A2 Custodial Account", "Applicable — see sheet"),
+        ("A2 Custodial Account", "Applicable — see sheet; opening date 06-Sep-2024 (first funding)"),
         ("A3 Equity & Debt Interest", f"Applicable — {len(fa_rows)} securities lines (held at any time in CY2025)"),
         ("ADR country practice", "Underlying issuer country used for ADRs/GDRs (ASML NL, BTI UK, TSM TW, BYDDY CN, HYU KR, RIO UK)"),
         ("CPNG", "USA (Delaware corporation, NYSE) despite Korea operations"),
-        ("NFLX split", "10-for-1 split on 14/17-Nov-2025 reflected in IBKR; FIFO uses post-split quantities from statement"),
+        ("NFLX split", "10-for-1 split on 14/17-Nov-2025 reflected in FIFO"),
+        ("LRCX split", "10-for-1 split on 02/03-Oct-2024 reflected in FIFO (bought 1 pre-split → 10)"),
         ("HYU", "Cash merger acquisition Jul-2025 — sale proceeds USD 1,339.02 reported as redemption proceeds"),
-        ("Action required", "1) Replace placeholder acquisition dates for pre-2025 lots using prior IBKR statements; 2) Confirm exact SBI TT Buy card rates; 3) Obtain PortfolioAnalyst for true peak NAV; 4) Map withholding to Schedule FSI/TR under applicable DTAA; 5) Confirm account opening date."),
+        ("Action required", "1) Confirm exact SBI TT Buy card rates; 2) Obtain PortfolioAnalyst for true peak NAV; 3) Map withholding to Schedule FSI/TR under DTAA."),
     ]
     wsn.append(["Preparation notes — Schedule FA / CG / Dividends for Ray G Stephanos"])
     for a, b in notes:
