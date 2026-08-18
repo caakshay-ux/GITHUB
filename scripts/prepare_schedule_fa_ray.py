@@ -1209,6 +1209,163 @@ def main():
 
     cg_rows = sales_to_cg_rows(sales_fy)
     cg_rows_2425 = sales_to_cg_rows(sales_fy2425)
+    stcg = sum(r["gain_inr"] for r in cg_rows if r["type"] == "STCG")
+    ltcg = sum(r["gain_inr"] for r in cg_rows if r["type"] == "LTCG")
+    stcg2425 = sum(r["gain_inr"] for r in cg_rows_2425 if r["type"] == "STCG")
+    ltcg2425 = sum(r["gain_inr"] for r in cg_rows_2425 if r["type"] == "LTCG")
+
+    def write_fx_lookup(wb):
+        """Editable SBI TT rate table used by VLOOKUP in capital-gain formulas."""
+        ws = wb.create_sheet("FX Lookup", 0)
+        ws["A1"] = (
+            "EDITABLE FX LOOKUP — change rates in column B/C; capital-gain sheets recalculate via VLOOKUP. "
+            "Rule 115: use TT Buy on last day of month preceding the month of sale / acquisition."
+        )
+        ws.merge_cells("A1:E1")
+        ws["A3"] = "Rate Date (month-end)"
+        ws["B3"] = "USD/INR (SBI TT Buy)"
+        ws["C3"] = "EUR/INR (SBI TT Buy)"
+        ws["D3"] = "Notes"
+        style_header(ws, 3, 4)
+        # build sorted unique dates from both tables
+        all_dates = sorted(set(SBI_TT_USD) | set(SBI_TT_EUR))
+        r = 4
+        for d in all_dates:
+            ws.cell(r, 1, d)
+            ws.cell(r, 2, SBI_TT_USD.get(d))
+            ws.cell(r, 3, SBI_TT_EUR.get(d))
+            ws.cell(r, 4, "Month-end card — replace with exact SBI card rate if different")
+            r += 1
+        last = r - 1
+        ws["A2"] = f"Table range for VLOOKUP: A4:C{last}"
+        # FCY→USD cross rates used for non-USD/non-EUR (year-end IBKR)
+        ws.cell(r + 1, 1, "FCY→USD cross rates (IBKR 31-Dec-2025 close — edit if using trade-date FX)")
+        ws.cell(r + 2, 1, "Currency")
+        ws.cell(r + 2, 2, "Units per 1 FCY → USD")
+        style_header(ws, r + 2, 2)
+        cross_start = r + 3
+        for i, (ccy, rate) in enumerate(sorted(FX_TO_USD_YE2025.items())):
+            ws.cell(cross_start + i, 1, ccy)
+            ws.cell(cross_start + i, 2, rate)
+        ws.cell(cross_start + len(FX_TO_USD_YE2025) + 1, 1,
+                "Yellow/input cells on CG sheets: Sale/Cost FCY, Comm USD, FX rates. All P&L columns are formulas.")
+        # light fill on rate columns
+        fill = PatternFill("solid", fgColor="FFF2CC")
+        for row in range(4, last + 1):
+            ws.cell(row, 2).fill = fill
+            ws.cell(row, 3).fill = fill
+        for row in range(cross_start, cross_start + len(FX_TO_USD_YE2025)):
+            ws.cell(row, 2).fill = fill
+        autosize(ws)
+        return last, cross_start
+
+    def rule115_prev_month(d: date) -> date:
+        if d.month == 1:
+            return date(d.year - 1, 12, 31)
+        return date(d.year, d.month, 1) - timedelta(days=1)
+
+    def write_formula_cg_sheet(wb, title, subtitle, rows, fx_last_row, cross_start):
+        """
+        Formula-driven capital gains for reconciliation.
+        Yellow inputs: H Sale FCY, I Cost FCY, J Comm USD, K FCY→USD, N Sale FX, O Cost FX, P Comm USD/INR
+        Formulas: F holding days, G type, L/M amounts, Q/R/S INR, T Gain = Q-R-S
+        """
+        ws = wb.create_sheet(title)
+        ws["A1"] = subtitle
+        ws.merge_cells("A1:U1")
+        ws["A2"] = (
+            "RECONCILIATION SHEET (formula-driven). Edit yellow cells — P&L recalculates. "
+            "Gain/(Loss) INR = Sale INR − Comm INR − Cost INR. Holding days >730 → LTCG else STCG. "
+            "Click any calculated cell to see the formula. FX Lookup has the full SBI TT rate table."
+        )
+        ws.merge_cells("A2:U2")
+        ws["A3"] = (
+            "F=E-D | G=IF(F>730,\"LTCG\",\"STCG\") | L=H*K | M=I*K | "
+            "Q=L*N (Sale INR) | R=J*P (Comm INR) | S=M*O (Cost INR) | T=Q-R-S (Gain)"
+        )
+        ws.merge_cells("A3:U3")
+
+        headers = [
+            "Symbol", "CCY", "Qty", "Acquisition Date", "Sale Date", "Holding Days", "Type",
+            "Sale Proceeds (FCY)", "Cost Basis (FCY)", "Comm (USD)", "FCY→USD Rate",
+            "Sale Proceeds (USD)", "Cost (USD)", "Sale FX Rate", "Cost FX Rate", "Comm USD/INR Rate",
+            "Sale (INR)", "Comm (INR)", "Cost (INR)", "Gain/(Loss) INR", "Notes",
+        ]
+        for i, h in enumerate(headers, 1):
+            ws.cell(4, i, h)
+        style_header(ws, 4, len(headers))
+
+        input_fill = PatternFill("solid", fgColor="FFF2CC")
+        first_data = 5
+        for i, r in enumerate(rows):
+            rr = first_data + i
+            usd_sale = rule115_usd(r["sell_date"])
+            if r["currency"] == "EUR":
+                fcy_to_usd = 1.0
+                sale_fx = r["sale_rate"]
+                cost_fx = r["cost_rate"]
+                sale_fcy = r["proceeds_local"]
+                cost_fcy = r["cost_local"]
+                note = (r["note"] + " | " if r["note"] else "") + (
+                    "EUR: FCY→USD=1; Sale/Cost FX = EUR/INR (Rule 115); Comm uses USD/INR"
+                )
+            else:
+                fcy_to_usd = 1.0 if r["currency"] == "USD" else FX_TO_USD_YE2025.get(r["currency"], 1.0)
+                sale_fx = r["sale_rate"] if r["currency"] == "USD" else rule115_usd(r["sell_date"])
+                cost_fx = r["cost_rate"] if r["currency"] == "USD" else rule115_usd(r["acq_date"])
+                sale_fcy = r["proceeds_local"]
+                cost_fcy = r["cost_local"]
+                note = r["note"]
+                if r["currency"] != "USD":
+                    note = (note + " | " if note else "") + (
+                        f"{r['currency']}: FCY→USD editable; Sale/Cost FX = USD/INR (Rule 115)"
+                    )
+
+            ws.cell(rr, 1, r["symbol"])
+            ws.cell(rr, 2, r["currency"])
+            ws.cell(rr, 3, r["qty"])
+            ws.cell(rr, 4, r["acq_date"])
+            ws.cell(rr, 5, r["sell_date"])
+            ws.cell(rr, 6, f"=E{rr}-D{rr}")
+            ws.cell(rr, 7, f'=IF(F{rr}>730,"LTCG","STCG")')
+            ws.cell(rr, 8, round(sale_fcy, 6))
+            ws.cell(rr, 9, round(cost_fcy, 6))
+            ws.cell(rr, 10, r["comm_usd"])
+            ws.cell(rr, 11, fcy_to_usd)
+            ws.cell(rr, 12, f"=H{rr}*K{rr}")
+            ws.cell(rr, 13, f"=I{rr}*K{rr}")
+            ws.cell(rr, 14, sale_fx)
+            ws.cell(rr, 15, cost_fx)
+            ws.cell(rr, 16, usd_sale)
+            ws.cell(rr, 17, f"=L{rr}*N{rr}")
+            ws.cell(rr, 18, f"=J{rr}*P{rr}")
+            ws.cell(rr, 19, f"=M{rr}*O{rr}")
+            ws.cell(rr, 20, f"=Q{rr}-R{rr}-S{rr}")
+            ws.cell(rr, 21, note)
+            for col in (8, 9, 10, 11, 14, 15, 16):
+                ws.cell(rr, col).fill = input_fill
+
+        last_data = first_data + len(rows) - 1 if rows else first_data - 1
+        tot = last_data + 2
+        if rows:
+            ws.cell(tot, 7, "TOTAL STCG (INR)")
+            ws.cell(tot, 20, f'=SUMIF(G{first_data}:G{last_data},"STCG",T{first_data}:T{last_data})')
+            ws.cell(tot + 1, 7, "TOTAL LTCG (INR)")
+            ws.cell(tot + 1, 20, f'=SUMIF(G{first_data}:G{last_data},"LTCG",T{first_data}:T{last_data})')
+            ws.cell(tot + 2, 7, "TOTAL CG (INR)")
+            ws.cell(tot + 2, 20, f"=T{tot}+T{tot+1}")
+        for r in range(tot, tot + 3):
+            ws.cell(r, 7).font = Font(bold=True)
+            ws.cell(r, 20).font = Font(bold=True)
+
+        ws.cell(tot + 4, 1, "How to reconcile before filing:")
+        ws.cell(tot + 5, 1, "1. Check Sale Proceeds (FCY) / Cost Basis (FCY) vs IBKR trade Proceeds & Basis.")
+        ws.cell(tot + 6, 1, "2. Edit yellow FX cells (N Sale FX, O Cost FX, P Comm USD/INR) to exact SBI TT Buy card rates.")
+        ws.cell(tot + 7, 1, "3. For HKD/JPY, edit FCY→USD (K) if using trade-date FX instead of 31-Dec-2025 IBKR close.")
+        ws.cell(tot + 8, 1, "4. Gain/(Loss) cell formula: =Q-R-S i.e. Sale INR − Comm INR − Cost INR.")
+        ws.cell(tot + 9, 1, "5. Bottom totals are SUMIF formulas on Type (STCG/LTCG).")
+        autosize(ws)
+        return ws
 
     # ---------------- Build workbook ----------------
     wb = Workbook()
@@ -1276,9 +1433,12 @@ def main():
     ])
     autosize(ws2)
 
-    # FX Rates
+    # FX Lookup (formula source) + legacy notes sheet
+    fx_last, cross_start = write_fx_lookup(wb)
+
+    # FX Rates (documentation)
     wsx = wb.create_sheet("FX Rates (USD-INR)")
-    wsx["A1"] = "USD / INR SBI TT Buying rates used (month-end card rates — CA to verify exact date rates)"
+    wsx["A1"] = "USD / INR SBI TT Buying rates used (month-end card rates — CA to verify exact date rates). Prefer editing 'FX Lookup' sheet for live CG formulas."
     wsx.append([])
     wsx.append(["Date", "Purpose", "USD/INR (Rs.)", "Source"])
     style_header(wsx, 3, 4)
@@ -1297,8 +1457,8 @@ def main():
     wsx.append(["NOTES:"])
     wsx.append(["1. Schedule FA: convert at SBI TT Buy on acquisition date (initial), peak date (peak), and 31-Dec (closing)."])
     wsx.append(["2. Income (dividends/interest/capital gains): Rule 115 — TT Buy on last day of month preceding the month of receipt/transfer."])
-    wsx.append(["3. Non-USD holdings converted to USD using IBKR 31-Dec-2025 FX (EUR 1.1746, HKD 0.12849, JPY 0.0063827, DKK 0.15726), then to INR."])
-    wsx.append(["4. Peak per security estimated as MAX(initial, closing, sale proceeds) — IBKR Activity Statement does not publish daily per-symbol peaks. Prefer PortfolioAnalyst NAV series if available."])
+    wsx.append(["3. Non-USD holdings converted to USD using IBKR 31-Dec-2025 FX (EUR 1.1746, HKD 0.12849, JPY 0.0063827, DKK 0.15726), then to INR — editable on CG sheets."])
+    wsx.append(["4. Peak per security estimated as MAX(initial, closing, sale proceeds) — IBKR Activity Statement does not publish daily per-symbol peaks."])
     autosize(wsx)
 
     # A2
@@ -1423,70 +1583,23 @@ def main():
             wsw.append([label, w["date"], w["description"], w["currency"], w["amount"], round(usd, 4), rate, round(usd * rate)])
     autosize(wsw)
 
-    # Capital Gains
-    wsc = wb.create_sheet("Capital Gains FY2025-26")
-    wsc["A1"] = (
-        "Capital gains on foreign shares/ETFs — FY 2025-26 (AY 2026-27). "
-        "FIFO matching. Holding period >24 months = LTCG @12.5% (no indexation) for transfers on/after 23-Jul-2024; else STCG at slab rates. "
-        "Foreign listed shares (no Indian STT)."
+    # Capital Gains — formula-driven for reconciliation
+    write_formula_cg_sheet(
+        wb,
+        "Capital Gains FY2025-26",
+        "Capital gains — FY 2025-26 (AY 2026-27). FIFO. Yellow cells editable. Formulas compute USD, INR and Gain/(Loss).",
+        cg_rows,
+        fx_last,
+        cross_start,
     )
-    wsc.append([
-        "Symbol", "CCY", "Qty", "Acquisition Date", "Sale Date", "Holding Days", "Type",
-        "Sale Proceeds (USD)", "Cost (USD)", "Comm (USD)",
-        "Sale FX (Rule115)", "Cost FX (Rule115)",
-        "Sale (INR)", "Comm (INR)", "Cost (INR)", "Gain/(Loss) INR", "Notes",
-    ])
-    style_header(wsc, 2, 17)
-    for r in cg_rows:
-        wsc.append([
-            r["symbol"], r["currency"], r["qty"], r["acq_date"], r["sell_date"], r["holding_days"], r["type"],
-            r["proceeds_usd"], r["cost_usd"], r["comm_usd"], r["sale_rate"], r["cost_rate"],
-            r["sale_inr"], r["comm_inr"], r["cost_inr"], r["gain_inr"], r["note"],
-        ])
-    stcg = sum(r["gain_inr"] for r in cg_rows if r["type"] == "STCG")
-    ltcg = sum(r["gain_inr"] for r in cg_rows if r["type"] == "LTCG")
-    wsc.append([])
-    wsc.append([None, None, None, None, None, None, "TOTAL STCG (INR)", None, None, None, None, None, None, None, None, stcg])
-    wsc.append([None, None, None, None, None, None, "TOTAL LTCG (INR)", None, None, None, None, None, None, None, None, ltcg])
-    wsc.append([None, None, None, None, None, None, "TOTAL CG (INR)", None, None, None, None, None, None, None, None, stcg + ltcg])
-    wsc.append([])
-    wsc.append(["IBKR Realized P/L (USD) from Annual Realized Performance (stocks only, CY2025) for cross-check: ~USD 5,411.69 (S/T)."])
-    wsc.append([
-        "FIFO from inception trades (FY2024-25 statement). Holding period uses actual buy dates. "
-        "Account funded from Sep-2024 — no lot reaches 24 months by 31-Mar-2026, so all FY2025-26 gains are STCG."
-    ])
-    wsc.append([
-        "Cost = IBKR trade Basis allocated FIFO; sale consideration = IBKR Proceeds; sell commission deducted. "
-        "INR via Rule 115 (TT Buy on last day of month preceding event)."
-    ])
-    autosize(wsc)
-
-    # Capital Gains FY2024-25
-    wsc2 = wb.create_sheet("Capital Gains FY2024-25")
-    wsc2["A1"] = (
-        "Capital gains on foreign shares/ETFs — FY 2024-25 (AY 2025-26). "
-        "FIFO from inception (account funded Sep-2024). All holdings <24 months → STCG."
+    write_formula_cg_sheet(
+        wb,
+        "Capital Gains FY2024-25",
+        "Capital gains — FY 2024-25 (AY 2025-26). FIFO from inception. Yellow cells editable.",
+        cg_rows_2425,
+        fx_last,
+        cross_start,
     )
-    wsc2.append([
-        "Symbol", "CCY", "Qty", "Acquisition Date", "Sale Date", "Holding Days", "Type",
-        "Sale Proceeds (USD)", "Cost (USD)", "Comm (USD)",
-        "Sale FX (Rule115)", "Cost FX (Rule115)",
-        "Sale (INR)", "Comm (INR)", "Cost (INR)", "Gain/(Loss) INR", "Notes",
-    ])
-    style_header(wsc2, 2, 17)
-    for r in cg_rows_2425:
-        wsc2.append([
-            r["symbol"], r["currency"], r["qty"], r["acq_date"], r["sell_date"], r["holding_days"], r["type"],
-            r["proceeds_usd"], r["cost_usd"], r["comm_usd"], r["sale_rate"], r["cost_rate"],
-            r["sale_inr"], r["comm_inr"], r["cost_inr"], r["gain_inr"], r["note"],
-        ])
-    stcg2425 = sum(r["gain_inr"] for r in cg_rows_2425 if r["type"] == "STCG")
-    ltcg2425 = sum(r["gain_inr"] for r in cg_rows_2425 if r["type"] == "LTCG")
-    wsc2.append([])
-    wsc2.append([None, None, None, None, None, None, "TOTAL STCG (INR)", None, None, None, None, None, None, None, None, stcg2425])
-    wsc2.append([None, None, None, None, None, None, "TOTAL LTCG (INR)", None, None, None, None, None, None, None, None, ltcg2425])
-    wsc2.append([None, None, None, None, None, None, "TOTAL CG (INR)", None, None, None, None, None, None, None, None, stcg2425 + ltcg2425])
-    autosize(wsc2)
 
     # FIFO Opening lot register
     wsl = wb.create_sheet("FIFO Lots Register")
@@ -1498,6 +1611,8 @@ def main():
             for L in books[sym]:
                 wsl.append([label, sym, round(L.qty, 6), L.acq_date, round(L.cost_local, 4), L.currency, L.source])
     autosize(wsl)
+
+    # CG Summary — formula links to FY2025-26 sheet where possible; values as cross-check
     wss = wb.create_sheet("CG Summary by Symbol")
     wss.append(["Symbol", "STCG INR", "LTCG INR", "Total Gain/(Loss) INR", "Sale Proceeds USD", "Cost USD"])
     style_header(wss, 1, 6)
@@ -1509,6 +1624,8 @@ def main():
     for sym in sorted(by):
         wss.append([sym, by[sym]["STCG"], by[sym]["LTCG"], by[sym]["STCG"] + by[sym]["LTCG"],
                     round(by[sym]["proc"], 2), round(by[sym]["cost"], 2)])
+    wss.append([])
+    wss.append(["Note", "Detail P&L with editable FX is on 'Capital Gains FY2025-26' (formula-driven). This summary is a static cross-check."])
     autosize(wss)
 
     # Notes
@@ -1523,6 +1640,8 @@ def main():
         ("Income / CG period", "FY 2025-26 (01-Apr-2025 to 31-Mar-2026); also FY 2024-25 sheet for prior year"),
         ("Source data", "IBKR Activity Statements: Inception FY2024-25 + Annual CY2025 + Fiscal FY2025-26"),
         ("FIFO method", "Actual buy dates & IBKR Basis from inception replay; splits (LRCX 10:1, NFLX 10:1) applied"),
+        ("CG reconciliation", "Sheets 'Capital Gains FY2025-26' / 'FY2024-25' are formula-driven — yellow cells editable; Gain = Sale INR − Comm INR − Cost INR"),
+        ("FX Lookup", "Editable SBI TT USD/INR & EUR/INR month-end rates + FCY→USD cross rates"),
         ("Starting NAV CY2025", f"USD {starting_nav:,.2f}"),
         ("Ending NAV CY2025", f"USD {closing_nav:,.2f}"),
         ("Deposits CY2025", f"USD {sum(d['amount'] for d in deposits):,.2f}"),
