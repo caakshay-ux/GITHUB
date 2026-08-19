@@ -911,142 +911,203 @@ def main():
     # Opening lots for FA/CG dating come from inception replay
     opening = lots_ye2024
 
-    # Apply Jan-Dec 2025 buys/sells for FA sale proceeds & peak tracking
-    fa = {}  # symbol -> metrics
+    # ---------------- Schedule FA A3: FIFO lot-wise (aligns with Capital Gains) ----------------
+    # Replay CY2025 trades so each acquisition date is a separate A3 line; INR uses same
+    # Rule 115 / EUR methodology as the Capital Gains sheets.
 
-    def ensure(sym):
-        if sym not in fa:
-            fa[sym] = {
-                "acq_date": None,
-                "initial_usd": 0.0,
-                "peak_usd": 0.0,
-                "closing_usd": 0.0,
-                "div_usd": 0.0,
-                "sale_usd": 0.0,
-                "qty_close": 0.0,
-                "currency": "USD",
-                "held_during_year": False,
-            }
-        return fa[sym]
+    def fa_amount_inr(local_amt, currency, event_date, for_sale=True):
+        """Convert FCY amount to INR consistently with CG sheet."""
+        if currency == "EUR":
+            prev = (
+                date(event_date.year, event_date.month, 1) - timedelta(days=1)
+                if event_date.month > 1
+                else date(event_date.year - 1, 12, 31)
+            )
+            rate = SBI_TT_EUR[month_end_on_or_before(prev, SBI_TT_EUR)]
+            return local_amt * rate, rate, local_amt, 1.0
+        if currency == "USD":
+            rate = rule115_usd(event_date) if for_sale else sbi_usd(event_date)
+            # For Schedule FA initial of assets acquired in year, SBI TT on acq date is used;
+            # for income/sale Rule 115. Peak/closing use event-date SBI.
+            if not for_sale:
+                rate = sbi_usd(event_date)
+            return local_amt * rate, rate, local_amt, 1.0
+        # HKD/JPY etc: local → USD (IBKR YE) → INR
+        usd = to_usd(local_amt, currency)
+        rate = rule115_usd(event_date) if for_sale else sbi_usd(event_date)
+        if not for_sale:
+            rate = sbi_usd(event_date)
+        return usd * rate, rate, usd, FX_TO_USD_YE2025.get(currency, 1.0)
 
-    # Initialize from opening
+    rate_close = sbi_usd(date(2025, 12, 31))
+    rate_peak = sbi_usd(date(2025, 12, 31))
+    rate_init_prior = sbi_usd(date(2024, 12, 31))
+
+    # CY2025 FIFO: opening = lots at 31-Dec-2024
+    lots_cy_open = {k: deque(deepcopy(list(v))) for k, v in lots_ye2024.items()}
+    cy_orders = [o for o in orders_merged if date(2025, 1, 1) <= o["date"] <= date(2025, 12, 31)]
+    sales_cy, lots_cy_end = build_fifo_sales(
+        lots_cy_open,
+        cy_orders,
+        date(2025, 1, 1),
+        date(2025, 12, 31),
+        splits=splits,
+        cash_mergers=[m for m in extract_cash_mergers(sA, extract_realized_usd(sA))
+                      if date(2025, 1, 1) <= m["date"] <= date(2025, 12, 31)],
+    )
+
+    # Dividends by symbol (CY)
+    div_inr_by_sym = defaultdict(float)
+    div_usd_by_sym = defaultdict(float)
+    div_local_by_sym = defaultdict(float)
+    for d in div_cy:
+        sym = normalize_symbol(d["symbol"]) if d["symbol"] else "UNKNOWN"
+        usd = d["amount"] if d["currency"] == "USD" else to_usd(d["amount"], d["currency"])
+        div_usd_by_sym[sym] += usd
+        div_local_by_sym[sym] += d["amount"]
+        div_inr_by_sym[sym] += usd * rule115_usd(d["date"])
+
+    # Close prices / currency at YE2025 for remaining lots
+    close_info = {}
+    for sym, pos in open_ye.items():
+        close_info[sym] = {
+            "currency": pos["currency"],
+            "close_price": pos["close_price"],
+            "qty": pos["qty"],
+            "value": pos["value"],
+        }
+    # also from MTM curr
     for sym, m in mtm.items():
-        if (m["prior_qty"] or 0) == 0 and (m["curr_qty"] or 0) == 0:
-            # still may have traded
-            pass
-        row = ensure(sym)
-        row["held_during_year"] = True
-        pq, pp = m["prior_qty"] or 0, m["prior_price"]
-        cq, cp = m["curr_qty"] or 0, m["curr_price"]
-        ccy = "USD"
-        # detect currency from open_ye or trades
-        if sym in open_ye:
-            ccy = open_ye[sym]["currency"]
-        else:
+        if sym not in close_info and (m.get("curr_qty") or 0) and m.get("curr_price") is not None:
+            # currency from trades
+            ccy = "USD"
             for o in orders_merged:
                 if normalize_symbol(o["symbol"]) == sym:
                     ccy = o["currency"]
                     break
-        row["currency"] = ccy
+            close_info[sym] = {
+                "currency": ccy,
+                "close_price": m["curr_price"],
+                "qty": m["curr_qty"],
+                "value": m["curr_qty"] * m["curr_price"],
+            }
+
+    # Jan-1 FMV per symbol (for opening lots' Schedule FA initial)
+    jan1_fmv = {}
+    for sym, m in mtm.items():
+        pq, pp = m.get("prior_qty") or 0, m.get("prior_price")
         if pq and pp is not None:
-            init_local = pq * pp
-            init_usd = to_usd(init_local, ccy)
-            row["initial_usd"] = init_usd
-            row["peak_usd"] = init_usd
-            # True acquisition date from inception FIFO lots / first buy
-            row["acq_date"] = earliest_acq(lots_ye2024, sym) or first_acq.get(sym)
-        row["qty_close"] = cq
-        if cq and cp is not None:
-            close_local = cq * cp
-            # Prefer open_ye value if present
-            if sym in open_ye:
-                close_local = open_ye[sym]["value"]
-                ccy = open_ye[sym]["currency"]
-                row["currency"] = ccy
-            row["closing_usd"] = to_usd(close_local, ccy)
-            row["peak_usd"] = max(row["peak_usd"], row["closing_usd"])
+            ccy = close_info.get(sym, {}).get("currency")
+            if not ccy:
+                for o in orders_merged:
+                    if normalize_symbol(o["symbol"]) == sym:
+                        ccy = o["currency"]
+                        break
+                ccy = ccy or "USD"
+            jan1_fmv[sym] = {"qty": pq, "price": pp, "value": pq * pp, "currency": ccy}
 
-    # Process CY trades for acquisition dates, initial (if new), sales
-    for o in sorted(orders_cy, key=lambda x: (x["date"], x["datetime"])):
-        sym = normalize_symbol(o["symbol"])
-        row = ensure(sym)
-        row["held_during_year"] = True
-        row["currency"] = o["currency"]
-        if o["qty"] > 0:
-            cost_local = abs(o["basis"]) if o["basis"] is not None else abs(o["proceeds"])
-            cost_usd = to_usd(cost_local, o["currency"]) if o["currency"] != "USD" else cost_local
-            # For USD, basis includes commission typically
-            if o["currency"] == "USD":
-                cost_usd = cost_local
-            else:
-                cost_usd = to_usd(cost_local, o["currency"])
-            if row["acq_date"] is None or (row["initial_usd"] == 0 and o["date"].year == 2025):
-                if row["acq_date"] is None:
-                    row["acq_date"] = o["date"]
-            if row["initial_usd"] == 0 and (mtm.get(sym, {}).get("prior_qty") or 0) == 0:
-                # first acquisition in year — initial = this cost (aggregate buys before any sale)
-                row["initial_usd"] += cost_usd
-                row["acq_date"] = min(row["acq_date"], o["date"]) if row["acq_date"] else o["date"]
-            elif (mtm.get(sym, {}).get("prior_qty") or 0) == 0 and row["sale_usd"] == 0:
-                # additional buys before first sale — add to initial
-                row["initial_usd"] += cost_usd
-            row["peak_usd"] = max(row["peak_usd"], row["initial_usd"], row["closing_usd"])
-        else:
-            proceeds_local = abs(o["proceeds"])
-            proceeds_usd = proceeds_local if o["currency"] == "USD" else to_usd(proceeds_local, o["currency"])
-            row["sale_usd"] += proceeds_usd
-            row["peak_usd"] = max(row["peak_usd"], proceeds_usd, row["initial_usd"], row["closing_usd"])
-
-    # Dividends CY in USD
-    for d in div_cy:
-        sym = normalize_symbol(d["symbol"]) if d["symbol"] else ""
-        amt_usd = d["amount"] if d["currency"] == "USD" else to_usd(d["amount"], d["currency"])
-        if sym and sym in fa:
-            fa[sym]["div_usd"] += amt_usd
-        elif sym:
-            row = ensure(sym)
-            row["held_during_year"] = True
-            row["div_usd"] += amt_usd
-
-    # Corporate action HYU cash proceeds already in sale-like corporate action
-    for kind, r in sA["Corporate Actions"]:
-        if kind != "Data":
-            continue
-        if r[1] == "USD" and "HYU" in r[4] and fnum(r[6]):
-            ensure("HYU")
-            fa["HYU"]["sale_usd"] += fnum(r[6])
-            fa["HYU"]["held_during_year"] = True
-            if fa["HYU"]["acq_date"] is None:
-                fa["HYU"]["acq_date"] = date(2024, 7, 1)
-
-    # Drop dividend-rights only noise with zero values
-    skip_syms = {"SHELL.DRS", "SHELL.DVD"}
     fa_rows = []
-    rate_init_prior = sbi_usd(date(2024, 12, 31))  # 85.20 for opening initial
-    rate_close = sbi_usd(date(2025, 12, 31))  # 89.47
-    rate_peak = sbi_usd(date(2025, 12, 31))  # proxy; peak date unknown
+    skip_syms = {"SHELL.DRS", "SHELL.DVD", "SHELL.DVR"}
+    # Track which symbols already got dividend attributed (put on first lot row)
+    div_assigned = set()
 
-    for sym, row in sorted(fa.items(), key=lambda x: x[0]):
+    def append_fa_lot(sym, acq_date, qty, currency, initial_local, sale_local, closing_local,
+                      sale_date=None, note=""):
         if sym in skip_syms:
-            continue
-        if not row["held_during_year"]:
-            continue
-        if row["initial_usd"] == 0 and row["closing_usd"] == 0 and row["sale_usd"] == 0 and row["div_usd"] == 0:
-            continue
-        # If acquired in 2025, use acquisition-date rate for initial
-        ad = row["acq_date"] or first_acq.get(sym) or date(2025, 1, 1)
-        row["acq_date"] = ad
-        if (mtm.get(sym, {}).get("prior_qty") or 0) > 0:
-            r_init = rate_init_prior
-            ad_display = ad.isoformat()  # true buy date from inception statement
-        else:
-            r_init = sbi_usd(ad)
-            ad_display = ad.isoformat()
-        r_peak = rate_peak
-        peak_usd = max(row["peak_usd"], row["initial_usd"], row["closing_usd"])
+            return
+        if abs(qty) < 1e-9 and (initial_local or 0) == 0 and (sale_local or 0) == 0 and (closing_local or 0) == 0:
+            return
         cname, ccode, name, addr, zipc, nature = entity_row(sym, fin)
-        qty = row["qty_close"]
-        qty_str = f"{qty:g}" if qty else "0"
+        # Initial / cost INR
+        # - Sold lots: use same Rule 115 / EUR methodology as Capital Gains (so A3 ↔ CG reconcile)
+        # - Opening lots still held: Schedule FA beginning value at 31-Dec-2024 SBI TT
+        # - Acquired in CY and still held: SBI TT on acquisition date
+        if sale_local and sale_date:
+            # Align with CG cost conversion
+            if currency == "EUR":
+                prev = (
+                    date(acq_date.year, acq_date.month, 1) - timedelta(days=1)
+                    if acq_date.month > 1
+                    else date(acq_date.year - 1, 12, 31)
+                )
+                r_init = SBI_TT_EUR[month_end_on_or_before(prev, SBI_TT_EUR)]
+                init_inr = initial_local * r_init
+                init_usd = to_usd(initial_local, "EUR")
+            elif currency == "USD":
+                r_init = rule115_usd(acq_date)
+                init_usd = initial_local
+                init_inr = initial_local * r_init
+            else:
+                init_usd = to_usd(initial_local, currency)
+                r_init = rule115_usd(acq_date)
+                init_inr = init_usd * r_init
+        elif acq_date < date(2025, 1, 1) and sym in jan1_fmv and jan1_fmv[sym]["qty"]:
+            unit = jan1_fmv[sym]["value"] / jan1_fmv[sym]["qty"]
+            init_local_use = unit * qty
+            ccy0 = jan1_fmv[sym]["currency"]
+            init_usd = init_local_use if ccy0 == "USD" else to_usd(init_local_use, ccy0)
+            r_init = rate_init_prior
+            init_inr = init_usd * r_init
+        else:
+            if currency == "EUR":
+                r_init = SBI_TT_EUR[month_end_on_or_before(acq_date, SBI_TT_EUR)]
+                init_inr = initial_local * r_init
+                init_usd = to_usd(initial_local, "EUR")
+            elif currency == "USD":
+                r_init = sbi_usd(acq_date)
+                init_usd = initial_local
+                init_inr = initial_local * r_init
+            else:
+                init_usd = to_usd(initial_local, currency)
+                r_init = sbi_usd(acq_date)
+                init_inr = init_usd * r_init
+
+        # Sale INR — match CG: Rule 115 / EUR Rule 115
+        if sale_local and sale_date:
+            if currency == "EUR":
+                prev = (
+                    date(sale_date.year, sale_date.month, 1) - timedelta(days=1)
+                    if sale_date.month > 1
+                    else date(sale_date.year - 1, 12, 31)
+                )
+                r_sale = SBI_TT_EUR[month_end_on_or_before(prev, SBI_TT_EUR)]
+                sale_inr = sale_local * r_sale
+                sale_usd = to_usd(sale_local, "EUR")
+            elif currency == "USD":
+                r_sale = rule115_usd(sale_date)
+                sale_usd = sale_local
+                sale_inr = sale_local * r_sale
+            else:
+                sale_usd = to_usd(sale_local, currency)
+                r_sale = rule115_usd(sale_date)
+                sale_inr = sale_usd * r_sale
+        else:
+            sale_usd = sale_inr = 0.0
+
+        # Closing
+        if closing_local:
+            if currency == "EUR":
+                close_usd = to_usd(closing_local, "EUR")
+            elif currency == "USD":
+                close_usd = closing_local
+            else:
+                close_usd = to_usd(closing_local, currency)
+            close_inr = close_usd * rate_close
+        else:
+            close_usd = close_inr = 0.0
+
+        peak_usd = max(init_usd, close_usd, sale_usd)
+        peak_inr = peak_usd * rate_peak
+
+        # Dividends once per symbol on first lot row
+        if sym not in div_assigned:
+            d_usd = div_usd_by_sym.get(sym, 0.0)
+            d_inr = div_inr_by_sym.get(sym, 0.0)
+            div_assigned.add(sym)
+        else:
+            d_usd = d_inr = 0.0
+
+        qty_str = f"{qty:g}"
         fa_rows.append(
             {
                 "country": cname,
@@ -1055,53 +1116,99 @@ def main():
                 "address": addr,
                 "zip": zipc,
                 "nature": nature,
-                "acq": ad_display,
-                "acq_date": ad,
-                "initial_usd": round(row["initial_usd"], 2),
+                "acq": acq_date.isoformat(),
+                "acq_date": acq_date,
+                "initial_usd": round(init_usd, 2),
                 "peak_usd": round(peak_usd, 2),
-                "closing_usd": round(row["closing_usd"], 2),
-                "div_usd": round(row["div_usd"], 2),
-                "sale_usd": round(row["sale_usd"], 2),
-                "initial_inr": round(row["initial_usd"] * r_init),
-                "peak_inr": round(peak_usd * r_peak),
-                "closing_inr": round(row["closing_usd"] * rate_close),
-                "div_inr": round(row["div_usd"] * 88.0),  # approx avg; detailed sheet uses Rule 115
-                "sale_inr": round(row["sale_usd"] * 87.0),  # placeholder agg; detail in CG
+                "closing_usd": round(close_usd, 2),
+                "div_usd": round(d_usd, 2),
+                "sale_usd": round(sale_usd, 2),
+                "initial_inr": round(init_inr),
+                "peak_inr": round(peak_inr),
+                "closing_inr": round(close_inr),
+                "div_inr": round(d_inr),
+                "sale_inr": round(sale_inr),
                 "symbol": sym,
+                "qty": qty,
                 "r_init": r_init,
-                "r_peak": r_peak,
+                "r_peak": rate_peak,
                 "r_close": rate_close,
+                "lot_note": note,
+                "initial_local": round(initial_local, 4),
+                "sale_local": round(sale_local or 0, 4),
+                "currency": currency,
             }
         )
 
-    # Recompute dividend INR per FA row using sum of Rule 115 conversions from div lines
-    div_inr_by_sym = defaultdict(float)
-    div_usd_by_sym = defaultdict(float)
-    for d in div_cy:
-        sym = normalize_symbol(d["symbol"]) if d["symbol"] else "UNKNOWN"
-        usd = d["amount"] if d["currency"] == "USD" else to_usd(d["amount"], d["currency"])
-        inr = usd * rule115_usd(d["date"])
-        div_inr_by_sym[sym] += inr
-        div_usd_by_sym[sym] += usd
-    for r in fa_rows:
-        r["div_usd"] = round(div_usd_by_sym.get(r["symbol"], r["div_usd"]), 2)
-        r["div_inr"] = round(div_inr_by_sym.get(r["symbol"], 0))
+    # 1) Sold lots in CY2025 — one A3 row per FIFO lot (matches Capital Gains lot lines)
+    for s in sales_cy:
+        append_fa_lot(
+            s.symbol,
+            s.acq_date,
+            s.qty,
+            s.currency,
+            initial_local=s.cost_local,
+            sale_local=s.proceeds_local,
+            closing_local=0.0,
+            sale_date=s.sell_date,
+            note=f"FIFO lot sold {s.sell_date.isoformat()}; aligns with Capital Gains",
+        )
 
-    # Sale INR via Rule 115 on each CY sell
-    sale_inr_by_sym = defaultdict(float)
-    for o in orders_cy:
-        if o["qty"] >= 0:
+    # 2) Remaining lots at 31-Dec-2025
+    for sym, lots in sorted(lots_cy_end.items()):
+        info = close_info.get(sym, {})
+        ccy = info.get("currency") or (lots[0].currency if lots else "USD")
+        px = info.get("close_price")
+        for L in lots:
+            if L.qty <= 1e-10:
+                continue
+            closing_local = (px * L.qty) if px is not None else 0.0
+            append_fa_lot(
+                sym,
+                L.acq_date,
+                L.qty,
+                L.currency or ccy,
+                initial_local=L.cost_local,
+                sale_local=0.0,
+                closing_local=closing_local,
+                sale_date=None,
+                note="Holding at 31-Dec-2025",
+            )
+
+    # 3) Symbols with dividends but no lots/sales caught (edge)
+    for sym, d_usd in div_usd_by_sym.items():
+        if sym in div_assigned or sym in skip_syms:
             continue
-        sym = normalize_symbol(o["symbol"])
-        proceeds_local = abs(o["proceeds"])
-        usd = proceeds_local if o["currency"] == "USD" else to_usd(proceeds_local, o["currency"])
-        sale_inr_by_sym[sym] += usd * rule115_usd(o["date"])
-    # HYU corporate action
-    for kind, r in sA["Corporate Actions"]:
-        if kind == "Data" and r[1] == "USD" and "HYU" in r[4] and fnum(r[6]):
-            sale_inr_by_sym["HYU"] += fnum(r[6]) * rule115_usd(parse_dt(r[2]))
-    for r in fa_rows:
-        r["sale_inr"] = round(sale_inr_by_sym.get(r["symbol"], 0))
+        cname, ccode, name, addr, zipc, nature = entity_row(sym, fin)
+        fa_rows.append(
+            {
+                "country": cname,
+                "code": ccode,
+                "name": f"{name}  [Ticker: {sym}]  Qty: 0",
+                "address": addr,
+                "zip": zipc,
+                "nature": nature,
+                "acq": first_acq.get(sym, date(2025, 1, 1)).isoformat(),
+                "acq_date": first_acq.get(sym, date(2025, 1, 1)),
+                "initial_usd": 0,
+                "peak_usd": 0,
+                "closing_usd": 0,
+                "div_usd": round(d_usd, 2),
+                "sale_usd": 0,
+                "initial_inr": 0,
+                "peak_inr": 0,
+                "closing_inr": 0,
+                "div_inr": round(div_inr_by_sym.get(sym, 0)),
+                "sale_inr": 0,
+                "symbol": sym,
+                "r_init": rate_init_prior,
+                "r_peak": rate_peak,
+                "r_close": rate_close,
+            }
+        )
+        div_assigned.add(sym)
+
+    fa_rows.sort(key=lambda r: (r["symbol"], r["acq_date"], r.get("sale_local", 0)))
 
     # ---------------- Capital gains FY 2025-26 (FIFO from inception) ----------------
     realized_map = extract_realized_usd(sA)
@@ -1417,7 +1524,7 @@ def main():
         ws2.cell(1, i, h)
     style_header(ws2, 1, len(h2))
     for i, row in enumerate(fa_rows, 1):
-        qty = mtm.get(row["symbol"], {}).get("curr_qty") or open_ye.get(row["symbol"], {}).get("qty") or 0
+        qty = row.get("qty", mtm.get(row["symbol"], {}).get("curr_qty") or open_ye.get(row["symbol"], {}).get("qty") or 0)
         _, _, name, _, _, nature = entity_row(row["symbol"], fin)
         ws2.append([
             i, row["country"], row["code"], row["symbol"], name, nature, qty, row["acq"],
@@ -1656,7 +1763,8 @@ def main():
         ("LTCG FY2024-25 (INR)", f"{ltcg2425:,.0f}"),
         ("A1 Foreign Bank/Depository", "Generally N/A separately — multi-currency cash sits inside IBKR custodial account (A2)"),
         ("A2 Custodial Account", "Applicable — see sheet; opening date 06-Sep-2024 (first funding)"),
-        ("A3 Equity & Debt Interest", f"Applicable — {len(fa_rows)} securities lines (held at any time in CY2025)"),
+        ("A3 Equity & Debt Interest", f"Applicable — {len(fa_rows)} FIFO lot lines (one row per acquisition lot; sold lots match Capital Gains)"),
+        ("A3 vs CG", "Sold lots: A3 Initial = CG Cost (INR), A3 Sale = CG Sale (INR), same Rule 115/EUR FX. Multiple buys (e.g. NOVd 21-Mar & 21-Aug) appear as separate A3 rows."),
         ("ADR country practice", "Underlying issuer country used for ADRs/GDRs (ASML NL, BTI UK, TSM TW, BYDDY CN, HYU KR, RIO UK)"),
         ("CPNG", "USA (Delaware corporation, NYSE) despite Korea operations"),
         ("NFLX split", "10-for-1 split on 14/17-Nov-2025 reflected in FIFO"),
