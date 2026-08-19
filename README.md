@@ -12,7 +12,7 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 
 | Sheet | Purpose |
 | --- | --- |
-| A3 | Schedule FA – Foreign equity/debt interests (INR) for CY 2025 |
+| A3 | Schedule FA – Foreign equity/debt interests (INR) for CY 2025; Col C = Symbol only |
 | A3 (USD reference) | Same holdings in USD before FX conversion |
 | FX Rates (USD-INR) | SBI TT Buy rates used + methodology notes |
 | A2 Custodial Account | Schedule FA – IBKR custodial account (opened 06-Sep-2024) |

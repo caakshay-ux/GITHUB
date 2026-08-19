@@ -1107,12 +1107,11 @@ def main():
         else:
             d_usd = d_inr = 0.0
 
-        qty_str = f"{qty:g}"
         fa_rows.append(
             {
                 "country": cname,
                 "code": ccode,
-                "name": f"{name}  [Ticker: {sym}]  Qty: {qty_str}",
+                "name": sym,  # A3 Col C — Symbol only
                 "address": addr,
                 "zip": zipc,
                 "nature": nature,
@@ -1184,7 +1183,7 @@ def main():
             {
                 "country": cname,
                 "code": ccode,
-                "name": f"{name}  [Ticker: {sym}]  Qty: 0",
+                "name": sym,  # A3 Col C — Symbol only
                 "address": addr,
                 "zip": zipc,
                 "nature": nature,
@@ -1764,6 +1763,7 @@ def main():
         ("A1 Foreign Bank/Depository", "Generally N/A separately — multi-currency cash sits inside IBKR custodial account (A2)"),
         ("A2 Custodial Account", "Applicable — see sheet; opening date 06-Sep-2024 (first funding)"),
         ("A3 Equity & Debt Interest", f"Applicable — {len(fa_rows)} FIFO lot lines (one row per acquisition lot; sold lots match Capital Gains)"),
+        ("A3 Col C (Name of entity)", "Symbol only (e.g. NOVd, AAPL). Legal name / address remain in Address & Nature columns."),
         ("A3 vs CG", "Sold lots: A3 Initial = CG Cost (INR), A3 Sale = CG Sale (INR), same Rule 115/EUR FX. Multiple buys (e.g. NOVd 21-Mar & 21-Aug) appear as separate A3 rows."),
         ("ADR country practice", "Underlying issuer country used for ADRs/GDRs (ASML NL, BTI UK, TSM TW, BYDDY CN, HYU KR, RIO UK)"),
         ("CPNG", "USA (Delaware corporation, NYSE) despite Korea operations"),
