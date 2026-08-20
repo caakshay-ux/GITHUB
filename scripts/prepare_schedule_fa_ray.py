@@ -515,6 +515,77 @@ def normalize_symbol(sym: str) -> str:
     return sym
 
 
+def extract_transfers(sections):
+    """Stock FOP / ACATS transfers (In = acquisition into IBKR)."""
+    out = []
+    for kind, r in sections.get("Transfers", []):
+        if kind != "Data" or not r or r[0] in ("Total",):
+            continue
+        if r[0] != "Stocks":
+            continue
+        direction = (r[5] if len(r) > 5 else "").strip()
+        qty = fnum(r[8]) if len(r) > 8 else None
+        if qty is None:
+            continue
+        out.append(
+            {
+                "currency": r[1],
+                "symbol": normalize_symbol(r[2]),
+                "date": parse_dt(r[3]),
+                "type": r[4] if len(r) > 4 else "",
+                "direction": direction,
+                "qty": qty,
+                "market_value": fnum(r[10]) if len(r) > 10 else None,
+                "realized": fnum(r[11]) if len(r) > 11 else None,
+            }
+        )
+    return out
+
+
+def transfers_to_buy_orders(transfers, open_positions_by_statement):
+    """
+    Convert inbound stock transfers into synthetic buy orders for FIFO.
+    Cost basis prefers IBKR Open Positions cost_basis (carryover); else transfer MV.
+    """
+    basis_by_sym = {}
+    for op in open_positions_by_statement:
+        for sym, info in op.items():
+            if info.get("cost_basis") is not None and info.get("qty"):
+                basis_by_sym[sym] = (info["cost_basis"], info["qty"], info.get("currency") or "USD")
+
+    orders = []
+    for t in transfers:
+        if t["direction"].lower() != "in":
+            continue
+        sym = t["symbol"]
+        qty = t["qty"]
+        if qty <= 0:
+            continue
+        if sym in basis_by_sym:
+            total_basis, basis_qty, ccy = basis_by_sym[sym]
+            cost = abs(total_basis) * (qty / basis_qty) if basis_qty else abs(total_basis)
+            currency = ccy
+        else:
+            cost = abs(t["market_value"] or 0.0)
+            currency = t["currency"]
+        orders.append(
+            {
+                "currency": currency,
+                "symbol": sym,
+                "datetime": f"{t['date'].isoformat()}, 00:00:00",
+                "date": t["date"],
+                "qty": qty,
+                "price": (cost / qty) if qty else 0.0,
+                "proceeds": -cost,
+                "comm_usd": 0.0,
+                "basis": cost,
+                "realized": 0.0,
+                "code": "T",
+            }
+        )
+    return orders
+
+
 def extract_stock_splits(sections):
     out = []
     for kind, r in sections.get("Corporate Actions", []):
@@ -825,21 +896,40 @@ def autosize(ws, max_width=48):
         ws.column_dimensions[letter].width = width
 
 
-def main():
-    hA, sA = parse_ibkr(ANNUAL)
-    hF, sF = parse_ibkr(FISCAL)
-    hI, sI = parse_ibkr(INCEPTION)
-    info = acct_info(sA)
+def main(
+    inception: Path | None = None,
+    annual: Path | None = None,
+    fiscal: Path | None = None,
+    out: Path | None = None,
+    account_open_date: str | None = None,
+    notes_extra: list | None = None,
+    assessee_label: str | None = None,
+):
+    inception = inception or INCEPTION
+    annual = annual or ANNUAL
+    fiscal = fiscal or FISCAL
+    out = out or OUT
+
+    hA, sA = parse_ibkr(annual)
+    hF, sF = parse_ibkr(fiscal)
+    hI, sI = parse_ibkr(inception)
+    acct = acct_info(sA) or acct_info(sI)
     fin = fin_info(sA)
     fin.update(fin_info(sF))
     fin.update(fin_info(sI))
 
     mtm = extract_mtm(sA)
     open_ye = extract_open_positions(sA)
+    open_inc = extract_open_positions(sI)
+    open_fy = extract_open_positions(sF)
     orders_cy = extract_orders(sA)
     orders_fy_all = extract_orders(sF)
     orders_inc = extract_orders(sI)
-    orders_merged = merge_orders(orders_inc, orders_cy, orders_fy_all)
+    xfer_orders = transfers_to_buy_orders(
+        extract_transfers(sI) + extract_transfers(sA) + extract_transfers(sF),
+        [open_inc, open_ye, open_fy],
+    )
+    orders_merged = merge_orders(orders_inc, orders_cy, orders_fy_all, xfer_orders)
 
     splits = merge_splits(
         extract_stock_splits(sI),
@@ -898,15 +988,30 @@ def main():
         if date(2024, 4, 1) <= w["date"] <= date(2025, 3, 31)
     ]
 
-    nav = {r[0]: fnum(r[1]) for _, r in sA["Change in NAV"]}
+    nav = {r[0]: fnum(r[1]) for _, r in sA.get("Change in NAV", [])}
     deposits = []
-    for kind, r in sA["Deposits & Withdrawals"]:
+    for kind, r in sA.get("Deposits & Withdrawals", []):
         if kind == "Data" and r[0] != "Total":
             deposits.append({"currency": r[0], "date": parse_dt(r[1]), "desc": r[2], "amount": fnum(r[3])})
     deposits_inc = []
-    for kind, r in sI["Deposits & Withdrawals"]:
+    for kind, r in sI.get("Deposits & Withdrawals", []):
         if kind == "Data" and r[0] != "Total":
             deposits_inc.append({"currency": r[0], "date": parse_dt(r[1]), "desc": r[2], "amount": fnum(r[3])})
+    # Infer account open date: first deposit, else first inbound transfer, else override
+    open_date_note = account_open_date
+    if not open_date_note:
+        first_dates = []
+        if deposits_inc:
+            first_dates.append(min(d["date"] for d in deposits_inc))
+        if deposits:
+            first_dates.append(min(d["date"] for d in deposits))
+        xfers_in = [t for t in extract_transfers(sI) + extract_transfers(sA) if t["direction"].lower() == "in"]
+        if xfers_in:
+            first_dates.append(min(t["date"] for t in xfers_in))
+        if first_dates:
+            open_date_note = min(first_dates).isoformat() + " (first funding / inbound transfer per IBKR)"
+        else:
+            open_date_note = "Confirm from IBKR account opening documents"
 
     # Opening lots for FA/CG dating come from inception replay
     opening = lots_ye2024
@@ -1581,9 +1686,9 @@ def main():
     wsa2.append([
         "United States of America", 2,
         "Interactive Brokers LLC (Clearing Broker), Advisor Client via Interactive Brokers (India) / "
-        f"Investment Advisor: {info.get('Investment Advisor', '')}",
-        "One Pickwick Plaza, Greenwich, CT, USA", "06830", info.get("Account", ""),
-        "Owner - Sole beneficial owner", "2024-09-06 (first funding per IBKR deposits)",
+        f"Investment Advisor: {acct.get('Investment Advisor', '')}",
+        "One Pickwick Plaza, Greenwich, CT, USA", "06830", acct.get("Account", ""),
+        "Owner - Sole beneficial owner", open_date_note,
     ])
     wsa2.append([])
     wsa2.append([
@@ -1621,7 +1726,7 @@ def main():
     ])
     wsa2.append([])
     wsa2.append(["NOTES:"])
-    wsa2.append([f"Account: IBKR {info.get('Account')} — {info.get('Name')} (Individual, USD base, Cash)."])
+    wsa2.append([f"Account: IBKR {acct.get('Account')} — {acct.get('Name')} (Individual, USD base, Cash)."])
     wsa2.append([f"Starting NAV 01-Jan-2025: USD {starting_nav:,.2f}; Ending NAV 31-Dec-2025: USD {closing_nav:,.2f}."])
     wsa2.append(["Peak NAV: Activity Statement does not include daily NAV — shown as max(start, end). Obtain PortfolioAnalyst for true peak."])
     wsa2.append([f"Deposits CY2025: USD {sum(d['amount'] for d in deposits):,.2f} ({', '.join(d['date'].isoformat()+': '+str(d['amount']) for d in deposits)})."])
@@ -1737,10 +1842,10 @@ def main():
     # Notes
     wsn = wb.create_sheet("Notes for CA")
     notes = [
-        ("Assessee", info.get("Name")),
-        ("Account", f"{info.get('Account')} — Interactive Brokers LLC (Advisor Client; Advisor: {info.get('Investment Advisor')})"),
-        ("Customer type", info.get("Customer Type")),
-        ("Base currency", info.get("Base Currency")),
+        ("Assessee", acct.get("Name")),
+        ("Account", f"{acct.get('Account')} — Interactive Brokers LLC (Advisor Client; Advisor: {acct.get('Investment Advisor')})"),
+        ("Customer type", acct.get("Customer Type")),
+        ("Base currency", acct.get("Base Currency")),
         ("Account funded", f"First deposit {deposits_inc[0]['date'].isoformat() if deposits_inc else 'n/a'} (inception statement)"),
         ("Schedule FA period", "Calendar Year 2025 (01-Jan-2025 to 31-Dec-2025) — for ITR AY 2026-27"),
         ("Income / CG period", "FY 2025-26 (01-Apr-2025 to 31-Mar-2026); also FY 2024-25 sheet for prior year"),
@@ -1761,7 +1866,7 @@ def main():
         ("STCG FY2024-25 (INR)", f"{stcg2425:,.0f}"),
         ("LTCG FY2024-25 (INR)", f"{ltcg2425:,.0f}"),
         ("A1 Foreign Bank/Depository", "Generally N/A separately — multi-currency cash sits inside IBKR custodial account (A2)"),
-        ("A2 Custodial Account", "Applicable — see sheet; opening date 06-Sep-2024 (first funding)"),
+        ("A2 Custodial Account", f"Applicable — see sheet; opening: {open_date_note}"),
         ("A3 Equity & Debt Interest", f"Applicable — {len(fa_rows)} FIFO lot lines (one row per acquisition lot; sold lots match Capital Gains)"),
         ("A3 Col C (Name of entity)", "Symbol only (e.g. NOVd, AAPL). Legal name / address remain in Address & Nature columns."),
         ("A3 vs CG", "Sold lots: A3 Initial = CG Cost (INR), A3 Sale = CG Sale (INR), same Rule 115/EUR FX. Multiple buys (e.g. NOVd 21-Mar & 21-Aug) appear as separate A3 rows."),
@@ -1772,14 +1877,17 @@ def main():
         ("HYU", "Cash merger acquisition Jul-2025 — sale proceeds USD 1,339.02 reported as redemption proceeds"),
         ("Action required", "1) Confirm exact SBI TT Buy card rates; 2) Obtain PortfolioAnalyst for true peak NAV; 3) Map withholding to Schedule FSI/TR under DTAA."),
     ]
-    wsn.append(["Preparation notes — Schedule FA / CG / Dividends for Ray G Stephanos"])
+    label = assessee_label or acct.get("Name") or "Assessee"
+    wsn.append([f"Preparation notes — Schedule FA / CG / Dividends for {label}"])
+    for a, b in (notes_extra or []):
+        wsn.append([a, b])
     for a, b in notes:
         wsn.append([a, b])
     autosize(wsn)
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    wb.save(OUT)
-    print(f"Wrote {OUT}")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    wb.save(out)
+    print(f"Wrote {out}")
     print(f"A3 rows: {len(fa_rows)}")
     print(f"CG lots: {len(cg_rows)} STCG={stcg} LTCG={ltcg}")
     print(f"Div CY USD={div_usd_tot:.2f} INR={div_inr_tot:.0f}")
@@ -1789,4 +1897,21 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+
+    p = argparse.ArgumentParser(description="Prepare Schedule FA / CG workbook from IBKR Activity Statements")
+    p.add_argument("--inception", type=Path, default=None)
+    p.add_argument("--annual", type=Path, default=None)
+    p.add_argument("--fiscal", type=Path, default=None)
+    p.add_argument("--out", type=Path, default=None)
+    p.add_argument("--account-open-date", default=None)
+    p.add_argument("--assessee", default=None)
+    args = p.parse_args()
+    main(
+        inception=args.inception,
+        annual=args.annual,
+        fiscal=args.fiscal,
+        out=args.out,
+        account_open_date=args.account_open_date,
+        assessee_label=args.assessee,
+    )
