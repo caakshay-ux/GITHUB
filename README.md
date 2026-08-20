@@ -7,7 +7,8 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 | Assessee | IBKR | Output |
 | --- | --- | --- |
 | Ray G Stephanos | U15124027 | [`output/Foreign_Assets_Schedule_FA_Ray_G_Stephanos_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Ray_G_Stephanos_AY2026-27.xlsx) |
-| Puneet Kohli | U17334752 | [`output/Foreign_Assets_Schedule_FA_Puneet_Kohli_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Puneet_Kohli_AY2026-27.xlsx) |
+| Puneet Kohli | U17334752 (MSFT) | [`output/Foreign_Assets_Schedule_FA_Puneet_Kohli_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Puneet_Kohli_AY2026-27.xlsx) |
+| Puneet Kohli | U16755051 (main) | [`output/Foreign_Assets_Schedule_FA_Puneet_Kohli_U16755051_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Puneet_Kohli_U16755051_AY2026-27.xlsx) |
 
 ### Workbook sheets
 
@@ -33,7 +34,14 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 - `input_Annual_Statement_Ray.csv` — IBKR Activity Statement CY 2025
 - `input_Fiscal_Statement_Ray.csv` — IBKR Activity Statement FY 2025-26
 
-### Source inputs — Puneet Kohli
+### Source inputs — Puneet Kohli U16755051 (main)
+
+- `input_Inception_FY2024-25_Kohli_U16755051.csv` — FY 2024-25
+- `input_Fiscal_Statement_Kohli_U16755051.csv` — FY 2025-26
+- `input_Annual_Statement_Kohli_U16755051.csv` — **synthesized** CY 2025
+- Also under `clients/Puneet_Kohli_U16755051/`
+
+### Source inputs — Puneet Kohli U17334752 (MSFT-only)
 
 - `input_Inception_FY2024-25_Kohli.csv` — FY 2024-25 (FOP transfer of MSFT)
 - `input_Fiscal_Statement_Kohli.csv` — FY 2025-26
@@ -51,8 +59,10 @@ Cost = IBKR trade/transfer Basis; sale = Proceeds; sell commission deducted. INR
 pip install openpyxl
 # Ray
 python3 scripts/prepare_schedule_fa_ray.py
-# Puneet Kohli
+# Puneet Kohli — U17334752 (MSFT)
 python3 scripts/prepare_schedule_fa_puneet_kohli.py
+# Puneet Kohli — U16755051 (main)
+python3 scripts/prepare_schedule_fa_puneet_kohli_U16755051.py
 ```
 
 ### Key caveats (read Notes for CA)

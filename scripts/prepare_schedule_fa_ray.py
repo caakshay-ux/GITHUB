@@ -118,6 +118,10 @@ ENTITY = {
     "AAXJ": ("United States of America", "Exchange Traded Fund (Investment Trust)",
              "c/o BlackRock Fund Advisors, 400 Howard Street, San Francisco, CA", "94105",
              "iShares MSCI All Country Asia ex Japan ETF"),
+    "ACN": ("Ireland", "Listed Foreign Equity Share (Company)",
+            "1 Grand Canal Square, Grand Canal Harbour, Dublin", "D02 P820", "Accenture plc - Class A"),
+    "ADBE": ("United States of America", "Listed Foreign Equity Share (Company)",
+             "345 Park Avenue, San Jose, CA", "95110", "Adobe Inc"),
     "AIQ": ("United States of America", "Exchange Traded Fund (Investment Trust)",
             "c/o Global X Management Company LLC, 605 Third Avenue, New York, NY", "10158",
             "Global X Artificial Intelligence & Technology ETF"),
@@ -137,6 +141,8 @@ ENTITY = {
             "100 North Tryon Street, Charlotte, NC", "28255", "Bank of America Corp"),
     "BLBD": ("United States of America", "Listed Foreign Equity Share (Company)",
              "3920 Arkwright Road, Macon, GA", "31210", "Blue Bird Corp"),
+    "BNO": ("United States of America", "Exchange Traded Fund (Investment Trust)",
+            "c/o United States Commodity Funds LLC", "", "United States Brent Oil Fund LP"),
     "BOTZ": ("United States of America", "Exchange Traded Fund (Investment Trust)",
              "c/o Global X Management Company LLC, 605 Third Avenue, New York, NY", "10158",
              "Global X Robotics & Artificial Intelligence ETF"),
@@ -219,6 +225,8 @@ ENTITY = {
             "Invesco QQQ Trust Series 1"),
     "R6C0d": ("United Kingdom", "Listed Foreign Equity Share (Company)",
               "Shell Centre, 2 York Road, London", "SE1 7NA", "Shell plc"),
+    "SHELL": ("United Kingdom", "Listed Foreign Equity Share (Company)",
+              "Shell Centre, 2 York Road, London", "SE1 7NA", "Shell plc"),
     "RBRK": ("United States of America", "Listed Foreign Equity Share (Company)",
              "3495 Deer Creek Road, Palo Alto, CA", "94304", "Rubrik Inc - Class A"),
     "REGN": ("United States of America", "Listed Foreign Equity Share (Company)",
@@ -233,6 +241,9 @@ ENTITY = {
              "iShares MSCI Australia UCITS ETF"),
     "SIEd": ("Germany", "Listed Foreign Equity Share (Company)",
              "Werner-von-Siemens-Strasse 1, Munich", "80333", "Siemens AG - Registered"),
+    "SLV": ("United States of America", "Exchange Traded Fund (Investment Trust)",
+            "c/o iShares Delaware Trust Sponsor LLC / BlackRock, San Francisco, CA", "94105",
+            "iShares Silver Trust"),
     "SNOW": ("United States of America", "Listed Foreign Equity Share (Company)",
              "106 East Babcock Street, Bozeman, MT", "59715", "Snowflake Inc"),
     "TGT": ("United States of America", "Listed Foreign Equity Share (Company)",
@@ -262,6 +273,8 @@ ENTITY = {
              "WisdomTree Cybersecurity UCITS ETF"),
     "WFC": ("United States of America", "Listed Foreign Equity Share (Company)",
             "420 Montgomery Street, San Francisco, CA", "94104", "Wells Fargo & Company"),
+    "XOM": ("United States of America", "Listed Foreign Equity Share (Company)",
+            "22777 Springwoods Village Parkway, Spring, TX", "77389", "Exxon Mobil Corp"),
     "1810": ("Cayman Islands", "Listed Foreign Equity Share (Company)",
              "Xiaomi Corporation, Cayman Islands / Beijing ops", "", "Xiaomi Corp - Class B"),
     "1919": ("China", "Listed Foreign Equity Share (Company)",
@@ -270,6 +283,8 @@ ENTITY = {
              "ChinaAMC, Hong Kong", "", "ChinaAMC Hang Seng Biotech ETF"),
     "3088": ("Hong Kong", "Exchange Traded Fund (Investment Trust)",
              "ChinaAMC, Hong Kong", "", "ChinaAMC Hang Seng TECH Index ETF"),
+    "3110": ("Hong Kong", "Exchange Traded Fund (Investment Trust)",
+             "Global X ETFs / Mirae Asset, Hong Kong", "", "Global X Hang Seng High Dividend Yield ETF"),
     "3188": ("Hong Kong", "Exchange Traded Fund (Investment Trust)",
              "ChinaAMC, Hong Kong", "", "ChinaAMC CSI 300 Index ETF"),
     "3416": ("Hong Kong", "Exchange Traded Fund (Investment Trust)",
@@ -279,6 +294,10 @@ ENTITY = {
     "SHELL.DRS": ("United Kingdom", "Other Interest (Dividend Right)",
                   "Shell Centre, London", "SE1 7NA", "Shell plc - Dividend Rights"),
     "SHELL.DVD": ("United Kingdom", "Other Interest (Dividend Right)",
+                  "Shell Centre, London", "SE1 7NA", "Shell plc - Dividend Rights"),
+    "SHELL1.DI": ("United Kingdom", "Other Interest (Dividend Right)",
+                  "Shell Centre, London", "SE1 7NA", "Shell plc - Dividend Rights"),
+    "SHELL.DDR": ("United Kingdom", "Other Interest (Dividend Right)",
                   "Shell Centre, London", "SE1 7NA", "Shell plc - Dividend Rights"),
 }
 
@@ -512,6 +531,8 @@ def extract_withholding(sections):
 def normalize_symbol(sym: str) -> str:
     if sym == "W1TB":
         return "WCBR"
+    if sym == "SHELL":
+        return "R6C0d"  # IBKR alias for Shell plc on AEB
     return sym
 
 
@@ -1112,7 +1133,7 @@ def main(
             jan1_fmv[sym] = {"qty": pq, "price": pp, "value": pq * pp, "currency": ccy}
 
     fa_rows = []
-    skip_syms = {"SHELL.DRS", "SHELL.DVD", "SHELL.DVR"}
+    skip_syms = {"SHELL.DRS", "SHELL.DVD", "SHELL.DVR", "SHELL1.DI", "SHELL.DDR"}
     # Track which symbols already got dividend attributed (put on first lot row)
     div_assigned = set()
 
@@ -1350,7 +1371,12 @@ def main(
 
     def sales_to_cg_rows(sales):
         rows = []
+        skip_cg = {"SHELL.DRS", "SHELL.DVD", "SHELL.DVR", "SHELL1.DI", "SHELL.DDR"}
         for s in sales:
+            if s.symbol in skip_cg:
+                continue
+            if abs(s.qty) < 1e-6 or (abs(s.proceeds_local) < 1e-8 and abs(s.cost_local) < 1e-8):
+                continue
             if s.currency == "USD":
                 proc_usd = s.proceeds_local
                 cost_usd = s.cost_local
