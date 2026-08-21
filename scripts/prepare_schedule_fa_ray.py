@@ -118,6 +118,8 @@ ENTITY = {
     "AAXJ": ("United States of America", "Exchange Traded Fund (Investment Trust)",
              "c/o BlackRock Fund Advisors, 400 Howard Street, San Francisco, CA", "94105",
              "iShares MSCI All Country Asia ex Japan ETF"),
+    "AEP": ("United States of America", "Listed Foreign Equity Share (Company)",
+            "1 Riverside Plaza, Columbus, OH", "43215", "American Electric Power Co Inc"),
     "ACN": ("Ireland", "Listed Foreign Equity Share (Company)",
             "1 Grand Canal Square, Grand Canal Harbour, Dublin", "D02 P820", "Accenture plc - Class A"),
     "ADBE": ("United States of America", "Listed Foreign Equity Share (Company)",
@@ -128,6 +130,9 @@ ENTITY = {
     "AIRd": ("Netherlands", "Listed Foreign Equity Share (Company)",
              "2 rond-point Emile Dewoitine, Blagnac / Airbus SE registered NL", "31700",
              "Airbus SE"),
+    "AIR": ("Netherlands", "Listed Foreign Equity Share (Company)",
+            "2 rond-point Emile Dewoitine, Blagnac / Airbus SE registered NL", "31700",
+            "Airbus SE"),
     "AMD": ("United States of America", "Listed Foreign Equity Share (Company)",
             "2485 Augustine Drive, Santa Clara, CA", "95054", "Advanced Micro Devices Inc"),
     "AMZN": ("United States of America", "Listed Foreign Equity Share (Company)",
@@ -163,6 +168,9 @@ ENTITY = {
     "CPNG": ("United States of America", "Listed Foreign Equity Share (Company)",
              "720 Olive Way, Suite 600, Seattle, WA", "98101",
              "Coupang Inc (Delaware) - Class A"),
+    "COPX": ("United States of America", "Exchange Traded Fund (Investment Trust)",
+             "c/o Global X Management Company LLC, 605 Third Avenue, New York, NY", "10158",
+             "Global X Copper Miners ETF"),
     "CRCL": ("United States of America", "Listed Foreign Equity Share (Company)",
              "99 High Street, Boston, MA", "02110", "Circle Internet Group Inc"),
     "CSCO": ("United States of America", "Listed Foreign Equity Share (Company)",
@@ -245,6 +253,8 @@ ENTITY = {
              "iShares MSCI Australia UCITS ETF"),
     "SIEd": ("Germany", "Listed Foreign Equity Share (Company)",
              "Werner-von-Siemens-Strasse 1, Munich", "80333", "Siemens AG - Registered"),
+    "SIE": ("Germany", "Listed Foreign Equity Share (Company)",
+            "Werner-von-Siemens-Strasse 1, Munich", "80333", "Siemens AG - Registered"),
     "SLV": ("United States of America", "Exchange Traded Fund (Investment Trust)",
             "c/o iShares Delaware Trust Sponsor LLC / BlackRock, San Francisco, CA", "94105",
             "iShares Silver Trust"),
@@ -260,6 +270,11 @@ ENTITY = {
     "TSM": ("Taiwan", "American Depository Receipt of Listed Foreign Company",
             "8 Li-Hsin Road 6, Hsinchu Science Park, Hsinchu", "30078",
             "Taiwan Semiconductor Manufacturing Co - Sponsored ADR"),
+    "URA": ("United States of America", "Exchange Traded Fund (Investment Trust)",
+            "c/o Global X Management Company LLC, 605 Third Avenue, New York, NY", "10158",
+            "Global X Uranium ETF"),
+    "V": ("United States of America", "Listed Foreign Equity Share (Company)",
+          "P.O. Box 8999, San Francisco, CA", "94128", "Visa Inc - Class A"),
     "VKTX": ("United States of America", "Listed Foreign Equity Share (Company)",
              "9920 Pacific Heights Boulevard, San Diego, CA", "92121",
              "Viking Therapeutics Inc"),
@@ -299,6 +314,8 @@ ENTITY = {
                "3-5-1 Nihonbashi Honcho, Chuo-ku, Tokyo", "103-8426", "Daiichi Sankyo Co Ltd"),
     "7203.T": ("Japan", "Listed Foreign Equity Share (Company)",
                "1 Toyota-cho, Toyota City, Aichi", "471-8571", "Toyota Motor Corp"),
+    "ZEALc": ("Denmark", "Listed Foreign Equity Share (Company)",
+              "Sydmarken 11, 2860 Soeborg", "2860", "Zealand Pharma A/S"),
     "SHELL.DRS": ("United Kingdom", "Other Interest (Dividend Right)",
                   "Shell Centre, London", "SE1 7NA", "Shell plc - Dividend Rights"),
     "SHELL.DVD": ("United Kingdom", "Other Interest (Dividend Right)",
@@ -541,6 +558,12 @@ def normalize_symbol(sym: str) -> str:
         return "WCBR"
     if sym == "SHELL":
         return "R6C0d"  # IBKR alias for Shell plc on AEB
+    if sym == "AIR":
+        return "AIRd"
+    if sym == "SIE":
+        return "SIEd"
+    if sym == "ZEAL":
+        return "ZEALc"
     return sym
 
 
@@ -1020,12 +1043,18 @@ def main(
     nav = {r[0]: fnum(r[1]) for _, r in sA.get("Change in NAV", [])}
     deposits = []
     for kind, r in sA.get("Deposits & Withdrawals", []):
-        if kind == "Data" and r[0] != "Total":
-            deposits.append({"currency": r[0], "date": parse_dt(r[1]), "desc": r[2], "amount": fnum(r[3])})
+        if kind != "Data" or not r or r[0] in ("Total",) or str(r[0]).startswith("Total"):
+            continue
+        if len(r) < 4 or not r[1]:
+            continue
+        deposits.append({"currency": r[0], "date": parse_dt(r[1]), "desc": r[2], "amount": fnum(r[3])})
     deposits_inc = []
     for kind, r in sI.get("Deposits & Withdrawals", []):
-        if kind == "Data" and r[0] != "Total":
-            deposits_inc.append({"currency": r[0], "date": parse_dt(r[1]), "desc": r[2], "amount": fnum(r[3])})
+        if kind != "Data" or not r or r[0] in ("Total",) or str(r[0]).startswith("Total"):
+            continue
+        if len(r) < 4 or not r[1]:
+            continue
+        deposits_inc.append({"currency": r[0], "date": parse_dt(r[1]), "desc": r[2], "amount": fnum(r[3])})
     # Infer account open date: first deposit, else first inbound transfer, else override
     open_date_note = account_open_date
     if not open_date_note:

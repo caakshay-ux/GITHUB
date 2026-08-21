@@ -9,6 +9,8 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 | Ray G Stephanos | U15124027 | [`output/Foreign_Assets_Schedule_FA_Ray_G_Stephanos_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Ray_G_Stephanos_AY2026-27.xlsx) |
 | Puneet Kohli | U17334752 (MSFT) | [`output/Foreign_Assets_Schedule_FA_Puneet_Kohli_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Puneet_Kohli_AY2026-27.xlsx) |
 | Puneet Kohli | U16755051 (main) | [`output/Foreign_Assets_Schedule_FA_Puneet_Kohli_U16755051_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Puneet_Kohli_U16755051_AY2026-27.xlsx) |
+| Aditya Malik | U15181144 | [`output/Foreign_Assets_Schedule_FA_Aditya_Malik_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Aditya_Malik_AY2026-27.xlsx) |
+| Vinodkrishna Poyyale | U15388294 | [`output/Foreign_Assets_Schedule_FA_Vinod_Krishna_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Vinod_Krishna_AY2026-27.xlsx) |
 
 ### Workbook sheets
 
@@ -33,6 +35,20 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 - `input_Inception_FY2024-25_Ray.csv` — IBKR Activity Statement since funding (01-Apr-2024 to 31-Mar-2025)
 - `input_Annual_Statement_Ray.csv` — IBKR Activity Statement CY 2025
 - `input_Fiscal_Statement_Ray.csv` — IBKR Activity Statement FY 2025-26
+
+### Source inputs — Vinodkrishna Poyyale U15388294
+
+- `input_Inception_FY2024-25_Vinod_Krishna.csv` — 10-Sep-2024 to 31-Mar-2025
+- `input_Fiscal_Statement_Vinod_Krishna.csv` — FY 2025-26
+- `input_Annual_Statement_Vinod_Krishna.csv` — **synthesized** CY 2025
+- Also under `clients/Vinod_Krishna_U15388294/`
+
+### Source inputs — Aditya Malik U15181144
+
+- `input_Inception_FY2024-25_Aditya_Malik.csv` — 20-Aug-2024 to 31-Mar-2025
+- `input_Fiscal_Statement_Aditya_Malik.csv` — FY 2025-26
+- `input_Annual_Statement_Aditya_Malik.csv` — **synthesized** CY 2025
+- Also under `clients/Aditya_Malik_U15181144/`
 
 ### Source inputs — Puneet Kohli U16755051 (main)
 
@@ -63,6 +79,10 @@ python3 scripts/prepare_schedule_fa_ray.py
 python3 scripts/prepare_schedule_fa_puneet_kohli.py
 # Puneet Kohli — U16755051 (main)
 python3 scripts/prepare_schedule_fa_puneet_kohli_U16755051.py
+# Aditya Malik — U15181144
+python3 scripts/prepare_schedule_fa_aditya_malik.py
+# Vinodkrishna Poyyale — U15388294
+python3 scripts/prepare_schedule_fa_vinod_krishna.py
 ```
 
 ### Key caveats (read Notes for CA)
