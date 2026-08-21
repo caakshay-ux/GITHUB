@@ -83,7 +83,24 @@ python3 scripts/prepare_schedule_fa_puneet_kohli_U16755051.py
 python3 scripts/prepare_schedule_fa_aditya_malik.py
 # Vinodkrishna Poyyale — U15388294
 python3 scripts/prepare_schedule_fa_vinod_krishna.py
+# Gunjan Narulkar — U16931511 (Paid)
+python3 scripts/prepare_schedule_fa_gunjan_paid.py
+# Gunjan Narulkar — U22995548 (Free)
+python3 scripts/prepare_schedule_fa_gunjan_free.py
 ```
+
+### Source inputs — Gunjan Narulkar
+
+**U16931511 (Paid)** — `clients/Gunjan_Narulkar_U16931511/` + root copies:
+- `input_Inception_FY2024-25_Gunjan_Paid.csv` — 31-Dec-2024–31-Mar-2025
+- `input_Fiscal_Statement_Gunjan_Paid.csv` — FY 2025-26
+- `input_Annual_Statement_Gunjan_Paid.csv` — **synthesized** CY 2025
+- Output: `output/Foreign_Assets_Schedule_FA_Gunjan_Narulkar_U16931511_AY2026-27.xlsx`
+
+**U22995548 (Free)** — `clients/Gunjan_Narulkar_U22995548/`:
+- `input_Since_Inception_Gunjan_Free.csv` — 03-Dec-2025–19-Aug-2026 (GOOG × 179 via Internal In)
+- `input_Annual_Statement_Gunjan_Free.csv` — **synthesized** CY 2025
+- Output: `output/Foreign_Assets_Schedule_FA_Gunjan_Narulkar_U22995548_AY2026-27.xlsx`
 
 ### Key caveats (read Notes for CA)
 
@@ -91,3 +108,5 @@ python3 scripts/prepare_schedule_fa_vinod_krishna.py
 2. Peak NAV uses max(start, end) — use PortfolioAnalyst for true peak.
 3. Foreign listed shares (no Indian STT): holding period > 24 months → LTCG @ 12.5% (post 23-Jul-2024); else STCG at slab rates.
 4. Kohli: MSFT via FOP 29-Jan-2025 — original buy date outside IBKR not available; confirm for LTCG clock. Prefer IBKR Annual CY2025 for YE closing.
+5. Gunjan Paid: GOOG 216 held before statement start — seeded 31-Dec-2024 @ USD 19,300.32; confirm original buy date for LTCG. Internal Out of GOOG 179 to Free (03-Dec-2025) excluded from taxable CG.
+6. Gunjan Free: YE close proxied at cost; no trades / nil CG.

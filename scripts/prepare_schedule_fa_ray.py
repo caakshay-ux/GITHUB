@@ -193,6 +193,9 @@ ENTITY = {
     "GLD": ("United States of America", "Exchange Traded Fund (Investment Trust)",
             "c/o World Gold Trust Services LLC, 685 Third Avenue, New York, NY", "10017",
             "SPDR Gold Shares (World Gold Trust)"),
+    "GOOG": ("United States of America", "Listed Foreign Equity Share (Company)",
+             "1600 Amphitheatre Parkway, Mountain View, CA", "94043",
+             "Alphabet Inc - Class C"),
     "HON": ("United States of America", "Listed Foreign Equity Share (Company)",
             "855 S Mint Street, Charlotte, NC", "28202", "Honeywell International Inc"),
     "HYU": ("South Korea", "Global Depository Receipt of Listed Foreign Company",
@@ -203,6 +206,9 @@ ENTITY = {
     "ICLN": ("United States of America", "Exchange Traded Fund (Investment Trust)",
              "c/o BlackRock Fund Advisors, 400 Howard Street, San Francisco, CA", "94105",
              "iShares Global Clean Energy ETF"),
+    "IEF": ("United States of America", "Exchange Traded Fund (Investment Trust)",
+            "c/o BlackRock Fund Advisors, 400 Howard Street, San Francisco, CA", "94105",
+            "iShares 7-10 Year Treasury Bond ETF"),
     "IGPT": ("United States of America", "Exchange Traded Fund (Investment Trust)",
              "c/o Invesco Capital Management LLC, Downers Grove, IL", "60515",
              "Invesco AI and Next Gen Software ETF"),
@@ -334,6 +340,9 @@ def parse_ibkr(path: Path):
         for row in csv.reader(f):
             if len(row) < 2:
                 continue
+            # Some IBKR CSV exports pad trailing empty columns
+            while len(row) > 2 and row[-1] == "":
+                row = row[:-1]
             sec, kind = row[0], row[1]
             if kind == "Header":
                 headers[sec] = row[2:]
@@ -349,6 +358,15 @@ def fnum(x):
 
 
 def parse_dt(s: str) -> date:
+    s = (s or "").strip()
+    if not s:
+        raise ValueError("empty date")
+    # ISO first; also accept DD-MM-YYYY from some IBKR exports
+    for fmt in ("%Y-%m-%d", "%d-%m-%Y", "%m/%d/%Y"):
+        try:
+            return datetime.strptime(s[:10], fmt).date()
+        except ValueError:
+            continue
     return datetime.strptime(s[:10], "%Y-%m-%d").date()
 
 
@@ -425,6 +443,7 @@ class SaleMatch:
     holding_days: int
     is_ltcg: bool
     realized_local: float
+    code: str = ""
 
 
 def extract_orders(sections):
@@ -638,6 +657,37 @@ def transfers_to_buy_orders(transfers, open_positions_by_statement):
     return orders
 
 
+def transfers_to_out_orders(transfers):
+    """
+    Outbound stock transfers (Internal/FOP Out) as synthetic sells so FIFO lots leave the account.
+    Tagged code='I' — excluded from taxable Capital Gains (same beneficial owner).
+    """
+    orders = []
+    for t in transfers:
+        if t["direction"].lower() != "out":
+            continue
+        qty = abs(t["qty"])
+        if qty <= 0:
+            continue
+        proceeds = abs(t["market_value"] or 0.0)
+        orders.append(
+            {
+                "currency": t["currency"],
+                "symbol": t["symbol"],
+                "datetime": f"{t['date'].isoformat()}, 00:00:00",
+                "date": t["date"],
+                "qty": -qty,
+                "price": (proceeds / qty) if qty else 0.0,
+                "proceeds": proceeds,
+                "comm_usd": 0.0,
+                "basis": proceeds,  # placeholder; CG skipped for code I
+                "realized": 0.0,
+                "code": "I",
+            }
+        )
+    return orders
+
+
 def extract_stock_splits(sections):
     out = []
     for kind, r in sections.get("Corporate Actions", []):
@@ -812,6 +862,7 @@ def build_fifo_sales(opening_lots: dict, orders: list, start: date, end: date, s
                     holding_days=hold,
                     is_ltcg=hold > 730,
                     realized_local=proceeds_total * frac - basis_total * frac,
+                    code=o.get("code") or "",
                 )
             )
             lot.qty -= take
@@ -956,6 +1007,7 @@ def main(
     account_open_date: str | None = None,
     notes_extra: list | None = None,
     assessee_label: str | None = None,
+    seed_orders: list | None = None,
 ):
     inception = inception or INCEPTION
     annual = annual or ANNUAL
@@ -977,11 +1029,12 @@ def main(
     orders_cy = extract_orders(sA)
     orders_fy_all = extract_orders(sF)
     orders_inc = extract_orders(sI)
-    xfer_orders = transfers_to_buy_orders(
-        extract_transfers(sI) + extract_transfers(sA) + extract_transfers(sF),
-        [open_inc, open_ye, open_fy],
+    all_xfers = extract_transfers(sI) + extract_transfers(sA) + extract_transfers(sF)
+    xfer_orders = transfers_to_buy_orders(all_xfers, [open_inc, open_ye, open_fy])
+    xfer_out_orders = transfers_to_out_orders(all_xfers)
+    orders_merged = merge_orders(
+        orders_inc, orders_cy, orders_fy_all, xfer_orders, xfer_out_orders, seed_orders or []
     )
-    orders_merged = merge_orders(orders_inc, orders_cy, orders_fy_all, xfer_orders)
 
     splits = merge_splits(
         extract_stock_splits(sI),
@@ -1411,6 +1464,9 @@ def main(
         skip_cg = {"SHELL.DRS", "SHELL.DVD", "SHELL.DVR", "SHELL1.DI", "SHELL.DDR"}
         for s in sales:
             if s.symbol in skip_cg:
+                continue
+            # Internal / inter-account transfers — not taxable CG (same beneficial owner)
+            if (s.code or "").upper() in ("I",):
                 continue
             if abs(s.qty) < 1e-6 or (abs(s.proceeds_local) < 1e-8 and abs(s.cost_local) < 1e-8):
                 continue
