@@ -11,6 +11,7 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 | Puneet Kohli | U16755051 (main) | [`output/Foreign_Assets_Schedule_FA_Puneet_Kohli_U16755051_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Puneet_Kohli_U16755051_AY2026-27.xlsx) |
 | Aditya Malik | U15181144 | [`output/Foreign_Assets_Schedule_FA_Aditya_Malik_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Aditya_Malik_AY2026-27.xlsx) |
 | Vinodkrishna Poyyale | U15388294 | [`output/Foreign_Assets_Schedule_FA_Vinod_Krishna_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Vinod_Krishna_AY2026-27.xlsx) |
+| Abhisek Banerjee | U20221090 | [`output/Foreign_Assets_Schedule_FA_Abhisek_Banerjee_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Abhisek_Banerjee_AY2026-27.xlsx) |
 
 ### Workbook sheets
 
@@ -87,7 +88,16 @@ python3 scripts/prepare_schedule_fa_vinod_krishna.py
 python3 scripts/prepare_schedule_fa_gunjan_paid.py
 # Gunjan Narulkar — U22995548 (Free)
 python3 scripts/prepare_schedule_fa_gunjan_free.py
+# Abhisek Banerjee — U20221090
+python3 scripts/prepare_schedule_fa_abhisek_banerjee.py
 ```
+
+### Source inputs — Abhisek Banerjee U20221090
+
+- `input_Inception_FY2025-26_Abhisek_Banerjee.csv` / `input_Fiscal_Statement_Abhisek_Banerjee.csv` — same FY statement 16-May-2025–31-Mar-2026 (prior NAV 0)
+- `input_Annual_Statement_Abhisek_Banerjee.csv` — **synthesized** CY 2025 (YE at cost)
+- Also under `clients/Abhisek_Banerjee_U20221090/`
+- Output: `output/Foreign_Assets_Schedule_FA_Abhisek_Banerjee_AY2026-27.xlsx`
 
 ### Source inputs — Gunjan Narulkar
 
@@ -110,3 +120,4 @@ python3 scripts/prepare_schedule_fa_gunjan_free.py
 4. Kohli: MSFT via FOP 29-Jan-2025 — original buy date outside IBKR not available; confirm for LTCG clock. Prefer IBKR Annual CY2025 for YE closing.
 5. Gunjan Paid: GOOG 216 held before statement start — seeded 31-Dec-2024 @ USD 19,300.32; confirm original buy date for LTCG. Internal Out of GOOG 179 to Free (03-Dec-2025) excluded from taxable CG.
 6. Gunjan Free: YE close proxied at cost; no trades / nil CG.
+7. Abhisek: opened mid-May 2025; nil CG (buys only); YE2025 marks at cost — prefer IBKR Annual for filing.
