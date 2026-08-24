@@ -12,6 +12,7 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 | Aditya Malik | U15181144 | [`output/Foreign_Assets_Schedule_FA_Aditya_Malik_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Aditya_Malik_AY2026-27.xlsx) |
 | Vinodkrishna Poyyale | U15388294 | [`output/Foreign_Assets_Schedule_FA_Vinod_Krishna_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Vinod_Krishna_AY2026-27.xlsx) |
 | Abhisek Banerjee | U20221090 | [`output/Foreign_Assets_Schedule_FA_Abhisek_Banerjee_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Abhisek_Banerjee_AY2026-27.xlsx) |
+| Phanindra V Gottipati | U15817316 | [`output/Foreign_Assets_Schedule_FA_Phanindra_V_Gottipati_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Phanindra_V_Gottipati_AY2026-27.xlsx) |
 
 ### Workbook sheets
 
@@ -90,7 +91,18 @@ python3 scripts/prepare_schedule_fa_gunjan_paid.py
 python3 scripts/prepare_schedule_fa_gunjan_free.py
 # Abhisek Banerjee — U20221090
 python3 scripts/prepare_schedule_fa_abhisek_banerjee.py
+# Phanindra V Gottipati — U15817316
+python3 scripts/prepare_schedule_fa_phanindra.py
 ```
+
+
+### Source inputs — Phanindra V Gottipati U15817316
+
+- `input_Inception_FY2024-25_Phanindra.csv` — 09-Oct-2024–31-Mar-2025
+- `input_Fiscal_Statement_Phanindra.csv` — FY 2025-26
+- `input_Annual_Statement_Phanindra.csv` — **synthesized** CY 2025 (YE marks from 31-Mar-2025)
+- Also under `clients/Phanindra_V_Gottipati_U15817316/`
+- Output: `output/Foreign_Assets_Schedule_FA_Phanindra_V_Gottipati_AY2026-27.xlsx`
 
 ### Source inputs — Abhisek Banerjee U20221090
 
@@ -121,3 +133,4 @@ python3 scripts/prepare_schedule_fa_abhisek_banerjee.py
 5. Gunjan Paid: GOOG 216 held before statement start — seeded 31-Dec-2024 @ USD 19,300.32; confirm original buy date for LTCG. Internal Out of GOOG 179 to Free (03-Dec-2025) excluded from taxable CG.
 6. Gunjan Free: YE close proxied at cost; no trades / nil CG.
 7. Abhisek: opened mid-May 2025; nil CG (buys only); YE2025 marks at cost — prefer IBKR Annual for filing.
+8. Phanindra: nil CG (buys only); YE2025 marks proxied from 31-Mar-2025 (GLD at cost); prefer IBKR Annual for filing.
