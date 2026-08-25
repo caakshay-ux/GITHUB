@@ -1817,12 +1817,17 @@ def main(
         "ZIP Code", "Account Number", "Status", "Account opening date",
     ])
     style_header(wsa2, 2, 8)
+    a2_status = (
+        "Owner - Joint beneficial owners"
+        if (acct.get("Customer Type") or "").strip().lower() == "joint"
+        else "Owner - Sole beneficial owner"
+    )
     wsa2.append([
         "United States of America", 2,
         "Interactive Brokers LLC (Clearing Broker), Advisor Client via Interactive Brokers (India) / "
         f"Investment Advisor: {acct.get('Investment Advisor', '')}",
         "One Pickwick Plaza, Greenwich, CT, USA", "06830", acct.get("Account", ""),
-        "Owner - Sole beneficial owner", open_date_note,
+        a2_status, open_date_note,
     ])
     wsa2.append([])
     wsa2.append([

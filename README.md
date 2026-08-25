@@ -13,6 +13,7 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 | Vinodkrishna Poyyale | U15388294 | [`output/Foreign_Assets_Schedule_FA_Vinod_Krishna_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Vinod_Krishna_AY2026-27.xlsx) |
 | Abhisek Banerjee | U20221090 | [`output/Foreign_Assets_Schedule_FA_Abhisek_Banerjee_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Abhisek_Banerjee_AY2026-27.xlsx) |
 | Phanindra V Gottipati | U15817316 | [`output/Foreign_Assets_Schedule_FA_Phanindra_V_Gottipati_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Phanindra_V_Gottipati_AY2026-27.xlsx) |
+| Rajani J Vallath & Sanjeev K Nair (Joint) | U21864112 | [`output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx) |
 
 ### Workbook sheets
 
@@ -93,8 +94,18 @@ python3 scripts/prepare_schedule_fa_gunjan_free.py
 python3 scripts/prepare_schedule_fa_abhisek_banerjee.py
 # Phanindra V Gottipati — U15817316
 python3 scripts/prepare_schedule_fa_phanindra.py
+# Rajani / Sanjeev Joint — U21864112
+python3 scripts/prepare_schedule_fa_rajani_sanjeev_joint.py
 ```
 
+
+
+### Source inputs — Rajani J Vallath & Sanjeev K Nair (Joint) U21864112
+
+- `input_Inception_FY2025-26_Rajani_Sanjeev_Joint.csv` / `input_Fiscal_Statement_Rajani_Sanjeev_Joint.csv` — 30-Jan-2026–31-Mar-2026 (opened via AVGO Internal In)
+- `input_Annual_Statement_Rajani_Sanjeev_Joint.csv` — **synthesized empty** CY 2025 (account not open in CY2025)
+- Also under `clients/Rajani_Sanjeev_Joint_U21864112/`
+- Output: `output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx`
 
 ### Source inputs — Phanindra V Gottipati U15817316
 
@@ -134,3 +145,4 @@ python3 scripts/prepare_schedule_fa_phanindra.py
 6. Gunjan Free: YE close proxied at cost; no trades / nil CG.
 7. Abhisek: opened mid-May 2025; nil CG (buys only); YE2025 marks at cost — prefer IBKR Annual for filing.
 8. Phanindra: nil CG (buys only); YE2025 marks proxied from 31-Mar-2025 (GLD at cost); prefer IBKR Annual for filing.
+9. Rajani/Sanjeev Joint: opened 30-Jan-2026 — FA CY2025 N/A; AVGO sale 04-Mar-2026 — confirm original buy date at U16003525 for LTCG (IBKR tagged L).
