@@ -17,6 +17,8 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 | Gunjan Narulkar (Free) | U22995548 | [`output/Foreign_Assets_Schedule_FA_Gunjan_Narulkar_U22995548_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Gunjan_Narulkar_U22995548_AY2026-27.xlsx) |
 | Rajani J Vallath (Single) | U16003525 | [`output/Foreign_Assets_Schedule_FA_Rajani_J_Vallath_U16003525_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Rajani_J_Vallath_U16003525_AY2026-27.xlsx) |
 | Rajani J Vallath & Sanjeev K Nair (Joint) | U21864112 | [`output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx) |
+| Arulselvam Chandrasekaran (Individual) | U22748155 | [`output/Foreign_Assets_Schedule_FA_Arulselvam_Chandrasekaran_U22748155_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Arulselvam_Chandrasekaran_U22748155_AY2026-27.xlsx) |
+| Arulselvam Chandrasekaran & Dhanalakshmi S (Joint) | U22929455 | [`output/Foreign_Assets_Schedule_FA_Arulselvam_Dhanalakshmi_Joint_U22929455_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Arulselvam_Dhanalakshmi_Joint_U22929455_AY2026-27.xlsx) |
 
 ### Workbook sheets
 
@@ -101,6 +103,10 @@ python3 scripts/prepare_schedule_fa_phanindra.py
 python3 scripts/prepare_schedule_fa_rajani_sanjeev_joint.py
 # Rajani J Vallath — U16003525 (Single)
 python3 scripts/prepare_schedule_fa_rajani_single.py
+# Arulselvam Chandrasekaran — U22748155 (Individual)
+python3 scripts/prepare_schedule_fa_arulselvam_individual.py
+# Arulselvam & Dhanalakshmi — U22929455 (Joint)
+python3 scripts/prepare_schedule_fa_arulselvam_joint.py
 ```
 
 
@@ -112,6 +118,22 @@ python3 scripts/prepare_schedule_fa_rajani_single.py
 - `input_Annual_Statement_Rajani_Single.csv` — **synthesized** CY 2025 (YE AVGO mark from ACATS 18-Dec-2025)
 - Also under `clients/Rajani_J_Vallath_U16003525/`
 - Output: `output/Foreign_Assets_Schedule_FA_Rajani_J_Vallath_U16003525_AY2026-27.xlsx`
+
+### Source inputs — Arulselvam Chandrasekaran (Individual) U22748155
+
+- `input_Annual_Statement_Arulselvam_U22748155.csv` / `input_Inception_FY2025-26_Arulselvam_U22748155.csv` — real IBKR Annual CY2025 (opened Nov-2025)
+- `input_Fiscal_Statement_Arulselvam_U22748155.csv` — FY 2025-26
+- Working CSVs: FOP GOOG cost set to sell Basis total USD 52,506.73; same-day Internal GOOG wash stripped
+- Also under `clients/Arulselvam_Chandrasekaran_U22748155/`
+- Output: `output/Foreign_Assets_Schedule_FA_Arulselvam_Chandrasekaran_U22748155_AY2026-27.xlsx`
+
+### Source inputs — Arulselvam Chandrasekaran & Dhanalakshmi S (Joint) U22929455
+
+- `input_Annual_Statement_Arulselvam_Joint_U22929455.csv` / inception copy — real IBKR Annual CY2025
+- `input_Fiscal_Statement_Arulselvam_Joint_U22929455.csv` — FY 2025-26
+- Working CSVs: same-day Internal GOOG wash with U22748155 stripped
+- Also under `clients/Arulselvam_Dhanalakshmi_Joint_U22929455/`
+- Output: `output/Foreign_Assets_Schedule_FA_Arulselvam_Dhanalakshmi_Joint_U22929455_AY2026-27.xlsx`
 
 ### Source inputs — Rajani J Vallath & Sanjeev K Nair (Joint) U21864112
 
@@ -160,3 +182,5 @@ python3 scripts/prepare_schedule_fa_rajani_single.py
 8. Phanindra: nil CG (buys only); YE2025 marks proxied from 31-Mar-2025 (GLD at cost); prefer IBKR Annual for filing.
 9. Rajani/Sanjeev Joint: opened 30-Jan-2026 — FA CY2025 N/A; AVGO sale 04-Mar-2026 — confirm original buy date at U16003525 for LTCG (IBKR tagged L).
 10. Rajani Single U16003525: ACATS AVGO In 18-Dec-2025; Internal Out to Joint excluded from CG; YE mark from ACATS price; confirm original AVGO buy date at 27960235 for LTCG on Mar-2026 sale.
+11. Arulselvam Individual U22748155 (SGD base): GOOG FOP × 447 then full sale 10-Nov-2025; cost = IBKR Basis USD 52,506.73; IBKR used Highest Cost (HC) — confirm original buy dates for LTCG (workbook uses FOP date → STCG). Peak NAV max(start,end) understates mid-year GOOG holding — use PortfolioAnalyst.
+12. Arulselvam Joint U22929455 (SGD base): nil stock CG; YE marks from real Annual; A2 NAV SGD→USD via YE USD.SGD 1.286.

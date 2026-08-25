@@ -91,6 +91,8 @@ FX_TO_USD_YE2025 = {
     "HKD": 0.12849,
     "JPY": 0.0063827,
     "DKK": 0.15726,
+    # IBKR YE USD.SGD ≈ 1.2860 → SGD per USD; invert for SGD→USD
+    "SGD": 1.0 / 1.2860,
 }
 
 # Country metadata for Schedule FA
@@ -196,6 +198,9 @@ ENTITY = {
     "GOOG": ("United States of America", "Listed Foreign Equity Share (Company)",
              "1600 Amphitheatre Parkway, Mountain View, CA", "94043",
              "Alphabet Inc - Class C"),
+    "GSL": ("United States of America", "Listed Foreign Equity Share (Company)",
+            "c/o Global Ship Lease Inc / Marshall Islands registered (NYSE)", "",
+            "Global Ship Lease Inc - Class A"),
     "HON": ("United States of America", "Listed Foreign Equity Share (Company)",
             "855 S Mint Street, Charlotte, NC", "28202", "Honeywell International Inc"),
     "HYU": ("South Korea", "Global Depository Receipt of Listed Foreign Company",
@@ -250,6 +255,9 @@ ENTITY = {
              "2788 San Tomas Expressway, Santa Clara, CA", "95051", "NVIDIA Corp"),
     "ORCL": ("United States of America", "Listed Foreign Equity Share (Company)",
              "2300 Oracle Way, Austin, TX", "78741", "Oracle Corp"),
+    "PPLT": ("United States of America", "Exchange Traded Fund (Investment Trust)",
+             "c/o abrdn ETFs Sponsor LLC / Platinum Trust, Philadelphia, PA", "19103",
+             "abrdn Physical Platinum Shares ETF"),
     "QQQ": ("United States of America", "Exchange Traded Fund (Investment Trust)",
             "c/o Invesco Capital Management LLC, Downers Grove, IL", "60515",
             "Invesco QQQ Trust Series 1"),
@@ -1139,6 +1147,16 @@ def main(
         else:
             open_date_note = "Confirm from IBKR account opening documents"
 
+    base_ccy = (acct.get("Base Currency") or "USD").strip().upper()
+
+    def _amt_usd(amount: float, currency: str) -> float:
+        if (currency or "USD").upper() == "USD":
+            return amount
+        return to_usd(amount, currency)
+
+    def _deposits_usd(deps: list) -> float:
+        return sum(_amt_usd(d["amount"], d["currency"]) for d in deps)
+
     # Opening lots for FA/CG dating come from inception replay
     opening = lots_ye2024
 
@@ -1839,6 +1857,10 @@ def main(
     style_header(wsa2, 5, 8)
     closing_nav = nav.get("Ending Value") or 0
     starting_nav = nav.get("Starting Value") or 0
+    # Change in NAV is in account base currency — convert to USD for Schedule FA A2
+    if base_ccy != "USD":
+        closing_nav = to_usd(closing_nav, base_ccy)
+        starting_nav = to_usd(starting_nav, base_ccy)
     # Peak unknown — use max(start, end) + note
     peak_nav = max(closing_nav, starting_nav)
     int_usd = sum(
@@ -1867,11 +1889,20 @@ def main(
     wsa2.append(["NOTES:"])
     wsa2.append([
         f"Account: IBKR {acct.get('Account')} — {acct.get('Name')} "
-        f"({acct.get('Customer Type') or 'Individual'}, USD base, Cash)."
+        f"({acct.get('Customer Type') or 'Individual'}, {base_ccy} base, Cash)."
     ])
     wsa2.append([f"Starting NAV 01-Jan-2025: USD {starting_nav:,.2f}; Ending NAV 31-Dec-2025: USD {closing_nav:,.2f}."])
     wsa2.append(["Peak NAV: Activity Statement does not include daily NAV — shown as max(start, end). Obtain PortfolioAnalyst for true peak."])
-    wsa2.append([f"Deposits CY2025: USD {sum(d['amount'] for d in deposits):,.2f} ({', '.join(d['date'].isoformat()+': '+str(d['amount']) for d in deposits)})."])
+    dep_usd = _deposits_usd(deposits)
+    dep_note = ", ".join(
+        f"{d['date'].isoformat()}: {d['amount']} {d['currency']}" for d in deposits
+    )
+    wsa2.append([f"Deposits CY2025: USD {dep_usd:,.2f} ({dep_note})."])
+    if base_ccy != "USD":
+        wsa2.append([
+            f"Base currency is {base_ccy}; A2 NAV converted to USD using IBKR YE cross-rate "
+            f"(FX Lookup FCY→USD). Prefer PortfolioAnalyst USD NAV for filing."
+        ])
     wsa2.append(["Gross amount paid/credited = interest + dividends credited in the custodial account during CY2025."])
     autosize(wsa2)
 
@@ -1997,8 +2028,8 @@ def main(
         ("FX Lookup", "Editable SBI TT USD/INR & EUR/INR month-end rates + FCY→USD cross rates"),
         ("Starting NAV CY2025", f"USD {starting_nav:,.2f}"),
         ("Ending NAV CY2025", f"USD {closing_nav:,.2f}"),
-        ("Deposits CY2025", f"USD {sum(d['amount'] for d in deposits):,.2f}"),
-        ("Deposits since inception (to 31-Mar-2025)", f"USD {sum(d['amount'] for d in deposits_inc):,.2f}"),
+        ("Deposits CY2025", f"USD {_deposits_usd(deposits):,.2f}"),
+        ("Deposits since inception (to 31-Mar-2025)", f"USD {_deposits_usd(deposits_inc):,.2f}"),
         ("Dividends CY2025", f"USD {div_usd_tot:,.2f} / INR {div_inr_tot:,.0f} (Rule 115)"),
         ("Interest CY2025", f"USD {int_usd:,.2f} / INR {int_inr:,.0f} (Rule 115)"),
         ("Dividends FY2025-26", f"USD {div_fy_usd:,.2f} / INR {div_fy_inr:,.0f}"),
