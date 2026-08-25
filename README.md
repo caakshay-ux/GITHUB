@@ -13,9 +13,10 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 | Vinodkrishna Poyyale | U15388294 | [`output/Foreign_Assets_Schedule_FA_Vinod_Krishna_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Vinod_Krishna_AY2026-27.xlsx) |
 | Abhisek Banerjee | U20221090 | [`output/Foreign_Assets_Schedule_FA_Abhisek_Banerjee_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Abhisek_Banerjee_AY2026-27.xlsx) |
 | Phanindra V Gottipati | U15817316 | [`output/Foreign_Assets_Schedule_FA_Phanindra_V_Gottipati_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Phanindra_V_Gottipati_AY2026-27.xlsx) |
-| Rajani J Vallath & Sanjeev K Nair (Joint) | U21864112 |
+| Gunjan Narulkar (Paid) | U16931511 | [`output/Foreign_Assets_Schedule_FA_Gunjan_Narulkar_U16931511_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Gunjan_Narulkar_U16931511_AY2026-27.xlsx) |
+| Gunjan Narulkar (Free) | U22995548 | [`output/Foreign_Assets_Schedule_FA_Gunjan_Narulkar_U22995548_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Gunjan_Narulkar_U22995548_AY2026-27.xlsx) |
 | Rajani J Vallath (Single) | U16003525 | [`output/Foreign_Assets_Schedule_FA_Rajani_J_Vallath_U16003525_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Rajani_J_Vallath_U16003525_AY2026-27.xlsx) |
-| PLACEHOLDER | [`output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx) |
+| Rajani J Vallath & Sanjeev K Nair (Joint) | U21864112 | [`output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx) |
 
 ### Workbook sheets
 
