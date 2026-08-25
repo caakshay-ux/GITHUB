@@ -1865,7 +1865,10 @@ def main(
     ])
     wsa2.append([])
     wsa2.append(["NOTES:"])
-    wsa2.append([f"Account: IBKR {acct.get('Account')} — {acct.get('Name')} (Individual, USD base, Cash)."])
+    wsa2.append([
+        f"Account: IBKR {acct.get('Account')} — {acct.get('Name')} "
+        f"({acct.get('Customer Type') or 'Individual'}, USD base, Cash)."
+    ])
     wsa2.append([f"Starting NAV 01-Jan-2025: USD {starting_nav:,.2f}; Ending NAV 31-Dec-2025: USD {closing_nav:,.2f}."])
     wsa2.append(["Peak NAV: Activity Statement does not include daily NAV — shown as max(start, end). Obtain PortfolioAnalyst for true peak."])
     wsa2.append([f"Deposits CY2025: USD {sum(d['amount'] for d in deposits):,.2f} ({', '.join(d['date'].isoformat()+': '+str(d['amount']) for d in deposits)})."])
