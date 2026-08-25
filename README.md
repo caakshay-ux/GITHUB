@@ -13,7 +13,9 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 | Vinodkrishna Poyyale | U15388294 | [`output/Foreign_Assets_Schedule_FA_Vinod_Krishna_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Vinod_Krishna_AY2026-27.xlsx) |
 | Abhisek Banerjee | U20221090 | [`output/Foreign_Assets_Schedule_FA_Abhisek_Banerjee_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Abhisek_Banerjee_AY2026-27.xlsx) |
 | Phanindra V Gottipati | U15817316 | [`output/Foreign_Assets_Schedule_FA_Phanindra_V_Gottipati_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Phanindra_V_Gottipati_AY2026-27.xlsx) |
-| Rajani J Vallath & Sanjeev K Nair (Joint) | U21864112 | [`output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx) |
+| Rajani J Vallath & Sanjeev K Nair (Joint) | U21864112 |
+| Rajani J Vallath (Single) | U16003525 | [`output/Foreign_Assets_Schedule_FA_Rajani_J_Vallath_U16003525_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Rajani_J_Vallath_U16003525_AY2026-27.xlsx) |
+| PLACEHOLDER | [`output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx) |
 
 ### Workbook sheets
 
@@ -96,9 +98,19 @@ python3 scripts/prepare_schedule_fa_abhisek_banerjee.py
 python3 scripts/prepare_schedule_fa_phanindra.py
 # Rajani / Sanjeev Joint — U21864112
 python3 scripts/prepare_schedule_fa_rajani_sanjeev_joint.py
+# Rajani J Vallath — U16003525 (Single)
+python3 scripts/prepare_schedule_fa_rajani_single.py
 ```
 
 
+
+
+### Source inputs — Rajani J Vallath (Single) U16003525
+
+- `input_Inception_FY2025-26_Rajani_Single.csv` / `input_Fiscal_Statement_Rajani_Single.csv` — 18-Nov-2025–31-Mar-2026
+- `input_Annual_Statement_Rajani_Single.csv` — **synthesized** CY 2025 (YE AVGO mark from ACATS 18-Dec-2025)
+- Also under `clients/Rajani_J_Vallath_U16003525/`
+- Output: `output/Foreign_Assets_Schedule_FA_Rajani_J_Vallath_U16003525_AY2026-27.xlsx`
 
 ### Source inputs — Rajani J Vallath & Sanjeev K Nair (Joint) U21864112
 
@@ -146,3 +158,4 @@ python3 scripts/prepare_schedule_fa_rajani_sanjeev_joint.py
 7. Abhisek: opened mid-May 2025; nil CG (buys only); YE2025 marks at cost — prefer IBKR Annual for filing.
 8. Phanindra: nil CG (buys only); YE2025 marks proxied from 31-Mar-2025 (GLD at cost); prefer IBKR Annual for filing.
 9. Rajani/Sanjeev Joint: opened 30-Jan-2026 — FA CY2025 N/A; AVGO sale 04-Mar-2026 — confirm original buy date at U16003525 for LTCG (IBKR tagged L).
+10. Rajani Single U16003525: ACATS AVGO In 18-Dec-2025; Internal Out to Joint excluded from CG; YE mark from ACATS price; confirm original AVGO buy date at 27960235 for LTCG on Mar-2026 sale.
