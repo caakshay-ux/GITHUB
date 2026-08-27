@@ -177,8 +177,15 @@ ENTITY = {
              "Global X Copper Miners ETF"),
     "CRCL": ("United States of America", "Listed Foreign Equity Share (Company)",
              "99 High Street, Boston, MA", "02110", "Circle Internet Group Inc"),
+    "CNUA": (
+        "Ireland",
+        "Exchange Traded Fund (Investment Trust)",
+        "UBS Fund Management (Ireland) Ltd, Dublin",
+        "D02 H738",
+        "UBS ETF MSCI China A USD Acc",
+    ),
     "CSCO": ("United States of America", "Listed Foreign Equity Share (Company)",
-             "170 West Tasman Drive, San Jose, CA", "95134", "Cisco Systems Inc"),
+            "170 West Tasman Drive, San Jose, CA", "95134", "Cisco Systems Inc"),
     "DB": ("Germany", "Listed Foreign Equity Share (Company)",
            "Taunusanlage 12, Frankfurt am Main", "60325",
            "Deutsche Bank AG - Registered Shares"),
@@ -504,7 +511,7 @@ def extract_orders(sections):
         orders.append(
             {
                 "currency": r[2],
-                "symbol": r[3],
+                "symbol": normalize_symbol(r[3]),
                 "datetime": normalize_datetime(r[4]),
                 "date": parse_dt(r[4]),
                 "qty": qty,
@@ -540,7 +547,7 @@ def extract_open_positions(sections):
     for kind, r in sections["Open Positions"]:
         if kind != "Data" or r[0] != "Summary":
             continue
-        sym = r[3]
+        sym = normalize_symbol(r[3])
         out[sym] = {
             "currency": r[2],
             "qty": fnum(r[4]) or 0.0,
@@ -629,6 +636,11 @@ def normalize_symbol(sym: str) -> str:
         return "SIEd"
     if sym == "ZEAL":
         return "ZEALc"
+    # Lux UCITS short codes on transfers vs full ISIN on open positions
+    if sym in ("009957456", "LU0099574567"):
+        return "LU0099574567"
+    if sym in ("010683190", "LU0106831901"):
+        return "LU0106831901"
     return sym
 
 
@@ -638,8 +650,8 @@ def extract_transfers(sections):
     for kind, r in sections.get("Transfers", []):
         if kind != "Data" or not r or r[0] in ("Total",):
             continue
-        # Stocks and Funds (UCITS / mutual funds) — both are Schedule FA equity interests
-        if r[0] not in ("Stocks", "Funds"):
+        # Stocks, Funds, Mutual Funds — all Schedule FA equity/fund interests
+        if r[0] not in ("Stocks", "Funds", "Mutual Funds"):
             continue
         direction = (r[5] if len(r) > 5 else "").strip()
         qty = fnum(r[8]) if len(r) > 8 else None
@@ -835,11 +847,10 @@ def build_fifo_sales(opening_lots: dict, orders: list, start: date, end: date, s
                         rem -= take
                         if lot.qty <= 1e-10:
                             books[sym].popleft()
-            elif etype == "split":
-                for lot in books.get(payload["symbol"], []):
-                    lot.qty *= payload["ratio"]
             elif etype == "merger":
                 books[payload["symbol"]] = deque()
+            # Pre-window splits are NOT reapplied: opening_lots are already as-of start
+            # (from build_lots_as_of, which applied historical splits).
             continue
         if edate > end:
             continue
