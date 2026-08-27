@@ -91,6 +91,8 @@ FX_TO_USD_YE2025 = {
     "HKD": 0.12849,
     "JPY": 0.0063827,
     "DKK": 0.15726,
+    # IBKR YE CHF close (USD per 1 CHF) from Vineet Dev / typical Annual Forex Balances
+    "CHF": 1.2615,
     # IBKR YE USD.SGD ≈ 1.2860 → SGD per USD; invert for SGD→USD
     "SGD": 1.0 / 1.2860,
 }
@@ -113,6 +115,7 @@ COUNTRY = {
     "Australia": ("Australia", 12),
     "Luxembourg": ("Luxembourg", 127),
     "Canada": ("Canada", 36),
+    "Switzerland": ("Switzerland", 206),
 }
 
 # Entity master: symbol -> (country_key, nature, address, zip, legal_name)
@@ -172,6 +175,9 @@ ENTITY = {
     "CPNG": ("United States of America", "Listed Foreign Equity Share (Company)",
              "720 Olive Way, Suite 600, Seattle, WA", "98101",
              "Coupang Inc (Delaware) - Class A"),
+    "CRM": ("United States of America", "Listed Foreign Equity Share (Company)",
+            "415 Mission Street, 3rd Floor, San Francisco, CA", "94105",
+            "Salesforce Inc"),
     "COPX": ("United States of America", "Exchange Traded Fund (Investment Trust)",
              "c/o Global X Management Company LLC, 605 Third Avenue, New York, NY", "10158",
              "Global X Copper Miners ETF"),
@@ -281,8 +287,14 @@ ENTITY = {
              "121 Albright Way, Los Gatos, CA", "95032", "Netflix Inc"),
     "NOVd": ("Denmark", "Listed Foreign Equity Share (Company)",
              "Novo Alle 1, 2880 Bagsvaerd", "2880", "Novo Nordisk A/S - B Shares"),
+    "NOVN": ("Switzerland", "Listed Foreign Equity Share (Company)",
+             "Lichtstrasse 35, Basel", "4056", "Novartis AG - Registered"),
     "NVDA": ("United States of America", "Listed Foreign Equity Share (Company)",
              "2788 San Tomas Expressway, Santa Clara, CA", "95051", "NVIDIA Corp"),
+    "QCOM": ("United States of America", "Listed Foreign Equity Share (Company)",
+             "5775 Morehouse Drive, San Diego, CA", "92121", "QUALCOMM Inc"),
+    "ROG": ("Switzerland", "Listed Foreign Equity Share (Company)",
+           "Grenzacherstrasse 124, Basel", "4070", "Roche Holding AG - Genusschein"),
     "ORCL": ("United States of America", "Listed Foreign Equity Share (Company)",
              "2300 Oracle Way, Austin, TX", "78741", "Oracle Corp"),
     "PPLT": ("United States of America", "Exchange Traded Fund (Investment Trust)",
@@ -676,10 +688,14 @@ def transfers_to_buy_orders(transfers, open_positions_by_statement):
     """
     Convert inbound stock transfers into synthetic buy orders for FIFO.
     Cost basis prefers IBKR Open Positions cost_basis (carryover); else transfer MV.
+    First matching open-position snapshot wins (pass inception before YE/FY so
+    partially sold positions do not overwrite unit cost with a later average).
     """
     basis_by_sym = {}
     for op in open_positions_by_statement:
         for sym, info in op.items():
+            if sym in basis_by_sym:
+                continue
             if info.get("cost_basis") is not None and info.get("qty"):
                 basis_by_sym[sym] = (info["cost_basis"], info["qty"], info.get("currency") or "USD")
 

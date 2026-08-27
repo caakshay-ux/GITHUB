@@ -21,6 +21,7 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 | Arulselvam Chandrasekaran & Dhanalakshmi S (Joint) | U22929455 | [`output/Foreign_Assets_Schedule_FA_Arulselvam_Dhanalakshmi_Joint_U22929455_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Arulselvam_Dhanalakshmi_Joint_U22929455_AY2026-27.xlsx) |
 | Yagyank Chadha | U20291582 | [`output/Foreign_Assets_Schedule_FA_Yagyank_Chadha_U20291582_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Yagyank_Chadha_U20291582_AY2026-27.xlsx) |
 | Yagyank Chadha | U15172057 | [`output/Foreign_Assets_Schedule_FA_Yagyank_Chadha_U15172057_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Yagyank_Chadha_U15172057_AY2026-27.xlsx) |
+| Vineet Dev | U18045590 | [`output/Foreign_Assets_Schedule_FA_Vineet_Dev_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Vineet_Dev_AY2026-27.xlsx) |
 
 ### Workbook sheets
 
@@ -115,6 +116,8 @@ python3 scripts/prepare_schedule_fa_yagyank_u20291582.py
 python3 scripts/prepare_schedule_fa_yagyank_u15172057.py
 # Both Yagyank accounts
 python3 scripts/prepare_schedule_fa_yagyank_chadha.py
+# Vineet Dev — U18045590
+python3 scripts/prepare_schedule_fa_vineet_dev.py
 ```
 
 
@@ -126,6 +129,14 @@ python3 scripts/prepare_schedule_fa_yagyank_chadha.py
 - `input_Annual_Statement_Rajani_Single.csv` — **synthesized** CY 2025 (YE AVGO mark from ACATS 18-Dec-2025)
 - Also under `clients/Rajani_J_Vallath_U16003525/`
 - Output: `output/Foreign_Assets_Schedule_FA_Rajani_J_Vallath_U16003525_AY2026-27.xlsx`
+
+### Source inputs — Vineet Dev U18045590
+
+- `input_Inception_FY2024-25_Vineet_Dev.csv` — 01-Apr-2024–31-Mar-2025 (CRM FOP In 24-Feb-2025)
+- `input_Annual_Statement_Vineet_Dev.csv` — **real** IBKR Annual CY 2025
+- `input_Fiscal_Statement_Vineet_Dev.csv` — FY 2025-26
+- Also under `clients/Vineet_Dev_U18045590/`
+- Output: `output/Foreign_Assets_Schedule_FA_Vineet_Dev_AY2026-27.xlsx`
 
 ### Source inputs — Yagyank Chadha U20291582
 
@@ -209,3 +220,4 @@ python3 scripts/prepare_schedule_fa_yagyank_chadha.py
 12. Arulselvam Joint U22929455 (SGD base): nil stock CG; YE marks from real Annual; A2 NAV SGD→USD via YE USD.SGD 1.286.
 13. Yagyank Chadha U20291582: real FY Activity Statement; Internal In from U15172057; FOP GOOG; nil CG; YE from PortfolioAnalyst.
 14. Yagyank Chadha U15172057: multi-currency portfolio; taxable CG on BLBD/NOVd/ORCL/1810; Internal Out of SHOP+Lux UCITS to U20291582 excluded (code I); YE marks proxied from 31-Mar-2025.
+15. Vineet Dev U18045590: real Annual+Fiscal; CRM FOP In Feb-2025 (confirm original buy dates for LTCG); multi-currency USD/EUR/CHF/JPY; CHF→USD YE 1.2615.
