@@ -111,6 +111,8 @@ COUNTRY = {
     "Cayman Islands": ("Cayman Islands", 40),
     "Taiwan": ("Taiwan", 212),
     "Australia": ("Australia", 12),
+    "Luxembourg": ("Luxembourg", 127),
+    "Canada": ("Canada", 36),
 }
 
 # Entity master: symbol -> (country_key, nature, address, zip, legal_name)
@@ -201,6 +203,27 @@ ENTITY = {
     "GSL": ("United States of America", "Listed Foreign Equity Share (Company)",
             "c/o Global Ship Lease Inc / Marshall Islands registered (NYSE)", "",
             "Global Ship Lease Inc - Class A"),
+    "LU0099574567": (
+        "Luxembourg",
+        "Foreign Mutual Fund (Investment Trust / UCITS)",
+        "Fidelity Funds SICAV, 2a rue Albert Borschette, Luxembourg",
+        "L-1246",
+        "Fidelity Funds - Global Technology Fund A-INC (EUR)",
+    ),
+    "LU0106831901": (
+        "Luxembourg",
+        "Foreign Mutual Fund (Investment Trust / UCITS)",
+        "BlackRock Global Funds, 2-4 rue Eugène Ruppert, Luxembourg",
+        "L-2453",
+        "BGF World Financials Fund A2 Acc (USD)",
+    ),
+    "SHOP": (
+        "Canada",
+        "Listed Foreign Equity Share (Company)",
+        "151 O'Connor Street, Ground Floor, Ottawa, ON",
+        "K2P 2L8",
+        "Shopify Inc - Class A",
+    ),
     "HON": ("United States of America", "Listed Foreign Equity Share (Company)",
             "855 S Mint Street, Charlotte, NC", "28202", "Honeywell International Inc"),
     "HYU": ("South Korea", "Global Depository Receipt of Listed Foreign Company",
@@ -615,7 +638,8 @@ def extract_transfers(sections):
     for kind, r in sections.get("Transfers", []):
         if kind != "Data" or not r or r[0] in ("Total",):
             continue
-        if r[0] != "Stocks":
+        # Stocks and Funds (UCITS / mutual funds) — both are Schedule FA equity interests
+        if r[0] not in ("Stocks", "Funds"):
             continue
         direction = (r[5] if len(r) > 5 else "").strip()
         qty = fnum(r[8]) if len(r) > 8 else None
