@@ -22,6 +22,7 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 | Yagyank Chadha | U20291582 | [`output/Foreign_Assets_Schedule_FA_Yagyank_Chadha_U20291582_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Yagyank_Chadha_U20291582_AY2026-27.xlsx) |
 | Yagyank Chadha | U15172057 | [`output/Foreign_Assets_Schedule_FA_Yagyank_Chadha_U15172057_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Yagyank_Chadha_U15172057_AY2026-27.xlsx) |
 | Vineet Dev | U18045590 | [`output/Foreign_Assets_Schedule_FA_Vineet_Dev_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Vineet_Dev_AY2026-27.xlsx) |
+| Tushar Agrawal | U16595399 | [`output/Foreign_Assets_Schedule_FA_Tushar_Agrawal_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Tushar_Agrawal_AY2026-27.xlsx) |
 
 ### Workbook sheets
 
@@ -221,3 +222,4 @@ python3 scripts/prepare_schedule_fa_vineet_dev.py
 13. Yagyank Chadha U20291582: real FY Activity Statement; Internal In from U15172057; FOP GOOG; nil CG; YE from PortfolioAnalyst.
 14. Yagyank Chadha U15172057: multi-currency portfolio; taxable CG on BLBD/NOVd/ORCL/1810; Internal Out of SHOP+Lux UCITS to U20291582 excluded (code I); YE marks proxied from 31-Mar-2025.
 15. Vineet Dev U18045590: real Annual+Fiscal; CRM FOP In Feb-2025 (confirm original buy dates for LTCG); multi-currency USD/EUR/CHF/JPY; CHF→USD YE 1.2615.
+16. Tushar Agrawal U16595399: FY2025-26 only; 19 opening lots seeded 31-Dec-2024 (costs backsolved from IBKR Basis); Annual synthesized (YE at cost); CY div omits Jan–Mar 2025; confirm original buy dates for LTCG; multi-currency USD/EUR/HKD/JPY/DKK.
