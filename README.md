@@ -119,6 +119,8 @@ python3 scripts/prepare_schedule_fa_yagyank_u15172057.py
 python3 scripts/prepare_schedule_fa_yagyank_chadha.py
 # Vineet Dev — U18045590
 python3 scripts/prepare_schedule_fa_vineet_dev.py
+# Tushar Agrawal — U16595399
+python3 scripts/prepare_schedule_fa_tushar_agrawal.py
 ```
 
 
@@ -138,6 +140,15 @@ python3 scripts/prepare_schedule_fa_vineet_dev.py
 - `input_Fiscal_Statement_Vineet_Dev.csv` — FY 2025-26
 - Also under `clients/Vineet_Dev_U18045590/`
 - Output: `output/Foreign_Assets_Schedule_FA_Vineet_Dev_AY2026-27.xlsx`
+
+### Source inputs — Tushar Agrawal U16595399
+
+- `input_Fiscal_Statement_Tushar_Agrawal.csv` — **real** IBKR FY 2025-26 (01-Apr-2025–31-Mar-2026)
+- `input_Inception_FY2024-25_Tushar_Agrawal.csv` — stub (account metadata); 19 opening lots seeded in runner
+- `input_Annual_Statement_Tushar_Agrawal.csv` — **synthesized** CY 2025 (YE marks at cost)
+- Also under `clients/Tushar_Agrawal_U16595399/`
+- Output: `output/Foreign_Assets_Schedule_FA_Tushar_Agrawal_AY2026-27.xlsx`
+- Runner: `python3 scripts/prepare_schedule_fa_tushar_agrawal.py`
 
 ### Source inputs — Yagyank Chadha U20291582
 

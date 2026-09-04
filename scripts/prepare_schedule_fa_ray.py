@@ -59,6 +59,13 @@ SBI_TT_USD = {
     date(2026, 1, 31): 91.35,
     date(2026, 2, 28): 90.56,
     date(2026, 3, 31): 93.15,
+    date(2026, 4, 30): 94.80,
+    date(2026, 5, 30): 94.60,
+    date(2026, 5, 31): 94.60,
+    date(2026, 6, 29): 93.95,
+    date(2026, 6, 30): 93.95,
+    date(2026, 7, 31): 95.20,
+    date(2026, 8, 31): 95.00,
 }
 
 SBI_TT_EUR = {
@@ -82,6 +89,14 @@ SBI_TT_EUR = {
     date(2026, 1, 31): 105.00,
     date(2026, 2, 28): 104.50,
     date(2026, 3, 31): 106.00,
+    date(2026, 4, 30): 109.70,
+    date(2026, 5, 30): 109.40,
+    date(2026, 5, 31): 109.40,
+    date(2026, 6, 29): 106.20,
+    date(2026, 6, 30): 106.20,
+    # Jul/Aug EUR month-end not in compilation — hold Jun until verified
+    date(2026, 7, 31): 106.20,
+    date(2026, 8, 31): 106.20,
 }
 
 # Approximate IBKR year-end FX to USD (from Annual Forex Balances close)
