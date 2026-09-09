@@ -110,6 +110,8 @@ FX_TO_USD_YE2025 = {
     "CHF": 1.2615,
     # IBKR YE USD.SGD ≈ 1.2860 → SGD per USD; invert for SGD→USD
     "SGD": 1.0 / 1.2860,
+    # Waseem Individual GBP.USD trade ~1.342 / MTM close ~1.3525 — editable on CG
+    "GBP": 1.342,
 }
 
 # Country metadata for Schedule FA

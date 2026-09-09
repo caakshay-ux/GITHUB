@@ -1,0 +1,40 @@
+Statement,Header,Field Name,Field Value
+Statement,Data,Title,Activity Statement
+Statement,Data,Period,"April 1, 2025 - March 31, 2026 (stub — no FY2025-26 Activity Statement furnished)"
+Statement,Data,WhenGenerated,"2026-09-04, 07:08:28 EDT"
+Account Information,Header,Field Name,Field Value
+Account Information,Data,Name,Mohammad Waseem
+Account Information,Data,Account,U25039405
+Account Information,Data,Investment Advisor,MATCAP WEALTH ADVISORS PRIVATE LIMITED
+Account Information,Data,Account Type,Advisor Client
+Account Information,Data,Customer Type,Individual
+Account Information,Data,Account Capabilities,Cash
+Account Information,Data,Base Currency,USD
+Financial Instrument Information,Header,Asset Category,Symbol,Description,Conid,Security ID,Underlying,Listing Exch,Multiplier,Type,Code
+Financial Instrument Information,Data,Stocks,BBJP,JPMORGAN BETABUILDERS JAPAN,477183122,US46641Q2176,BBJP,BATS,1,ETF
+Financial Instrument Information,Data,Stocks,DFEU,ISHARES EUROPE DEFENCE ETF,797799331,IE000IAXNM41,DFEU,LSEETF,1,ETF
+Financial Instrument Information,Data,Stocks,GOOG,ALPHABET INC-CL C,208813720,US02079K1079,GOOG,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,GSIB,THEMES GLBL SYST IMPRT BNKS,672387383,US8829276018,GSIB,NASDAQ,1,ETF
+Financial Instrument Information,Data,Stocks,ICLN,ISHARES GLOBAL CLEAN ENERGY,52170893,US4642882249,ICLN,NASDAQ,1,ETF
+Financial Instrument Information,Data,Stocks,IXJ,ISHARES GLOBAL HEALTHCARE ET,13832282,US4642873255,IXJ,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,NVDA,NVIDIA CORP,4815747,US67066G1040,NVDA,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,PICK,ISHARES MSCI GLOBAL METALS &,253190571,US46434G8481,PICK,BATS,1,ETF
+Financial Instrument Information,Data,Stocks,POW,VISTASHA ELETRICAN SC ETF,826135926,US45259A8374,POW,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,SMH,VANECK SEMICONDUCTOR ETF,229725622,US92189F6768,SMH,NASDAQ,1,ETF
+Financial Instrument Information,Data,Stocks,TCHI,ISHARES MSCI CHINA TECH,540938309,US46436E4290,TCHI,NASDAQ,1,ETF
+Financial Instrument Information,Data,Stocks,VWRA,VANG FTSE AW USDA,375855577,IE00BK5BQT80,VWRA,LSEETF,1,ETF
+Financial Instrument Information,Data,Stocks,XBI,SS SPDR S&P BIOTECH ETF,45540828,US78464A8707,XBI,ARCA,1,ETF
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,C. Price,Proceeds,Comm/Fee,Basis,Realized P/L,MTM P/L,Code
+Transfers,Header,Asset Category,Currency,Symbol,Date,Type,Direction,Xfer Company,Xfer Account,Qty,Xfer Price,Market Value,Realized P/L,Cash Amount,Code
+Dividends,Header,Currency,Date,Description,Amount
+Interest,Header,Currency,Date,Description,Amount
+Withholding Tax,Header,Currency,Date,Description,Amount,Code
+Open Positions,Header,DataDiscriminator,Asset Category,Currency,Symbol,Quantity,Mult,Cost Price,Cost Basis,Close Price,Value,Unrealized P/L,Code
+Mark-to-Market Performance Summary,Header,Asset Category,Symbol,Prior Quantity,Current Quantity,Prior Price,Current Price,Mark-to-Market P/L Position,Mark-to-Market P/L Transaction,Mark-to-Market P/L Commissions,Mark-to-Market P/L Other,Mark-to-Market P/L Total,Code
+Corporate Actions,Header,Asset Category,Currency,Report Date,Date/Time,Description,Quantity,Proceeds,Value,Realized P/L,Code
+Change in NAV,Header,Field Name,Field Value
+Net Asset Value,Header,Asset Class,Prior Total,Current Long,Current Short,Current Total,Change
+Deposits & Withdrawals,Header,Currency,Settle Date,Description,Amount
+Change in NAV,Data,Starting Value,0
+Change in NAV,Data,Ending Value,0
+Net Asset Value,Data,Total,0,0,0,0,0

@@ -1,0 +1,53 @@
+Statement,Header,Field Name,Field Value
+Statement,Data,Title,Activity Statement
+Statement,Data,Period,Stub — Joint opened 21-May-2026
+Statement,Data,WhenGenerated,"2026-09-04, 07:07:16 EDT"
+Account Information,Header,Field Name,Field Value
+Account Information,Data,Name,Mohammad Waseem and Sofia Anjum
+Account Information,Data,Account,U24577010
+Account Information,Data,Investment Advisor,MATCAP WEALTH ADVISORS PRIVATE LIMITED
+Account Information,Data,Account Type,Advisor Client
+Account Information,Data,Customer Type,Joint
+Account Information,Data,Account Capabilities,Cash
+Account Information,Data,Base Currency,USD
+Financial Instrument Information,Header,Asset Category,Symbol,Description,Conid,Security ID,Underlying,Listing Exch,Multiplier,Type,Code
+Financial Instrument Information,Data,Stocks,AAFl,AIRTEL AFRICA PLC,373291234,GB00BKDRYJ47,AAF,LSE,1,COMMON
+Financial Instrument Information,Data,Stocks,AIQ,GLOBAL X ART INTEL & TECH,317792273,US37954Y6326,AIQ,NASDAQ,1,ETF
+Financial Instrument Information,Data,Stocks,ANET,ARISTA NETWORKS INC,740948854,US0404132054,ANET,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,BARCl,BARCLAYS PLC,908940,GB0031348658,BARC,LSE,1,COMMON
+Financial Instrument Information,Data,Stocks,BBJP,JPMORGAN BETABUILDERS JAPAN,477183122,US46641Q2176,BBJP,BATS,1,ETF
+Financial Instrument Information,Data,Stocks,BNO,UNITED STATES BRENT OIL FUND,75961365,US91167Q1004,BNO,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,GOOG,ALPHABET INC-CL C,208813720,US02079K1079,GOOG,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,JPM,JPMORGAN CHASE & CO,1520593,US46625H1005,JPM,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,LLY,ELI LILLY & CO,9160,US5324571083,LLY,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,MDT,MEDTRONIC PLC,181387075,IE00BTN1Y115,MDT,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,NOVOBc,NOVO NORDISK A/S-B,652806383,DK0062498333,NOVO.B,CPH,1,COMMON
+Financial Instrument Information,Data,Stocks,NVDA,NVIDIA CORP,4815747,US67066G1040,NVDA,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,PICK,ISHARES MSCI GLOBAL METALS &,253190571,US46434G8481,PICK,BATS,1,ETF
+Financial Instrument Information,Data,Stocks,POW,VISTASHA ELETRICAN SC ETF,826135926,US45259A8374,POW,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,PRYMY,PRYSMIAN SPA-UNSPONSOREE ADR,55424629,US74440L1061,PRYMY,PINK,1,ADR
+Financial Instrument Information,Data,Stocks,QTUM,DEFIANCE QUANTUM ETF,332274918,US26922A4206,QTUM,NASDAQ,1,ETF
+Financial Instrument Information,Data,Stocks,RHM,RHEINMETALL AG,15085,DE0007030009,RHM,IBIS,1,COMMON
+Financial Instrument Information,Data,Stocks,RYAAY,RYANAIR HOLDINGS PLC-SP ADR,210918190,US7835132033,RYAAY,NASDAQ,1,ADR
+Financial Instrument Information,Data,Stocks,SAABY,SAAB AB-UNSPR ADR,357177025,US78516J1016,SAABY,PINK,1,ADR
+Financial Instrument Information,Data,Stocks,SE,SEA LTD-ADR,292735472,US81141R1005,SE,NYSE,1,ADR
+Financial Instrument Information,Data,Stocks,SPOT,SPOTIFY TECHNOLOGY SA,312496724,LU1778762911,SPOT,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,SU,SCHNEIDER ELECTRIC SE,29612196,FR0000121972,SU,SBF,1,COMMON
+Financial Instrument Information,Data,Stocks,UUl,UNITED UTILITIES GROUP PLC,52950461,GB00B39J2M42,UU.,LSE,1,COMMON
+Financial Instrument Information,Data,Stocks,VHT,VANGUARD HEALTH CARE ETF,27638082,US92204A5048,VHT,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,XOM,EXXONMOBIL HOLDINGS CORP,895178251,US30233Q1085,XOM,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,XOM,EXXON MOBIL CORP,13977,US30231G1022,XOM,NYSE,1,COMMON
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,C. Price,Proceeds,Comm/Fee,Basis,Realized P/L,MTM P/L,Code
+Transfers,Header,Asset Category,Currency,Symbol,Date,Type,Direction,Xfer Company,Xfer Account,Qty,Xfer Price,Market Value,Realized P/L,Cash Amount,Code
+Dividends,Header,Currency,Date,Description,Amount
+Interest,Header,Currency,Date,Description,Amount
+Withholding Tax,Header,Currency,Date,Description,Amount,Code
+Open Positions,Header,DataDiscriminator,Asset Category,Currency,Symbol,Quantity,Mult,Cost Price,Cost Basis,Close Price,Value,Unrealized P/L,Code
+Mark-to-Market Performance Summary,Header,Asset Category,Symbol,Prior Quantity,Current Quantity,Prior Price,Current Price,Mark-to-Market P/L Position,Mark-to-Market P/L Transaction,Mark-to-Market P/L Commissions,Mark-to-Market P/L Other,Mark-to-Market P/L Total,Code
+Corporate Actions,Header,Asset Category,Currency,Report Date,Date/Time,Description,Quantity,Proceeds,Value,Realized P/L,Code
+Change in NAV,Header,Field Name,Field Value
+Net Asset Value,Header,Asset Class,Prior Total,Current Long,Current Short,Current Total,Change
+Deposits & Withdrawals,Header,Currency,Settle Date,Description,Amount
+Change in NAV,Data,Starting Value,0
+Change in NAV,Data,Ending Value,0
+Net Asset Value,Data,Total,0,0,0,0,0

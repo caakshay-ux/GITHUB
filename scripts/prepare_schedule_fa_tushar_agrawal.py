@@ -578,9 +578,11 @@ def append_fy2026_27(out: Path, seeds: list[dict]) -> dict:
     splits = merge_splits(extract_stock_splits(sF), extract_stock_splits(sN))
 
     lots_fy2627_open = build_lots_as_of(orders, splits, date(2026, 3, 31))
+    # Only in-window orders — opening lots already include pre-FY seeds (avoid double-apply)
+    orders_fy = [o for o in orders if o["date"] >= date(2026, 4, 1)]
     sales, _ = build_fifo_sales(
         lots_fy2627_open,
-        orders,
+        orders_fy,
         date(2026, 4, 1),
         date(2026, 9, 3),
         splits=splits,
