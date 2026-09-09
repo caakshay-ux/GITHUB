@@ -23,6 +23,8 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 | Yagyank Chadha | U15172057 | [`output/Foreign_Assets_Schedule_FA_Yagyank_Chadha_U15172057_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Yagyank_Chadha_U15172057_AY2026-27.xlsx) |
 | Vineet Dev | U18045590 | [`output/Foreign_Assets_Schedule_FA_Vineet_Dev_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Vineet_Dev_AY2026-27.xlsx) |
 | Tushar Agrawal | U16595399 | [`output/Foreign_Assets_Schedule_FA_Tushar_Agrawal_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Tushar_Agrawal_AY2026-27.xlsx) |
+| Mohammad Waseem | U25039405 | [`output/Foreign_Assets_Schedule_FA_Mohammad_Waseem_U25039405_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Mohammad_Waseem_U25039405_AY2026-27.xlsx) |
+| Mohammad Waseem & Sofia Anjum (Joint) | U24577010 | [`output/Foreign_Assets_Schedule_FA_Mohammad_Waseem_Sofia_Anjum_Joint_U24577010_AY2026-27.xlsx`](output/Foreign_Assets_Schedule_FA_Mohammad_Waseem_Sofia_Anjum_Joint_U24577010_AY2026-27.xlsx) |
 
 ### Workbook sheets
 
@@ -121,6 +123,8 @@ python3 scripts/prepare_schedule_fa_yagyank_chadha.py
 python3 scripts/prepare_schedule_fa_vineet_dev.py
 # Tushar Agrawal — U16595399
 python3 scripts/prepare_schedule_fa_tushar_agrawal.py
+# Mohammad Waseem — U25039405 (Individual) + U24577010 (Joint)
+python3 scripts/prepare_schedule_fa_waseem.py
 ```
 
 
