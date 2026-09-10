@@ -112,6 +112,9 @@ FX_TO_USD_YE2025 = {
     "SGD": 1.0 / 1.2860,
     # Waseem Individual GBP.USD trade ~1.342 / MTM close ~1.3525 — editable on CG
     "GBP": 1.342,
+    # Vinod FY2026-27 Forex Balances CNH close ~0.14905
+    "CNH": 0.14905,
+    "CNY": 0.14905,
 }
 
 # Country metadata for Schedule FA

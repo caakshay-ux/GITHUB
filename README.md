@@ -148,11 +148,28 @@ python3 scripts/prepare_schedule_fa_waseem.py
 ### Source inputs — Tushar Agrawal U16595399
 
 - `input_Fiscal_Statement_Tushar_Agrawal.csv` — **real** IBKR FY 2025-26 (01-Apr-2025–31-Mar-2026)
+- `input_Fiscal_Statement_FY2026-27_Tushar_Agrawal.csv` — **real** IBKR FY 2026-27 YTD (01-Apr-2026–03-Sep-2026)
 - `input_Inception_FY2024-25_Tushar_Agrawal.csv` — stub (account metadata); 19 opening lots seeded in runner
 - `input_Annual_Statement_Tushar_Agrawal.csv` — **synthesized** CY 2025 (YE marks at cost)
 - Also under `clients/Tushar_Agrawal_U16595399/`
-- Output: `output/Foreign_Assets_Schedule_FA_Tushar_Agrawal_AY2026-27.xlsx`
+- Output: `output/Foreign_Assets_Schedule_FA_Tushar_Agrawal_AY2026-27.xlsx` (includes CG/OS for FY2025-26 and FY2026-27 YTD)
 - Runner: `python3 scripts/prepare_schedule_fa_tushar_agrawal.py`
+
+### Source inputs — Mohammad Waseem U25039405 (Individual)
+
+- `input_Fiscal_Statement_FY2026-27_Waseem_Individual.csv` — **real** IBKR FY 2026-27 YTD (01-Apr-2026–03-Sep-2026)
+- FY2025-26 / inception stubs; CY2025 Annual **synthesized** (GOOG × 1)
+- GOOG: prior × 1 @ 98.82 + FOP × 124 @ 99.21/sh; Internal transfers with U24577010
+- Also under `clients/Mohammad_Waseem_U25039405/`
+- Output: `output/Foreign_Assets_Schedule_FA_Mohammad_Waseem_U25039405_AY2026-27.xlsx`
+
+### Source inputs — Mohammad Waseem & Sofia Anjum Joint U24577010
+
+- `input_Fiscal_Statement_FY2026-27_Waseem_Joint.csv` — **real** IBKR (21-May-2026–03-Sep-2026)
+- CY2025 empty (opened May-2026); GOOG Internal In from U25039405
+- Also under `clients/Mohammad_Waseem_Sofia_Anjum_Joint_U24577010/`
+- Output: `output/Foreign_Assets_Schedule_FA_Mohammad_Waseem_Sofia_Anjum_Joint_U24577010_AY2026-27.xlsx`
+- Runner (both): `python3 scripts/prepare_schedule_fa_waseem.py`
 
 ### Source inputs — Yagyank Chadha U20291582
 
@@ -237,4 +254,19 @@ python3 scripts/prepare_schedule_fa_waseem.py
 13. Yagyank Chadha U20291582: real FY Activity Statement; Internal In from U15172057; FOP GOOG; nil CG; YE from PortfolioAnalyst.
 14. Yagyank Chadha U15172057: multi-currency portfolio; taxable CG on BLBD/NOVd/ORCL/1810; Internal Out of SHOP+Lux UCITS to U20291582 excluded (code I); YE marks proxied from 31-Mar-2025.
 15. Vineet Dev U18045590: real Annual+Fiscal; CRM FOP In Feb-2025 (confirm original buy dates for LTCG); multi-currency USD/EUR/CHF/JPY; CHF→USD YE 1.2615.
-16. Tushar Agrawal U16595399: FY2025-26 only; 19 opening lots seeded 31-Dec-2024 (costs backsolved from IBKR Basis); Annual synthesized (YE at cost); CY div omits Jan–Mar 2025; confirm original buy dates for LTCG; multi-currency USD/EUR/HKD/JPY/DKK.
+4. Kohli: MSFT via FOP 29-Jan-2025 — original buy date outside IBKR not available; confirm for LTCG clock. Prefer IBKR Annual CY2025 for YE closing.
+5. Gunjan Paid: GOOG 216 held before statement start — seeded 31-Dec-2024 @ USD 19,300.32; confirm original buy date for LTCG. Internal Out of GOOG 179 to Free (03-Dec-2025) excluded from taxable CG.
+6. Gunjan Free: YE close proxied at cost; no trades / nil CG.
+7. Abhisek: opened mid-May 2025; nil CG (buys only); YE2025 marks at cost — prefer IBKR Annual for filing.
+8. Phanindra: nil CG (buys only); YE2025 marks proxied from 31-Mar-2025 (GLD at cost); prefer IBKR Annual for filing.
+9. Rajani/Sanjeev Joint: opened 30-Jan-2026 — FA CY2025 N/A; AVGO sale 04-Mar-2026 — confirm original buy date at U16003525 for LTCG (IBKR tagged L).
+10. Rajani Single U16003525: ACATS AVGO In 18-Dec-2025; Internal Out to Joint excluded from CG; YE mark from ACATS price; confirm original AVGO buy date at 27960235 for LTCG on Mar-2026 sale.
+11. Arulselvam Individual U22748155 (SGD base): GOOG FOP × 447 then full sale 10-Nov-2025; cost = IBKR Basis USD 52,506.73; IBKR used Highest Cost (HC) — confirm original buy dates for LTCG (workbook uses FOP date → STCG). Peak NAV max(start,end) understates mid-year GOOG holding — use PortfolioAnalyst.
+12. Arulselvam Joint U22929455 (SGD base): nil stock CG; YE marks from real Annual; A2 NAV SGD→USD via YE USD.SGD 1.286.
+13. Yagyank Chadha U20291582: real FY Activity Statement; Internal In from U15172057; FOP GOOG; nil CG; YE from PortfolioAnalyst.
+14. Yagyank Chadha U15172057: multi-currency portfolio; taxable CG on BLBD/NOVd/ORCL/1810; Internal Out of SHOP+Lux UCITS to U20291582 excluded (code I); YE marks proxied from 31-Mar-2025.
+15. Vineet Dev U18045590: real Annual+Fiscal; CRM FOP In Feb-2025 (confirm original buy dates for LTCG); multi-currency USD/EUR/CHF/JPY; CHF→USD YE 1.2615.
+16. Tushar Agrawal U16595399: FY2025-26 + FY2026-27 YTD (to 03-Sep-2026); 19 opening lots seeded; FY2026-27 STCG ≈ ₹8.97L / Div ≈ USD 278; confirm original buy dates for LTCG.
+17. Mohammad Waseem U25039405: FY2026-27 YTD only; GOOG FOP × 124 + prior × 1; Internal transfers with Joint U24577010 (code I); taxable GOOG × 25; confirm FOP original buy dates for LTCG.
+18. Mohammad Waseem & Sofia Anjum Joint U24577010: opened 21-May-2026; Internal In GOOG from Individual; taxable GOOG × 45 + BNO/POW/QTUM; CY2025 N/A.
+19. Vinodkrishna Poyyale U15388294: FY2026-27 YTD (to 07-Sep-2026) STCG ≈ ₹3.40L / Div ≈ USD 385; nil CG in FY2024-25/FY2025-26; multi-currency incl. CNH.
