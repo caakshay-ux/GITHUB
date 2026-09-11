@@ -115,6 +115,8 @@ FX_TO_USD_YE2025 = {
     # Vinod FY2026-27 Forex Balances CNH close ~0.14905
     "CNH": 0.14905,
     "CNY": 0.14905,
+    # Yagyank FY2026-27 MTM TWD close ~0.031725
+    "TWD": 0.031725,
 }
 
 # Country metadata for Schedule FA
