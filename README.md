@@ -176,9 +176,11 @@ python3 scripts/prepare_schedule_fa_waseem.py
 ### Source inputs — Yagyank Chadha U20291582
 
 - Real IBKR Activity Statement FY2025-26 (23-May-2025–31-Mar-2026): `input_Fiscal_Statement_Yagyank_U20291582.csv`
+- `input_Fiscal_Statement_FY2026-27_Yagyank_U20291582.csv` — **real** IBKR FY 2026-27 YTD (01-Apr-2026–10-Sep-2026)
 - CY2025 Annual synthesized (YE marks from PortfolioAnalyst CY2025)
 - Also under `clients/Yagyank_Chadha_U20291582/`
-- Output: `output/Foreign_Assets_Schedule_FA_Yagyank_Chadha_U20291582_AY2026-27.xlsx`
+- Output: `output/Foreign_Assets_Schedule_FA_Yagyank_Chadha_U20291582_AY2026-27.xlsx` (includes CG/OS for FY2026-27 YTD)
+- Runner: `python3 scripts/prepare_schedule_fa_yagyank_u20291582.py`
 
 ### Source inputs — Yagyank Chadha U15172057
 
@@ -255,7 +257,7 @@ python3 scripts/prepare_schedule_fa_waseem.py
 10. Rajani Single U16003525: ACATS AVGO In 18-Dec-2025; Internal Out to Joint excluded from CG; YE mark from ACATS price; confirm original AVGO buy date at 27960235 for LTCG on Mar-2026 sale.
 11. Arulselvam Individual U22748155 (SGD base): GOOG FOP × 447 then full sale 10-Nov-2025; cost = IBKR Basis USD 52,506.73; IBKR used Highest Cost (HC) — confirm original buy dates for LTCG (workbook uses FOP date → STCG). Peak NAV max(start,end) understates mid-year GOOG holding — use PortfolioAnalyst.
 12. Arulselvam Joint U22929455 (SGD base): nil stock CG; YE marks from real Annual; A2 NAV SGD→USD via YE USD.SGD 1.286.
-13. Yagyank Chadha U20291582: real FY Activity Statement; Internal In from U15172057; FOP GOOG; nil CG; YE from PortfolioAnalyst.
+13. Yagyank Chadha U20291582: real FY Activity Statement; Internal In from U15172057; FOP GOOG; nil CG in FY2025-26; YE from PortfolioAnalyst; FY2026-27 YTD (to 10-Sep-2026) STCG ≈ ₹15.50L (GOOG+SHOP) / Div nil / Interest ≈ USD 127; confirm original buy dates for LTCG.
 14. Yagyank Chadha U15172057: multi-currency portfolio; taxable CG on BLBD/NOVd/ORCL/1810; Internal Out of SHOP+Lux UCITS to U20291582 excluded (code I); YE marks proxied from 31-Mar-2025; FY2026-27 YTD (to 08-Sep-2026) STCG ≈ ₹21.79L / Div ≈ USD 825 (TWD FX YE 0.031725; APH 2-for-1 split 03-Sep-2026).
 15. Vineet Dev U18045590: real Annual+Fiscal; CRM FOP In Feb-2025 (confirm original buy dates for LTCG); multi-currency USD/EUR/CHF/JPY; CHF→USD YE 1.2615.
 4. Kohli: MSFT via FOP 29-Jan-2025 — original buy date outside IBKR not available; confirm for LTCG clock. Prefer IBKR Annual CY2025 for YE closing.
@@ -267,7 +269,7 @@ python3 scripts/prepare_schedule_fa_waseem.py
 10. Rajani Single U16003525: ACATS AVGO In 18-Dec-2025; Internal Out to Joint excluded from CG; YE mark from ACATS price; confirm original AVGO buy date at 27960235 for LTCG on Mar-2026 sale.
 11. Arulselvam Individual U22748155 (SGD base): GOOG FOP × 447 then full sale 10-Nov-2025; cost = IBKR Basis USD 52,506.73; IBKR used Highest Cost (HC) — confirm original buy dates for LTCG (workbook uses FOP date → STCG). Peak NAV max(start,end) understates mid-year GOOG holding — use PortfolioAnalyst.
 12. Arulselvam Joint U22929455 (SGD base): nil stock CG; YE marks from real Annual; A2 NAV SGD→USD via YE USD.SGD 1.286.
-13. Yagyank Chadha U20291582: real FY Activity Statement; Internal In from U15172057; FOP GOOG; nil CG; YE from PortfolioAnalyst.
+13. Yagyank Chadha U20291582: real FY Activity Statement; Internal In from U15172057; FOP GOOG; nil CG in FY2025-26; YE from PortfolioAnalyst; FY2026-27 YTD (to 10-Sep-2026) STCG ≈ ₹15.50L (GOOG+SHOP) / Div nil / Interest ≈ USD 127; confirm original buy dates for LTCG.
 14. Yagyank Chadha U15172057: multi-currency portfolio; taxable CG on BLBD/NOVd/ORCL/1810; Internal Out of SHOP+Lux UCITS to U20291582 excluded (code I); YE marks proxied from 31-Mar-2025; FY2026-27 YTD (to 08-Sep-2026) STCG ≈ ₹21.79L / Div ≈ USD 825 (TWD FX YE 0.031725; APH 2-for-1 split 03-Sep-2026).
 15. Vineet Dev U18045590: real Annual+Fiscal; CRM FOP In Feb-2025 (confirm original buy dates for LTCG); multi-currency USD/EUR/CHF/JPY; CHF→USD YE 1.2615.
 16. Tushar Agrawal U16595399: FY2025-26 + FY2026-27 YTD (to 03-Sep-2026); 19 opening lots seeded; FY2026-27 STCG ≈ ₹8.97L / Div ≈ USD 278; confirm original buy dates for LTCG.
