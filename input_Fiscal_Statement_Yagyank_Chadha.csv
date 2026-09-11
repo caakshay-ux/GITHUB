@@ -1,0 +1,55 @@
+Statement,Header,Field Name,Field Value
+Statement,Data,Title,Activity Statement
+Statement,Data,Period,"April 1, 2025 - March 31, 2026"
+Statement,Data,WhenGenerated,Synthesized from IBKR PortfolioAnalyst FY2025-26 (MATCAP); YE marks & cost from Open Position Summary
+Account Information,Header,Field Name,Field Value
+Account Information,Data,Name,Yagyank Chadha
+Account Information,Data,Account,U20291582
+Account Information,Data,Investment Advisor,MATCAP WEALTH ADVISORS PRIVATE LIMITED
+Account Information,Data,Account Type,Advisor Client
+Account Information,Data,Customer Type,Individual
+Account Information,Data,Account Capabilities,Cash
+Account Information,Data,Base Currency,USD
+Net Asset Value,Header,Asset Class,Prior Total,Current Long,Current Short,Current Total,Change
+Net Asset Value,Data,Cash ,0,33.08,0,33.08,33.08
+Net Asset Value,Data,Stock,0,138743.90024000002,0,138743.90024000002,138743.90024000002
+Net Asset Value,Data,Total,0,138776.98024,0,138776.98024,138776.98024
+Change in NAV,Header,Field Name,Field Value
+Change in NAV,Data,Starting Value,0
+Change in NAV,Data,Mark-to-Market,9926.408976
+Change in NAV,Data,Deposits & Withdrawals,0
+Change in NAV,Data,Position Transfers,128850.571264
+Change in NAV,Data,Dividends,44.1
+Change in NAV,Data,Interest,0
+Change in NAV,Data,Commissions,0
+Change in NAV,Data,Ending Value,138776.98024
+Cash Report,Header,Currency Summary,Currency,Total,Securities,Futures,
+Cash Report,Data,Starting Cash,Base Currency Summary,0,0,0,
+Cash Report,Data,Dividends,Base Currency Summary,44.1,44.1,0,
+Cash Report,Data,Ending Cash,Base Currency Summary,33.08,33.08,0,
+Cash Report,Data,Ending Settled Cash,Base Currency Summary,33.08,33.08,0,
+Cash Report,Data,Starting Cash,USD,0,0,0,
+Cash Report,Data,Dividends,USD,44.1,44.1,0,
+Cash Report,Data,Ending Cash,USD,33.08,33.08,0,
+Open Positions,Header,DataDiscriminator,Asset Category,Currency,Symbol,Quantity,Mult,Cost Price,Cost Basis,Close Price,Value,Unrealized P/L,Code
+Open Positions,Data,Summary,Funds,EUR,LU0099574567,511.42,1,66.939990614,34234.45,76.69,39220.8,4986.35,
+Open Positions,Data,Summary,Funds,USD,LU0106831901,792.45,1,49.029995583,38853.82,67.32,53347.73,14493.91,
+Open Positions,Data,Summary,Stocks,USD,GOOG,105.0,1,278.918666667,29286.46,286.86,30120.3,833.84,
+Open Positions,Data,Summary,Stocks,USD,SHOP,84.0,1,75.22,6318.48,118.62,9964.08,3645.6,
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,C. Price,Proceeds,Comm/Fee,Basis,Realized P/L,MTM P/L,Code
+Transfers,Header,Asset Category,Currency,Symbol,Date,Type,Direction,Xfer Company,Xfer Account,Qty,Xfer Price,Market Value,Realized P/L,Cash Amount,Code
+Transfers,Data,Stocks,USD,SHOP,2025-05-23,FOP,In,--,FOP,84.0,--,"6,318.48",0.0,0.0,
+Transfers,Data,Funds,USD,LU0106831901,2025-05-26,FOP,In,--,FOP,792.45,--,"38,853.82",0.0,0.0,
+Transfers,Data,Funds,EUR,LU0099574567,2025-05-26,FOP,In,--,FOP,511.42,--,"34,234.45",0.0,0.0,
+Transfers,Data,Stocks,USD,GOOG,2025-12-01,ACATS,In,--,ACATS,105.0,--,"29,286.46",0.0,0.0,
+Deposits & Withdrawals,Header,Currency,Settle Date,Description,Amount
+Dividends,Header,Currency,Date,Description,Amount
+Dividends,Data,USD,2025-12-15,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share (Ordinary Dividend),22.05
+Dividends,Data,USD,2026-03-16,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share (Ordinary Dividend),22.05
+Interest,Header,Currency,Date,Description,Amount
+Withholding Tax,Header,Currency,Date,Description,Amount,Code
+Financial Instrument Information,Header,Asset Category,Symbol,Description,Conid,Security ID,Underlying,Listing Exch,Multiplier,Type,Code
+Financial Instrument Information,Data,Funds,LU0099574567,FIDELITY FUNDS - GLOBAL TECHNOLOGY A-INC,,LU0099574567,,FUNDSERV,1,FUND,
+Financial Instrument Information,Data,Funds,LU0106831901,BGF WORLD FINANCIALS A2 ACC,,LU0106831901,,FUNDSERV,1,FUND,
+Financial Instrument Information,Data,Stocks,GOOG,ALPHABET INC-CL C,,US02079K1079,GOOG,NASDAQ,1,COMMON,
+Financial Instrument Information,Data,Stocks,SHOP,SHOPIFY INC - CLASS A,,CA82509L1076,SHOP,NYSE,1,COMMON,

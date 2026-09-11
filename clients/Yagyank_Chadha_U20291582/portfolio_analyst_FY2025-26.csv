@@ -1,0 +1,50 @@
+Introduction,Header,Name,Account,Alias,BaseCurrency,AccountType,AnalysisPeriod,PerformanceMeasure
+Introduction,Data,Yagyank Chadha,U20291582,,USD,Individual (Advisor Client),"May 23, 2025 to March 31, 2026 (Daily)",TWR
+Profile,MetaInfo,Analysis Period,"May 23, 2025 - March 31, 2026"
+Profile,Data,Name,Yagyank Chadha
+Profile,Data,Account,U20291582
+Profile,Data,Alias,
+Profile,Data,Base Currency,USD
+Profile,Data,Account Type,Individual (Advisor Client)
+Profile,Data,Age,31
+Profile,Data,Investment Objectives,"Growth, Trading, Hedging, Speculation"
+Profile,Data,Estimated Net Worth,"$250,001.00 - $500,000.00"
+Profile,Data,Estimated Liquid Net Worth,"$250,001.00 - $500,000.00"
+Profile,Data,Annual Net Income,"$150,001.00 - $200,000.00"
+Profile,MetaInfo,Financial Inst.,Years of Experience,Trades per Year,Knowledge Level
+Profile,Data,Bonds,> 10,> 100,Extensive
+Profile,Data,Stocks,> 10,> 100,Extensive
+Open Position Summary,MetaInfo,As Of,"March 31, 2026"
+Open Position Summary,Header,Date,FinancialInstrument,Currency,Symbol,Description,Sector,Quantity,ClosePrice,Value,Cost Basis,UnrealizedP&L,FXRateToBase
+Open Position Summary,Data,03/31/2026,Funds,EUR,LU0099574567,FIDELITY INV INTL (LU) FIDELITY GLOBAL TECHNOLOGY "A" INC,Technology,511.42,76.69,39220.8,34234.45,4986.35,1.1553
+Open Position Summary,Data,Total,Funds,EUR,,,,,,39220.8,34234.45,4986.35
+Open Position Summary,Data,Total,Funds,USD,,,,,,45311.79024,39551.060085,5760.730155
+Open Position Summary,Data,03/31/2026,Funds,USD,LU0106831901,BLACKROCK LUX (LU) BGF WORLD FINANCIALS "A2" ACC,Financials,792.45,67.32,53347.73,38853.82,14493.91,1
+Open Position Summary,Data,Total,Funds,USD,,,,,,53347.73,38853.82,14493.91
+Open Position Summary,Data,Total,Funds,USD,,,,,,98659.52024,78404.880085,20254.640155
+Open Position Summary,Data,03/31/2026,Stocks,USD,GOOG,ALPHABET INC-CL C,Telecomm,105,286.86,30120.3,29286.46,833.84,1
+Open Position Summary,Data,03/31/2026,Stocks,USD,SHOP,SHOPIFY INC - CLASS A,Technology,84,118.62,9964.08,6318.48,3645.6,1
+Open Position Summary,Data,Total,Stocks,USD,,,,,,40084.38,35604.94,4479.44
+Open Position Summary,Data,03/31/2026,Cash,USD,USD,United States Dollar,Cash,33.08,1,33.08, , ,1
+Deposits And Withdrawals,MetaInfo,Analysis Period,"May 23, 2025 - March 31, 2026"
+Deposits And Withdrawals,Header,Date,Type,Description,Amount
+Deposits And Withdrawals,Data,05/23/25,TRNSFRIN,Shopify Inc - Class A (SHOP) Quantity: 84,8761.2
+Deposits And Withdrawals,Data,05/26/25,TRNSFRIN,Blackrock Lux (lu) Bgf World Financials "a2" Acc (010683190) Quantity: 792.45,45510.4
+Deposits And Withdrawals,Data,05/26/25,TRNSFRIN,Fidelity Funds Fidelity Global Technology "a" Inc (009957456) Quantity: 511.42,40966.371264
+Deposits And Withdrawals,Data,12/01/25,ACATIN,Alphabet Inc-cl C (GOOG) Quantity: 105,33612.6
+Dividends,MetaInfo,Analysis Period,"May 23, 2025 - March 31, 2026"
+Dividends,Header,PayDate,Ex-Date,Symbol,Quantity,DividendPerShare,Amount
+Dividends,Data,20251215,20251208,GOOG,105,0.21,22.05
+Dividends,Data,20260316,20260309,GOOG,105,0.21,22.05
+Notes and Disclosure,Header,Type,Note
+Notes and Disclosure,Data,General,"1. The Net Asset Value (NAV) consists of all positions by financial instrument (stock, securities options, warrants, bonds, cash, etc.). All non-base currency amounts are converted to the base currency at the close of period rate."
+Notes and Disclosure,Data,General,2. The gain or loss from future contracts settle into cash each night. The notional value is used when computing the contribution to return.
+Notes and Disclosure,Data,General,"3. Dividend accruals, interest accruals, and insured deposits are included in cash amounts throughout the report."
+Notes and Disclosure,Data,General,4. Price valuations are obtained from outside parties. Clearing Broker shall have no responsibility for the accuracy or timeliness of any such price valuation.
+Notes and Disclosure,Data,General,5. Data from Thomson Reuters Business Classifications and Lipper Global is used to derive our sector classifications. Funds with assorted sector allocations are classified as Broad.
+Notes and Disclosure,Data,General,"6. Amounts are formatted to two decimal places. If amounts are greater than two decimal places, Clearing Broker uses "half-even" rounding. This means that Clearing Broker rounds such amounts up to the nearest even number."
+Notes and Disclosure,Data,General,"7. For accounts opened and funded before 2009, reports with a time period of Since Inception will only include data going back to January 1, 2009. This includes some default reports and both Historical Performance reports."
+Notes and Disclosure,Data,General,"8. If you have elected to trade cryptocurrency/digital asset products at Crypto Provider through the Clearing Broker platform, for your convenience your positions in your linked account at Crypto Provider are reflected in PortfolioAnalyst in connection with your Clearing Broker account."
+Notes and Disclosure,Data,Disclosure,"This portfolio report was generated using Clearing Broker's PortfolioAnalyst tool, which allows Clearing Broker clients to generate analyses of their accounts using market data provided by third parties along with trade and account data contained in Clearing Broker's systems. This report is for information purposes only and is provided AS IS. Clearing Broker makes no warranty of any kind, express or implied, as to this report and its contents. The data provided for use in the PortfolioAnalyst tool is believed to be accurate, but completeness and accuracy of the information is not guaranteed, and Clearing Broker has no liability with respect thereto. The data regarding accounts held outside of Clearing Broker is obtained either directly from your input or from the financial institutions holding those accounts through a third-party service provider and Clearing Broker has NOT reviewed its accuracy.
+
+The material in this report is intended only as a reference and should not be relied upon for the maintenance of your books and records for tax, accounting, financial, or regulatory reporting or for any other purposes. This report is not an offer or a solicitation of an offer to buy or sell any security. This material does not, and is not intended to, take into account the particular financial conditions, investment objectives, or requirements of individual customers. Before acting on any material within this report, you should consider whether it is suitable for your particular circumstances and as necessary, seek professional advice."

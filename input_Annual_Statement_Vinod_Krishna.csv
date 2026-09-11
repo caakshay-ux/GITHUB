@@ -1,0 +1,328 @@
+Statement,Header,Field Name,Field Value
+Statement,Data,Title,Activity Statement
+Statement,Data,Period,"January 1, 2025 - December 31, 2025"
+Statement,Data,WhenGenerated,Synthesized for Schedule FA from FY statements; YE marks proxied (see Notes)
+Account Information,Header,Field Name,Field Value
+Account Information,Data,Name,Vinodkrishna Poyyale
+Account Information,Data,Account,U15388294
+Account Information,Data,Investment Advisor,MATCAP WEALTH ADVISORS PRIVATE LIMITED
+Account Information,Data,Account Type,Advisor Client
+Account Information,Data,Customer Type,Individual
+Account Information,Data,Account Capabilities,Cash
+Account Information,Data,Base Currency,USD
+Open Positions,Header,DataDiscriminator,Asset Category,Currency,Symbol,Quantity,Mult,Cost Price,Cost Basis,Close Price,Value,Unrealized P/L,Code
+Open Positions,Data,Summary,Stocks,HKD,3088,600.0,1,6.45018297,3870.109782,6.450183,3870.109782,0.0,
+Open Positions,Data,Summary,Stocks,HKD,3110,300.0,1,29.10082764,8730.248292,29.100828,8730.248292,0.0,
+Open Positions,Data,Summary,Stocks,HKD,3188,200.0,1,41.37117648,8274.235296,41.371176,8274.235296,0.0,
+Open Positions,Data,Summary,Stocks,HKD,3416,1000.0,1,10.648302955,10648.302955,10.648303,10648.302955,0.0,
+Open Positions,Data,Summary,Stocks,JPY,4568.T,100.0,1,3537.828,353782.8,3511.0,351100.0,-2682.8,
+Open Positions,Data,Summary,Stocks,USD,AEP,6.0,1,115.236666667,691.42,115.236667,691.42,0.0,
+Open Positions,Data,Summary,Stocks,EUR,AIRd,12.0,1,160.16,1921.92,162.78,1953.36,31.44,
+Open Positions,Data,Summary,Stocks,USD,AMZN,5.5,1,228.536864182,1256.952753,190.26,1046.43,-210.522753,
+Open Positions,Data,Summary,Stocks,USD,AXP,4.0,1,301.510046,1206.040184,269.05,1076.2,-129.840184,
+Open Positions,Data,Summary,Stocks,USD,BAC,14.0,1,47.156474571,660.190644,41.73,584.22,-75.970644,
+Open Positions,Data,Summary,Stocks,USD,BLBD,15.0,1,40.866701667,613.000525,32.37,485.55,-127.450525,
+Open Positions,Data,Summary,Stocks,USD,BX,12.0,1,158.627762667,1903.533152,139.78,1677.36,-226.173152,
+Open Positions,Data,Summary,Stocks,USD,CAT,3.0,1,392.571712667,1177.715138,329.8,989.4,-188.315138,
+Open Positions,Data,Summary,Stocks,USD,COPX,12.0,1,70.033333333,840.4,70.033333,840.4,0.0,
+Open Positions,Data,Summary,Stocks,USD,GD,2.0,1,273.215046,546.430092,272.58,545.16,-1.270092,
+Open Positions,Data,Summary,Stocks,USD,GE,6.0,1,185.906212667,1115.437276,200.15,1200.9,85.462724,
+Open Positions,Data,Summary,Stocks,USD,LLY,1.72,1,731.491441349,1258.165279,825.91,1420.5652,162.399921,
+Open Positions,Data,Summary,Stocks,USD,MCHI,12.0,1,46.362879333,556.354552,54.4,652.8,96.445448,
+Open Positions,Data,Summary,Stocks,USD,META,2.0,1,650.5,1301.0,650.5,1301.0,0.0,
+Open Positions,Data,Summary,Stocks,USD,MSFT,3.0,1,427.563212667,1282.689638,375.39,1126.17,-156.519638,
+Open Positions,Data,Summary,Stocks,USD,NFLX,20.0,1,90.591147553,1811.822951,932.53,18650.6,16838.777049,
+Open Positions,Data,Summary,Stocks,EUR,R6C0d,38.0,1,30.707894737,1166.9,33.925,1289.15,122.25,
+Open Positions,Data,Summary,Stocks,USD,RTX,5.0,1,124.265046,621.32523,132.46,662.3,40.97477,
+Open Positions,Data,Summary,Stocks,EUR,SIEd,3.0,1,204.7,614.1,211.9,635.7,21.6,
+Open Positions,Data,Summary,Stocks,USD,SLV,45.0,1,27.937268222,1257.17707,30.99,1394.55,137.37293,
+Open Positions,Data,Summary,Stocks,USD,TGT,20.0,1,112.40003555,2248.000711,104.36,2087.2,-160.800711,
+Open Positions,Data,Summary,Stocks,USD,TIP,12.0,1,107.372879333,1288.474552,111.09,1333.08,44.605448,
+Open Positions,Data,Summary,Stocks,USD,TSM,3.0,1,213.813379333,641.440138,166.0,498.0,-143.440138,
+Open Positions,Data,Summary,Stocks,USD,URA,30.0,1,49.153333333,1474.6,49.153333,1474.6,0.0,
+Open Positions,Data,Summary,Stocks,USD,V,3.0,1,348.333333333,1045.0,348.333333,1045.0,0.0,
+Open Positions,Data,Summary,Stocks,DKK,ZEALc,6.0,1,507.666666667,3046.0,507.666667,3046.0,0.0,
+Net Asset Value,Header,Asset Class,Prior Total,Current Long,Current Short,Current Total,Change
+Net Asset Value,Data,Stock,0,52108.61,0,52108.61,52108.61
+Net Asset Value,Data,Total,0,52108.61,0,52108.61,52108.61
+Change in NAV,Header,Field Name,Field Value
+Change in NAV,Data,Starting Value,0
+Change in NAV,Data,Ending Value,52108.61
+Mark-to-Market Performance Summary,Header,Asset Category,Symbol,Prior Quantity,Current Quantity,Prior Price,Current Price,Mark-to-Market P/L Position,Mark-to-Market P/L Transaction,Mark-to-Market P/L Commissions,Mark-to-Market P/L Other,Mark-to-Market P/L Total,Code
+Mark-to-Market Performance Summary,Data,Stocks,3088,0,600.0,--,6.45018297,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,3110,0,300.0,--,29.100827640000002,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,3188,0,200.0,--,41.37117648,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,3416,0,1000.0,--,10.648302954999998,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,4568.T,0,100.0,--,3511.0,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,AEP,0,6.0,--,115.23666666666666,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,AIRd,0,12.0,--,162.78,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,AMZN,0,5.5,--,190.26,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,AXP,0,4.0,--,269.05,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,BAC,0,14.0,--,41.73,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,BLBD,0,15.0,--,32.37,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,BX,0,12.0,--,139.78,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,CAT,0,3.0,--,329.8,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,COPX,0,12.0,--,70.03333333333333,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,GD,0,2.0,--,272.58,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,GE,0,6.0,--,200.15,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,LLY,0,1.72,--,825.91,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,MCHI,0,12.0,--,54.4,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,META,0,2.0,--,650.5,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,MSFT,0,3.0,--,375.39,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,NFLX,0,20.0,--,932.53,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,R6C0d,0,38.0,--,33.925,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,RTX,0,5.0,--,132.46,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,SIEd,0,3.0,--,211.9,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,SLV,0,45.0,--,30.99,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,TGT,0,20.0,--,104.36,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,TIP,0,12.0,--,111.09,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,TSM,0,3.0,--,166.0,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,URA,0,30.0,--,49.15333333333333,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,V,0,3.0,--,348.3333333333333,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,ZEALc,0,6.0,--,507.6666666666667,0,0,0,0,0,
+Transfers,Header,Asset Category,Currency,Symbol,Date,Type,Direction,Xfer Company,Xfer Account,Qty,Xfer Price,Market Value,Realized P/L,Cash Amount,Code
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,C. Price,Proceeds,Comm/Fee,Basis,Realized P/L,MTM P/L,Code
+Trades,Data,Order,Stocks,EUR,AIRd,"2025-01-21, 10:17:06",6,162.6,163.3,-975.6,-3,978.6,0,4.2,O
+Trades,Data,Order,Stocks,EUR,R6C0d,"2025-01-21, 10:05:40",19,32.13,31.99,-610.47,-3,613.47,0,-2.66,O
+Trades,Data,Order,Stocks,EUR,SIEd,"2025-01-21, 10:16:38",3,203.7,204.15,-611.1,-3,614.1,0,1.35,O
+Trades,Data,Order,Stocks,JPY,4568.T,"2025-03-30, 23:30:00",100,3535,3511,-353500,-282.8,353782.8,0,-2400,O
+Trades,Data,Order,Stocks,USD,AMZN,"2025-01-21, 10:10:20",5.5,228.355,230.71,-1255.9525,-1.000253,1256.952753,0,12.9525,O;P;RPA
+Trades,Data,Order,Stocks,USD,AXP,"2025-01-21, 10:19:23",2,317.4,317.95,-634.8,-1.000092,635.800092,0,1.1,O
+Trades,Data,Order,Stocks,USD,BAC,"2025-01-21, 10:08:55",14,47.085,46.66,-659.19,-1.000644,660.190644,0,-5.95,O
+Trades,Data,Order,Stocks,USD,BLBD,"2025-01-21, 10:17:45",15,40.8,42.06,-612,-1.000525,613.000525,0,18.9,O
+Trades,Data,Order,Stocks,USD,BX,"2025-01-21, 10:12:51",6,180.925,181.52,-1085.55,-1.000276,1086.550276,0,3.57,O;P
+Trades,Data,Order,Stocks,USD,CAT,"2025-01-21, 10:11:00",3,392.238333333,398.36,-1176.715,-1.000138,1177.715138,0,18.365,O;P
+Trades,Data,Order,Stocks,USD,GD,"2025-01-21, 10:20:18",2,272.715,271.63,-545.43,-1.000092,546.430092,0,-2.17,O;P
+Trades,Data,Order,Stocks,USD,GE,"2025-01-21, 10:12:21",6,185.7395,187.5,-1114.437,-1.000276,1115.437276,0,10.563,IA;O
+Trades,Data,Order,Stocks,USD,LLY,"2025-01-21, 10:14:59",1.72,730.91,742.35,-1257.1652,-1.00007912,1258.16527912,0,19.6768,O;P;RPA
+Trades,Data,Order,Stocks,USD,MCHI,"2025-01-21, 10:18:37",12,46.2795,46.51,-555.354,-1.000552,556.354552,0,2.766,IA;O
+Trades,Data,Order,Stocks,USD,MSFT,"2025-01-21, 10:15:46",3,427.229833333,428.5,-1281.6895,-1.000138,1282.689638,0,3.8105,IM;O;P
+Trades,Data,Order,Stocks,USD,NFLX,"2025-01-21, 10:08:00",1.11,864.83954955,869.68,-959.9719,-1.00005106,960.97195106,0,5.3729,FPA;IM;O;P
+Trades,Data,Order,Stocks,USD,RTX,"2025-01-21, 10:20:50",5,124.065,125.75,-620.325,-1.00023,621.32523,0,8.425,O
+Trades,Data,Order,Stocks,USD,SLV,"2025-01-21, 10:13:50",45,27.915,28.04,-1256.175,-1.00207,1257.17707,0,5.625,O
+Trades,Data,Order,Stocks,USD,TGT,"2025-01-21, 10:14:26",9,135.73,137.34,-1221.57,-1.000414,1222.570414,0,14.49,IM;O;P
+Trades,Data,Order,Stocks,USD,TIP,"2025-01-21, 10:04:46",12,107.2895,107.26,-1287.474,-1.000552,1288.474552,0,-0.354,IA;O
+Trades,Data,Order,Stocks,USD,TSM,"2025-01-21, 10:06:59",3,213.48,218.7,-640.44,-1.000138,641.440138,0,15.66,O
+Trades,Data,Order,Stocks,DKK,ZEALc,"2025-12-12, 06:44:17",6,499.5,492.8,-2997,-49,3046,0,-40.2,O
+Trades,Data,Order,Stocks,EUR,AIRd,"2025-05-23, 11:21:47",6,156.72,157.3,-940.32,-3,943.32,0,3.48,O
+Trades,Data,Order,Stocks,EUR,R6C0d,"2025-05-23, 11:19:33",19,28.97,28.995,-550.43,-3,553.43,0,0.475,O
+Trades,Data,Order,Stocks,HKD,3088,"2025-04-13, 23:28:23",600,6.42,6.3,-3852,-18.109782,3870.109782,0,-72,O
+Trades,Data,Order,Stocks,HKD,3110,"2025-07-15, 01:50:39",300,29.04,29,-8712,-18.248292,8730.248292,0,-12,O
+Trades,Data,Order,Stocks,HKD,3188,"2025-04-13, 23:28:37",200,41.28,41.16,-8256,-18.235296,8274.235296,0,-24,O
+Trades,Data,Order,Stocks,HKD,3416,"2025-07-15, 01:51:05","1,000",10.63,10.66,-10630,-18.302955,10648.302955,0,30,O
+Trades,Data,Order,Stocks,USD,AEP,"2025-12-12, 09:30:01",6,115.07,114.13,-690.42,-1,691.42,0,-5.64,O
+Trades,Data,Order,Stocks,USD,AXP,"2025-05-23, 11:19:59",2,284.62,285.22,-569.24,-1.000092,570.240092,0,1.2,O
+Trades,Data,Order,Stocks,USD,BX,"2025-05-23, 11:20:20",6,135.9971,136.12,-815.9826,-1.000276,816.982876,0,0.7374,IA;O
+Trades,Data,Order,Stocks,USD,COPX,"2025-12-12, 09:30:00",12,69.95,68.14,-839.4,-1,840.4,0,-21.72,O;P
+Trades,Data,Order,Stocks,USD,META,"2025-12-12, 09:30:01",2,650,644.23,-1300,-1,1301,0,-11.54,O
+Trades,Data,Order,Stocks,USD,NFLX,"2025-12-12, 09:30:00",8.9,95.488876404,95.19,-849.851,-1,850.851,0,-2.66,O;P;RPA
+Trades,Data,Order,Stocks,USD,TGT,"2025-09-02, 10:39:30",11,93.13,92.44,-1024.43,-1.000297,1025.430297,0,-7.59,O
+Trades,Data,Order,Stocks,USD,URA,"2025-12-12, 09:30:00",30,49.12,46.05,-1473.6,-1,1474.6,0,-92.1,O
+Trades,Data,Order,Stocks,USD,V,"2025-12-12, 09:30:00",3,348,347.83,-1044,-1,1045,0,-0.51,O
+Corporate Actions,Header,Asset Category,Currency,Report Date,Date/Time,Description,Quantity,Proceeds,Value,Realized P/L,Code
+Corporate Actions,Data,Stocks,EUR,2025-02-13,"2025-02-12, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002E16)",19,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-03-25,"2025-03-24, 20:20:00","SHELL.DRS(NL0015002E16) Expire Dividend Right (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002E16)",-19,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-05-15,"2025-05-14, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL.DVD, SHELL PLC - DIVIDEND RIGHTS, NL0015002HW4)",19,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-06-23,"2025-06-23, 20:20:00","SHELL.DVD(NL0015002HW4) Expire Dividend Right (SHELL.DVD, SHELL PLC - DIVIDEND RIGHTS, NL0015002HW4)",-19,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-08-14,"2025-08-13, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002L33)",38,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-09-23,"2025-09-22, 20:20:00","SHELL.DRS(NL0015002L33) Expire Dividend Right (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002L33)",-38,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-11-13,"2025-11-12, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL1.DI, SHELL PLC - DIVIDEND RIGHTS, NL0015002SG4)",38,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-12-19,"2025-12-18, 20:20:00","SHELL1.DI(NL0015002SG4) Expire Dividend Right (SHELL1.DI, SHELL PLC - DIVIDEND RIGHTS, NL0015002SG4)",-38,0,0,0
+Corporate Actions,Data,Stocks,USD,2025-11-17,"2025-11-14, 20:25:00","NFLX(US64110L1061) Split 10 for 1 (NFLX, NETFLIX INC, US64110L1061)",9.99,0,0,0
+Dividends,Header,Currency,Date,Description,Amount
+Dividends,Data,EUR,2025-02-18,SIE(DE0007236101) Cash Dividend EUR 5.20 per Share (Ordinary Dividend),15.6
+Dividends,Data,USD,2025-02-18,BX(US09260D1072) Cash Dividend USD 1.44 per Share (Ordinary Dividend),8.64
+Dividends,Data,USD,2025-03-03,TGT(US87612E1064) Cash Dividend USD 1.12 per Share (Ordinary Dividend),10.08
+Dividends,Data,USD,2025-03-10,LLY(US5324571083) Cash Dividend USD 1.50 per Share (Ordinary Dividend),2.58
+Dividends,Data,USD,2025-03-13,MSFT(US5949181045) Cash Dividend USD 0.83 per Share (Ordinary Dividend),2.49
+Dividends,Data,USD,2025-03-20,RTX(US75513E1010) Cash Dividend USD 0.63 per Share (Ordinary Dividend),3.15
+Dividends,Data,EUR,2025-03-24,SHELL.DRS(NL0015002E16) Expire Dividend Right (Ordinary Dividend),6.3
+Dividends,Data,EUR,2025-03-24,SHELL.DRS(NL0015002E16) Expire Dividend Right - REVERSAL (Ordinary Dividend),-6.3
+Dividends,Data,EUR,2025-03-24,SHELL.DRS(NL0015002E16) Expire Dividend Right (Ordinary Dividend),6.3
+Dividends,Data,USD,2025-03-28,BAC(US0605051046) Cash Dividend USD 0.26 per Share (Ordinary Dividend),3.64
+Dividends,Data,USD,2025-04-04,TIP(US4642871762) Cash Dividend USD 0.70918 per Share (Ordinary Dividend),8.51
+Dividends,Data,USD,2025-04-10,TSM(US8740391003) Cash Dividend USD 0.677693 per Share (Ordinary Div - NRA Withholding Exempt),2.04
+Dividends,Data,EUR,2025-04-24,AIR(NL0000235190) Cash Dividend EUR 1.00 per Share (Bonus Dividend),6.0
+Dividends,Data,EUR,2025-04-24,AIR(NL0000235190) Cash Dividend EUR 2.00 per Share (Ordinary Dividend),12.0
+Dividends,Data,USD,2025-04-25,GE(US3696043013) Cash Dividend USD 0.36 per Share (Ordinary Dividend),2.16
+Dividends,Data,USD,2025-05-05,BX(US09260D1072) Cash Dividend USD 0.93 per Share (Ordinary Dividend),5.58
+Dividends,Data,USD,2025-05-06,TIP(US4642871762) Cash Dividend USD 0.534953 per Share (Ordinary Dividend),6.42
+Dividends,Data,USD,2025-05-09,AXP(US0258161092) Cash Dividend USD 0.82 per Share (Ordinary Dividend),1.64
+Dividends,Data,USD,2025-05-09,GD(US3695501086) Cash Dividend USD 1.50 per Share (Ordinary Dividend),3.0
+Dividends,Data,USD,2025-05-20,CAT(US1491231015) Cash Dividend USD 1.41 per Share (Ordinary Dividend),4.23
+Dividends,Data,USD,2025-06-02,TGT(US87612E1064) Cash Dividend USD 1.12 per Share (Ordinary Dividend),10.08
+Dividends,Data,USD,2025-06-05,TIP(US4642871762) Cash Dividend USD 0.273105 per Share (Ordinary Dividend),3.28
+Dividends,Data,USD,2025-06-10,LLY(US5324571083) Cash Dividend USD 1.50 per Share (Ordinary Dividend),2.58
+Dividends,Data,USD,2025-06-12,MSFT(US5949181045) Cash Dividend USD 0.83 per Share (Ordinary Dividend),2.49
+Dividends,Data,USD,2025-06-12,RTX(US75513E1010) Cash Dividend USD 0.68 per Share (Ordinary Dividend),3.4
+Dividends,Data,USD,2025-06-20,MCHI(US46429B6719) Cash Dividend USD 0.535561 per Share (Ordinary Dividend),6.43
+Dividends,Data,EUR,2025-06-23,SHELL.DVD(NL0015002HW4) Expire Dividend Right (Ordinary Dividend),5.96
+Dividends,Data,USD,2025-06-27,BAC(US0605051046) Cash Dividend USD 0.26 per Share (Ordinary Dividend),3.64
+Dividends,Data,USD,2025-07-07,TIP(US4642871762) Cash Dividend USD 0.379923 per Share (Ordinary Dividend),4.56
+Dividends,Data,USD,2025-07-10,TSM(US8740391003) Cash Dividend USD 0.780305 per Share (Ordinary Div - NRA Withholding Exempt),2.34
+Dividends,Data,USD,2025-07-25,GE(US3696043013) Cash Dividend USD 0.36 per Share (Ordinary Dividend),2.16
+Dividends,Data,CNH,2025-07-31,3188(HK0000123577) Cash Dividend CNH 0.53 per Share (Ordinary Dividend),106.0
+Dividends,Data,HKD,2025-08-06,3416(HK0000978954) Cash Dividend HKD 0.15 per Share (Ordinary Dividend),150.0
+Dividends,Data,USD,2025-08-06,TIP(US4642871762) Cash Dividend USD 0.264488 per Share (Ordinary Dividend),3.17
+Dividends,Data,USD,2025-08-08,AXP(US0258161092) Cash Dividend USD 0.82 per Share (Ordinary Dividend),3.28
+Dividends,Data,USD,2025-08-08,GD(US3695501086) Cash Dividend USD 1.50 per Share (Ordinary Dividend),3.0
+Dividends,Data,USD,2025-08-11,BX(US09260D1072) Cash Dividend USD 1.03 per Share (Ordinary Dividend),12.36
+Dividends,Data,USD,2025-08-20,CAT(US1491231015) Cash Dividend USD 1.51 per Share (Ordinary Dividend),4.53
+Dividends,Data,USD,2025-09-02,TGT(US87612E1064) Cash Dividend USD 1.14 per Share (Ordinary Dividend),10.26
+Dividends,Data,HKD,2025-09-04,3416(HK0000978954) Cash Dividend HKD 0.14 per Share (Ordinary Dividend),140.0
+Dividends,Data,USD,2025-09-04,RTX(US75513E1010) Cash Dividend USD 0.68 per Share (Ordinary Dividend),3.4
+Dividends,Data,USD,2025-09-05,TIP(US4642871762) Cash Dividend USD 0.417238 per Share (Ordinary Dividend),5.01
+Dividends,Data,USD,2025-09-10,LLY(US5324571083) Cash Dividend USD 1.50 per Share (Ordinary Dividend),2.58
+Dividends,Data,USD,2025-09-11,MSFT(US5949181045) Cash Dividend USD 0.83 per Share (Ordinary Dividend),2.49
+Dividends,Data,EUR,2025-09-22,SHELL.DRS(NL0015002L33) Expire Dividend Right (Ordinary Dividend),11.66
+Dividends,Data,USD,2025-09-26,BAC(US0605051046) Cash Dividend USD 0.28 per Share (Ordinary Dividend),3.92
+Dividends,Data,HKD,2025-09-30,3110(HK0000151933) Cash Dividend HKD 1.60 per Share (Ordinary Dividend),480.0
+Dividends,Data,USD,2025-10-06,TIP(US4642871762) Cash Dividend USD 0.198069 per Share (Ordinary Dividend),2.38
+Dividends,Data,HKD,2025-10-08,3416(HK0000978954) Cash Dividend HKD 0.14 per Share (Ordinary Dividend),140.0
+Dividends,Data,USD,2025-10-09,TSM(US8740391003) Cash Dividend USD 0.821965 per Share (Ordinary Div - NRA Withholding Exempt),2.47
+Dividends,Data,USD,2025-10-27,GE(US3696043013) Cash Dividend USD 0.36 per Share (Ordinary Dividend),2.16
+Dividends,Data,HKD,2025-11-06,3416(HK0000978954) Cash Dividend HKD 0.14 per Share (Ordinary Dividend),140.0
+Dividends,Data,USD,2025-11-06,TIP(US4642871762) Cash Dividend USD 0.360933 per Share (Ordinary Dividend),4.33
+Dividends,Data,USD,2025-11-10,AXP(US0258161092) Cash Dividend USD 0.82 per Share (Ordinary Dividend),3.28
+Dividends,Data,USD,2025-11-10,BX(US09260D1072) Cash Dividend USD 1.29 per Share (Ordinary Dividend),15.48
+Dividends,Data,USD,2025-11-14,GD(US3695501086) Cash Dividend USD 1.50 per Share (Ordinary Dividend),3.0
+Dividends,Data,USD,2025-11-20,CAT(US1491231015) Cash Dividend USD 1.51 per Share (Ordinary Dividend),4.53
+Dividends,Data,USD,2025-12-01,TGT(US87612E1064) Cash Dividend USD 1.14 per Share (Ordinary Dividend),22.8
+Dividends,Data,HKD,2025-12-04,3416(HK0000978954) Cash Dividend HKD 0.14 per Share (Ordinary Dividend),140.0
+Dividends,Data,USD,2025-12-04,TIP(US4642871762) Cash Dividend USD 0.322417 per Share (Ordinary Dividend),3.87
+Dividends,Data,JPY,2025-12-10,4568.T(JP3475350009) Cash Dividend JPY 39 per Share (Ordinary Dividend),3900.0
+Dividends,Data,USD,2025-12-10,LLY(US5324571083) Cash Dividend USD 1.50 per Share (Ordinary Dividend),2.58
+Dividends,Data,USD,2025-12-11,MSFT(US5949181045) Cash Dividend USD 0.91 per Share (Ordinary Dividend),2.73
+Dividends,Data,USD,2025-12-11,RTX(US75513E1010) Cash Dividend USD 0.68 per Share (Ordinary Dividend),3.4
+Dividends,Data,EUR,2025-12-18,SHELL1.DI(NL0015002SG4) Expire Dividend Right (Ordinary Dividend),11.67
+Dividends,Data,USD,2025-12-19,MCHI(US46429B6719) Cash Dividend USD 0.735007 per Share (Ordinary Dividend),8.82
+Dividends,Data,USD,2025-12-23,META(US30303M1027) Cash Dividend USD 0.525 per Share (Ordinary Dividend),1.05
+Dividends,Data,USD,2025-12-24,TIP(US4642871762) Cash Dividend USD 0.341961 per Share (Ordinary Dividend),4.1
+Dividends,Data,USD,2025-12-26,BAC(US0605051046) Cash Dividend USD 0.28 per Share (Ordinary Dividend),3.92
+Dividends,Data,HKD,2025-12-31,3088(HK0000643327) Cash Dividend HKD 0.02 per Share (Ordinary Dividend),12.0
+Withholding Tax,Header,Currency,Date,Description,Amount,Code
+Withholding Tax,Data,EUR,2025-02-18,SIE(DE0007236101) Cash Dividend EUR 5.20 per Share - DE Tax,-4.11,
+Withholding Tax,Data,USD,2025-02-18,BX(US09260D1072) Cash Dividend USD 1.44 per Share - US Tax,-2.16,
+Withholding Tax,Data,USD,2025-02-18,BX(US09260D1072) Cash Dividend USD 1.44 per Share - US Tax,2.16,
+Withholding Tax,Data,USD,2025-02-18,BX(US09260D1072) Cash Dividend USD 1.44 per Share - US Tax,-1.09,
+Withholding Tax,Data,USD,2025-03-03,TGT(US87612E1064) Cash Dividend USD 1.12 per Share - US Tax,-2.52,
+Withholding Tax,Data,USD,2025-03-10,LLY(US5324571083) Cash Dividend USD 1.50 per Share - US Tax,-0.65,
+Withholding Tax,Data,USD,2025-03-13,MSFT(US5949181045) Cash Dividend USD 0.83 per Share - US Tax,-0.62,
+Withholding Tax,Data,USD,2025-03-20,RTX(US75513E1010) Cash Dividend USD 0.63 per Share - US Tax,-0.79,
+Withholding Tax,Data,USD,2025-03-28,BAC(US0605051046) Cash Dividend USD 0.26 per Share - US Tax,-0.91,
+Withholding Tax,Data,USD,2025-04-04,TIP(US4642871762) Cash Dividend USD 0.70918 per Share - US Tax,-2.13,
+Withholding Tax,Data,USD,2025-04-04,TIP(US4642871762) Cash Dividend USD 0.70918 per Share - US Tax,2.13,
+Withholding Tax,Data,USD,2025-04-10,TSM(US8740391003) Cash Dividend USD 0.677693 per Share - TW Tax,-0.43,
+Withholding Tax,Data,EUR,2025-04-24,AIR(NL0000235190) Cash Dividend EUR 1.00 per Share - NL Tax,-0.9,
+Withholding Tax,Data,EUR,2025-04-24,AIR(NL0000235190) Cash Dividend EUR 2.00 per Share - NL Tax,-1.8,
+Withholding Tax,Data,USD,2025-04-25,GE(US3696043013) Cash Dividend USD 0.36 per Share - US Tax,-0.54,
+Withholding Tax,Data,USD,2025-05-05,BX(US09260D1072) Cash Dividend USD 0.93 per Share - US Tax,-1.4,
+Withholding Tax,Data,USD,2025-05-05,BX(US09260D1072) Cash Dividend USD 0.93 per Share - US Tax,1.4,
+Withholding Tax,Data,USD,2025-05-05,BX(US09260D1072) Cash Dividend USD 0.93 per Share - US Tax,-0.7,
+Withholding Tax,Data,USD,2025-05-06,TIP(US4642871762) Cash Dividend USD 0.534953 per Share - US Tax,-1.61,
+Withholding Tax,Data,USD,2025-05-06,TIP(US4642871762) Cash Dividend USD 0.534953 per Share - US Tax,1.61,
+Withholding Tax,Data,USD,2025-05-09,AXP(US0258161092) Cash Dividend USD 0.82 per Share - US Tax,-0.41,
+Withholding Tax,Data,USD,2025-05-09,GD(US3695501086) Cash Dividend USD 1.50 per Share - US Tax,-0.75,
+Withholding Tax,Data,USD,2025-05-20,CAT(US1491231015) Cash Dividend USD 1.41 per Share - US Tax,-1.06,
+Withholding Tax,Data,USD,2025-06-02,TGT(US87612E1064) Cash Dividend USD 1.12 per Share - US Tax,-2.52,
+Withholding Tax,Data,USD,2025-06-05,TIP(US4642871762) Cash Dividend USD 0.273105 per Share - US Tax,-0.82,
+Withholding Tax,Data,USD,2025-06-05,TIP(US4642871762) Cash Dividend USD 0.273105 per Share - US Tax,0.82,
+Withholding Tax,Data,USD,2025-06-10,LLY(US5324571083) Cash Dividend USD 1.50 per Share - US Tax,-0.65,
+Withholding Tax,Data,USD,2025-06-12,MSFT(US5949181045) Cash Dividend USD 0.83 per Share - US Tax,-0.62,
+Withholding Tax,Data,USD,2025-06-12,RTX(US75513E1010) Cash Dividend USD 0.68 per Share - US Tax,-0.85,
+Withholding Tax,Data,USD,2025-06-20,MCHI(US46429B6719) Cash Dividend USD 0.535561 per Share - US Tax,-1.61,
+Withholding Tax,Data,USD,2025-06-27,BAC(US0605051046) Cash Dividend USD 0.26 per Share - US Tax,-0.91,
+Withholding Tax,Data,USD,2025-07-07,TIP(US4642871762) Cash Dividend USD 0.379923 per Share - US Tax,-1.14,
+Withholding Tax,Data,USD,2025-07-07,TIP(US4642871762) Cash Dividend USD 0.379923 per Share - US Tax,1.14,
+Withholding Tax,Data,USD,2025-07-10,TSM(US8740391003) Cash Dividend USD 0.780305 per Share - TW Tax,-0.49,
+Withholding Tax,Data,USD,2025-07-25,GE(US3696043013) Cash Dividend USD 0.36 per Share - US Tax,-0.54,
+Withholding Tax,Data,USD,2025-08-06,TIP(US4642871762) Cash Dividend USD 0.264488 per Share - US Tax,-0.79,
+Withholding Tax,Data,USD,2025-08-06,TIP(US4642871762) Cash Dividend USD 0.264488 per Share - US Tax,0.79,
+Withholding Tax,Data,USD,2025-08-08,AXP(US0258161092) Cash Dividend USD 0.82 per Share - US Tax,-0.82,
+Withholding Tax,Data,USD,2025-08-08,GD(US3695501086) Cash Dividend USD 1.50 per Share - US Tax,-0.75,
+Withholding Tax,Data,USD,2025-08-11,BX(US09260D1072) Cash Dividend USD 1.03 per Share - US Tax,-3.09,
+Withholding Tax,Data,USD,2025-08-11,BX(US09260D1072) Cash Dividend USD 1.03 per Share - US Tax,3.09,
+Withholding Tax,Data,USD,2025-08-11,BX(US09260D1072) Cash Dividend USD 1.03 per Share - US Tax,-1.55,
+Withholding Tax,Data,USD,2025-08-20,CAT(US1491231015) Cash Dividend USD 1.51 per Share - US Tax,-1.13,
+Withholding Tax,Data,USD,2025-09-02,TGT(US87612E1064) Cash Dividend USD 1.14 per Share - US Tax,-2.57,
+Withholding Tax,Data,USD,2025-09-04,RTX(US75513E1010) Cash Dividend USD 0.68 per Share - US Tax,-0.85,
+Withholding Tax,Data,USD,2025-09-05,TIP(US4642871762) Cash Dividend USD 0.417238 per Share - US Tax,-1.25,
+Withholding Tax,Data,USD,2025-09-05,TIP(US4642871762) Cash Dividend USD 0.417238 per Share - US Tax,1.25,
+Withholding Tax,Data,USD,2025-09-10,LLY(US5324571083) Cash Dividend USD 1.50 per Share - US Tax,-0.65,
+Withholding Tax,Data,USD,2025-09-11,MSFT(US5949181045) Cash Dividend USD 0.83 per Share - US Tax,-0.62,
+Withholding Tax,Data,USD,2025-09-26,BAC(US0605051046) Cash Dividend USD 0.28 per Share - US Tax,-0.98,
+Withholding Tax,Data,USD,2025-10-06,TIP(US4642871762) Cash Dividend USD 0.198069 per Share - US Tax,-0.6,
+Withholding Tax,Data,USD,2025-10-06,TIP(US4642871762) Cash Dividend USD 0.198069 per Share - US Tax,0.6,
+Withholding Tax,Data,USD,2025-10-09,TSM(US8740391003) Cash Dividend USD 0.821965 per Share - TW Tax,-0.52,
+Withholding Tax,Data,USD,2025-10-27,GE(US3696043013) Cash Dividend USD 0.36 per Share - US Tax,-0.54,
+Withholding Tax,Data,USD,2025-11-06,TIP(US4642871762) Cash Dividend USD 0.360933 per Share - US Tax,-1.08,
+Withholding Tax,Data,USD,2025-11-06,TIP(US4642871762) Cash Dividend USD 0.360933 per Share - US Tax,1.08,
+Withholding Tax,Data,USD,2025-11-10,AXP(US0258161092) Cash Dividend USD 0.82 per Share - US Tax,-0.82,
+Withholding Tax,Data,USD,2025-11-10,BX(US09260D1072) Cash Dividend USD 1.29 per Share - US Tax,-3.87,
+Withholding Tax,Data,USD,2025-11-10,BX(US09260D1072) Cash Dividend USD 1.29 per Share - US Tax,3.87,
+Withholding Tax,Data,USD,2025-11-10,BX(US09260D1072) Cash Dividend USD 1.29 per Share - US Tax,-1.95,
+Withholding Tax,Data,USD,2025-11-14,GD(US3695501086) Cash Dividend USD 1.50 per Share - US Tax,-0.75,
+Withholding Tax,Data,USD,2025-11-20,CAT(US1491231015) Cash Dividend USD 1.51 per Share - US Tax,-1.13,
+Withholding Tax,Data,USD,2025-12-01,TGT(US87612E1064) Cash Dividend USD 1.14 per Share - US Tax,-5.7,
+Withholding Tax,Data,USD,2025-12-04,TIP(US4642871762) Cash Dividend USD 0.322417 per Share - US Tax,-0.97,
+Withholding Tax,Data,USD,2025-12-04,TIP(US4642871762) Cash Dividend USD 0.322417 per Share - US Tax,0.97,
+Withholding Tax,Data,JPY,2025-12-10,4568.T(JP3475350009) Cash Dividend JPY 39 per Share - JP Tax,-597.0,
+Withholding Tax,Data,USD,2025-12-10,LLY(US5324571083) Cash Dividend USD 1.50 per Share - US Tax,-0.65,
+Withholding Tax,Data,USD,2025-12-11,MSFT(US5949181045) Cash Dividend USD 0.91 per Share - US Tax,-0.68,
+Withholding Tax,Data,USD,2025-12-11,RTX(US75513E1010) Cash Dividend USD 0.68 per Share - US Tax,-0.85,
+Withholding Tax,Data,USD,2025-12-19,MCHI(US46429B6719) Cash Dividend USD 0.735007 per Share - US Tax,-2.21,
+Withholding Tax,Data,USD,2025-12-19,MCHI(US46429B6719) Cash Dividend USD 0.735007 per Share - US Tax,2.21,
+Withholding Tax,Data,USD,2025-12-19,MCHI(US46429B6719) Cash Dividend USD 0.735007 per Share - US Tax,-2.2,
+Withholding Tax,Data,USD,2025-12-23,META(US30303M1027) Cash Dividend USD 0.525 per Share - US Tax,-0.26,
+Withholding Tax,Data,USD,2025-12-24,TIP(US4642871762) Cash Dividend USD 0.341961 per Share - US Tax,-1.03,
+Withholding Tax,Data,USD,2025-12-24,TIP(US4642871762) Cash Dividend USD 0.341961 per Share - US Tax,1.03,
+Withholding Tax,Data,USD,2025-12-26,BAC(US0605051046) Cash Dividend USD 0.28 per Share - US Tax,-0.98,
+Deposits & Withdrawals,Header,Currency,Settle Date,Description,Amount
+Deposits & Withdrawals,Data,CHF,2025-01-15,Electronic Fund Transfer,18776.13
+Deposits & Withdrawals,Data,CHF,2025-03-14,Electronic Fund Transfer,3361
+Deposits & Withdrawals,Data,CHF,2025-09-05,Electronic Fund Transfer,9110.09
+Interest,Header,Currency,Date,Description,Amount
+Interest,Data,USD,2025-09-04,USD Debit Interest for Aug-2025,-0.04
+Interest,Data,USD,2025-10-03,USD Debit Interest for Sep-2025,-0.01
+Interest,Data,USD,2025-11-05,USD Debit Interest for Oct-2025,-0.02
+Interest,Data,USD,2025-12-03,USD Debit Interest for Nov-2025,-0.02
+Financial Instrument Information,Header,Asset Category,Symbol,Description,Conid,Security ID,Underlying,Listing Exch,Multiplier,Type,Code
+Financial Instrument Information,Data,Stocks,4568.T,DAIICHI SANKYO CO LTD,35928149,JP3475350009,4568,TSEJ,1,COMMON
+Financial Instrument Information,Data,Stocks,AIRd,AIRBUS SE,29612256,NL0000235190,AIR,SBF,1,COMMON
+Financial Instrument Information,Data,Stocks,AMZN,AMAZON.COM INC,3691937,US0231351067,AMZN,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,AXP,AMERICAN EXPRESS CO,4721,US0258161092,AXP,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,BAC,BANK OF AMERICA CORP,10098,US0605051046,BAC,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,BLBD,BLUE BIRD CORP,185200225,US0953061068,BLBD,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,BX,BLACKSTONE INC,372834689,US09260D1072,BX,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,CAT,CATERPILLAR INC,5437,US1491231015,CAT,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,GD,GENERAL DYNAMICS CORP,7496,US3695501086,GD,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,GE,GENERAL ELECTRIC,498843743,US3696043013,GE,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,LLY,ELI LILLY & CO,9160,US5324571083,LLY,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,MCHI,ISHARES MSCI CHINA ETF,86326988,US46429B6719,MCHI,NASDAQ,1,ETF
+Financial Instrument Information,Data,Stocks,MSFT,MICROSOFT CORP,272093,US5949181045,MSFT,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,NFLX,NETFLIX INC,15124833,US64110L1061,NFLX,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,R6C0d,SHELL PLC,541411967,GB00BP6MXD84,SHELL,AEB,1,COMMON
+Financial Instrument Information,Data,Stocks,RTX,RTX CORP,415342104,US75513E1010,RTX,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,SHELL.DRS,SHELL PLC - DIVIDEND RIGHTS,760961438,NL0015002E16,SHELL.DRS,CORPACT,1,RIGHT
+Financial Instrument Information,Data,Stocks,SIEd,SIEMENS AG-REG,14217,DE0007236101,SIE,IBIS,1,COMMON
+Financial Instrument Information,Data,Stocks,SLV,ISHARES SILVER TRUST,39039301,US46428Q1094,SLV,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,TGT,TARGET CORP,6437,US87612E1064,TGT,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,TIP,ISHARES TIPS BOND ETF,26787475,US4642871762,TIP,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,TSM,TAIWAN SEMICONDUCTOR-SP ADR,6223250,US8740391003,TSM,NYSE,1,ADR
+Financial Instrument Information,Data,Stocks,3088,CHINAAMC HANG SENG TECH,443041738,HK0000643327,3088,SEHK,1,ETF
+Financial Instrument Information,Data,Stocks,3110,GLOBAL X HS HIGH DIV YIE,129227990,HK0000151933,3110,SEHK,1,ETF
+Financial Instrument Information,Data,Stocks,3188,CHINAAMC ETF SERIES - CH,116433724,HK0000123577,3188,SEHK,1,ETF
+Financial Instrument Information,Data,Stocks,3416,GLOBAL X HSCEI COVERED C,687069442,HK0000978954,3416,SEHK,1,ETF
+Financial Instrument Information,Data,Stocks,AEP,AMERICAN ELECTRIC POWER,4211,US0255371017,AEP,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,"AIRd, AIR",AIRBUS SE,29612256,NL0000235190,AIR,SBF,1,COMMON
+Financial Instrument Information,Data,Stocks,BNO,UNITED STATES BRENT OIL FUND,75961365,US91167Q1004,BNO,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,COPX,GLOBAL X COPPER MINERS ETF,211651700,US37954Y8306,COPX,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,META,META PLATFORMS INC-CLASS A,107113386,US30303M1027,META,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,"SHELL, R6C0d",SHELL PLC,541411967,GB00BP6MXD84,SHELL,AEB,1,COMMON
+Financial Instrument Information,Data,Stocks,SHELL.DDR,SHELL PLC - DIVIDEND RIGHTS,855707034,NL0015073VB0,SHELL.DDR,CORPACT,1,RIGHT
+Financial Instrument Information,Data,Stocks,SHELL.DVD,SHELL PLC - DIVIDEND RIGHTS,784210270,NL0015002HW4,SHELL.DVD,CORPACT,1,RIGHT
+Financial Instrument Information,Data,Stocks,SHELL1.DI,SHELL PLC - DIVIDEND RIGHTS,830625049,NL0015002SG4,SHELL1.DI,CORPACT,1,RIGHT
+Financial Instrument Information,Data,Stocks,SIE,SIEMENS AG-REG,14217,DE0007236101,SIE,IBIS,1,COMMON
+Financial Instrument Information,Data,Stocks,URA,GLOBAL X URANIUM ETF,211651685,US37954Y8710,URA,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,V,VISA INC-CLASS A SHARES,49462172,US92826C8394,V,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,"ZEALc, ZEAL",ZEALAND PHARMA A/S,290085857,DK0060257814,ZEAL,CPH,1,COMMON

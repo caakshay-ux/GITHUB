@@ -1,0 +1,128 @@
+Statement,Header,Field Name,Field Value
+Statement,Data,Title,Activity Statement
+Statement,Data,Period,"January 1, 2025 - December 31, 2025"
+Statement,Data,WhenGenerated,Synthesized for Schedule FA from FY statements; YE marks proxied (see Notes)
+Account Information,Header,Field Name,Field Value
+Account Information,Data,Name,Phanindra V Gottipati
+Account Information,Data,Account,U15817316
+Account Information,Data,Investment Advisor,Financial Hospital Advisory LLP
+Account Information,Data,Account Type,Advisor Client
+Account Information,Data,Customer Type,Individual
+Account Information,Data,Account Capabilities,Cash
+Account Information,Data,Base Currency,USD
+Open Positions,Header,DataDiscriminator,Asset Category,Currency,Symbol,Quantity,Mult,Cost Price,Cost Basis,Close Price,Value,Unrealized P/L,Code
+Open Positions,Data,Summary,Stocks,USD,GLD,3.0,1,323.242360333,969.727081,323.24236,969.727081,0.0,
+Open Positions,Data,Summary,Stocks,USD,IJH,24.0,1,66.936738667,1606.481728,58.35,1400.4,-206.081728,
+Open Positions,Data,Summary,Stocks,USD,INDA,12.0,1,55.068405333,660.820864,51.48,617.76,-43.060864,
+Open Positions,Data,Summary,Stocks,USD,IYW,9.0,1,161.238683111,1451.148148,140.44,1263.96,-187.188148,
+Open Positions,Data,Summary,Stocks,USD,MCHI,24.0,1,47.556738667,1141.361728,54.4,1305.6,164.238272,
+Open Positions,Data,Summary,Stocks,USD,SLV,90.0,1,27.851159111,2506.60432,30.99,2789.1,282.49568,
+Open Positions,Data,Summary,Stocks,USD,TIP,9.0,1,108.679583111,978.116248,111.09,999.81,21.693752,
+Open Positions,Data,Summary,Stocks,USD,VOO,3.0,1,554.333381333,1663.000144,513.91,1541.73,-121.270144,
+Net Asset Value,Header,Asset Class,Prior Total,Current Long,Current Short,Current Total,Change
+Net Asset Value,Data,Stock,0,10888.09,0,10888.09,10888.09
+Net Asset Value,Data,Total,0,10888.09,0,10888.09,10888.09
+Change in NAV,Header,Field Name,Field Value
+Change in NAV,Data,Starting Value,10007.53
+Change in NAV,Data,Ending Value,10888.09
+Mark-to-Market Performance Summary,Header,Asset Category,Symbol,Prior Quantity,Current Quantity,Prior Price,Current Price,Mark-to-Market P/L Position,Mark-to-Market P/L Transaction,Mark-to-Market P/L Commissions,Mark-to-Market P/L Other,Mark-to-Market P/L Total,Code
+Mark-to-Market Performance Summary,Data,Stocks,GLD,0,3.0,--,323.24236033333335,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,IJH,0,24.0,--,58.35,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,INDA,0,12.0,--,51.48,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,IYW,0,9.0,--,140.44,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,MCHI,0,24.0,--,54.4,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,SLV,0,90.0,--,30.99,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,TIP,0,9.0,--,111.09,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,VOO,0,3.0,--,513.91,0,0,0,0,0,
+Transfers,Header,Asset Category,Currency,Symbol,Date,Type,Direction,Xfer Company,Xfer Account,Qty,Xfer Price,Market Value,Realized P/L,Cash Amount,Code
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,C. Price,Proceeds,Comm/Fee,Basis,Realized P/L,MTM P/L,Code
+Trades,Data,Order,Stocks,USD,GLD,"2025-09-02, 10:43:07",3,322.909,325.59,-968.727,-1.000081,969.727081,0,8.043,IA;O
+Corporate Actions,Header,Asset Category,Currency,Report Date,Date/Time,Description,Quantity,Proceeds,Value,Realized P/L,Code
+Dividends,Header,Currency,Date,Description,Amount
+Dividends,Data,USD,2025-03-21,IJH(US4642875078) Cash Dividend USD 0.162959 per Share (Ordinary Dividend),3.91
+Dividends,Data,USD,2025-03-21,IYW(US4642877215) Cash Dividend USD 0.075357 per Share (Ordinary Dividend),0.68
+Dividends,Data,USD,2025-03-31,VOO(US9229083632) Cash Dividend USD 1.8121 per Share (Ordinary Dividend),5.44
+Dividends,Data,USD,2025-04-04,TIP(US4642871762) Cash Dividend USD 0.70918 per Share (Ordinary Dividend),6.38
+Dividends,Data,USD,2025-05-06,TIP(US4642871762) Cash Dividend USD 0.534953 per Share (Ordinary Dividend),4.81
+Dividends,Data,USD,2025-06-05,TIP(US4642871762) Cash Dividend USD 0.273105 per Share (Ordinary Dividend),2.46
+Dividends,Data,USD,2025-06-20,IJH(US4642875078) Cash Dividend USD 0.189746 per Share (Ordinary Dividend),4.55
+Dividends,Data,USD,2025-06-20,IYW(US4642877215) Cash Dividend USD 0.085836 per Share (Ordinary Dividend),0.77
+Dividends,Data,USD,2025-06-20,MCHI(US46429B6719) Cash Dividend USD 0.535561 per Share (Ordinary Dividend),12.85
+Dividends,Data,USD,2025-07-02,VOO(US9229083632) Cash Dividend USD 1.7447 per Share (Ordinary Dividend),5.23
+Dividends,Data,USD,2025-07-07,TIP(US4642871762) Cash Dividend USD 0.379923 per Share (Ordinary Dividend),3.42
+Dividends,Data,USD,2025-08-06,TIP(US4642871762) Cash Dividend USD 0.264488 per Share (Ordinary Dividend),2.38
+Dividends,Data,USD,2025-09-05,TIP(US4642871762) Cash Dividend USD 0.417238 per Share (Ordinary Dividend),3.76
+Dividends,Data,USD,2025-09-19,IJH(US4642875078) Cash Dividend USD 0.212047 per Share (Ordinary Dividend),5.09
+Dividends,Data,USD,2025-09-19,IYW(US4642877215) Cash Dividend USD 0.059573 per Share (Ordinary Dividend),0.54
+Dividends,Data,USD,2025-10-01,VOO(US9229083632) Cash Dividend USD 1.74 per Share (Ordinary Dividend),5.22
+Dividends,Data,USD,2025-10-06,TIP(US4642871762) Cash Dividend USD 0.198069 per Share (Ordinary Dividend),1.78
+Dividends,Data,USD,2025-11-06,TIP(US4642871762) Cash Dividend USD 0.360933 per Share (Ordinary Dividend),3.25
+Dividends,Data,USD,2025-12-04,TIP(US4642871762) Cash Dividend USD 0.322417 per Share (Ordinary Dividend),2.9
+Dividends,Data,USD,2025-12-19,IJH(US4642875078) Cash Dividend USD 0.32996 per Share (Ordinary Dividend),7.92
+Dividends,Data,USD,2025-12-19,IYW(US4642877215) Cash Dividend USD 0.055415 per Share (Ordinary Dividend),0.5
+Dividends,Data,USD,2025-12-19,MCHI(US46429B6719) Cash Dividend USD 0.735007 per Share (Ordinary Dividend),17.64
+Dividends,Data,USD,2025-12-24,TIP(US4642871762) Cash Dividend USD 0.341961 per Share (Ordinary Dividend),3.08
+Dividends,Data,USD,2025-12-24,VOO(US9229083632) Cash Dividend USD 1.771 per Share (Ordinary Dividend),5.31
+Withholding Tax,Header,Currency,Date,Description,Amount,Code
+Withholding Tax,Data,USD,2025-03-21,IJH(US4642875078) Cash Dividend USD 0.162959 per Share - US Tax,-0.98,
+Withholding Tax,Data,USD,2025-03-21,IYW(US4642877215) Cash Dividend USD 0.075357 per Share - US Tax,-0.17,
+Withholding Tax,Data,USD,2025-03-21,IJH(US4642875078) Cash Dividend USD 0.162959 per Share - US Tax,0.98,
+Withholding Tax,Data,USD,2025-03-21,IJH(US4642875078) Cash Dividend USD 0.162959 per Share - US Tax,-0.97,
+Withholding Tax,Data,USD,2025-03-31,VOO(US9229083632) Cash Dividend USD 1.8121 per Share - US Tax,-1.36,
+Withholding Tax,Data,USD,2025-04-04,TIP(US4642871762) Cash Dividend USD 0.70918 per Share - US Tax,-1.6,
+Withholding Tax,Data,USD,2025-04-04,TIP(US4642871762) Cash Dividend USD 0.70918 per Share - US Tax,1.6,
+Withholding Tax,Data,USD,2025-05-06,TIP(US4642871762) Cash Dividend USD 0.534953 per Share - US Tax,-1.2,
+Withholding Tax,Data,USD,2025-05-06,TIP(US4642871762) Cash Dividend USD 0.534953 per Share - US Tax,1.2,
+Withholding Tax,Data,USD,2025-06-05,TIP(US4642871762) Cash Dividend USD 0.273105 per Share - US Tax,-0.62,
+Withholding Tax,Data,USD,2025-06-05,TIP(US4642871762) Cash Dividend USD 0.273105 per Share - US Tax,0.62,
+Withholding Tax,Data,USD,2025-06-20,IJH(US4642875078) Cash Dividend USD 0.189746 per Share - US Tax,-1.14,
+Withholding Tax,Data,USD,2025-06-20,IJH(US4642875078) Cash Dividend USD 0.189746 per Share - US Tax,1.14,
+Withholding Tax,Data,USD,2025-06-20,IJH(US4642875078) Cash Dividend USD 0.189746 per Share - US Tax,-1.13,
+Withholding Tax,Data,USD,2025-06-20,IYW(US4642877215) Cash Dividend USD 0.085836 per Share - US Tax,-0.19,
+Withholding Tax,Data,USD,2025-06-20,MCHI(US46429B6719) Cash Dividend USD 0.535561 per Share - US Tax,-3.21,
+Withholding Tax,Data,USD,2025-07-02,VOO(US9229083632) Cash Dividend USD 1.7447 per Share - US Tax,-1.31,
+Withholding Tax,Data,USD,2025-07-07,TIP(US4642871762) Cash Dividend USD 0.379923 per Share - US Tax,-0.86,
+Withholding Tax,Data,USD,2025-07-07,TIP(US4642871762) Cash Dividend USD 0.379923 per Share - US Tax,0.86,
+Withholding Tax,Data,USD,2025-08-06,TIP(US4642871762) Cash Dividend USD 0.264488 per Share - US Tax,-0.6,
+Withholding Tax,Data,USD,2025-08-06,TIP(US4642871762) Cash Dividend USD 0.264488 per Share - US Tax,0.6,
+Withholding Tax,Data,USD,2025-09-05,TIP(US4642871762) Cash Dividend USD 0.417238 per Share - US Tax,-0.94,
+Withholding Tax,Data,USD,2025-09-05,TIP(US4642871762) Cash Dividend USD 0.417238 per Share - US Tax,0.94,
+Withholding Tax,Data,USD,2025-09-19,IJH(US4642875078) Cash Dividend USD 0.212047 per Share - US Tax,-1.27,
+Withholding Tax,Data,USD,2025-09-19,IJH(US4642875078) Cash Dividend USD 0.212047 per Share - US Tax,1.27,
+Withholding Tax,Data,USD,2025-09-19,IJH(US4642875078) Cash Dividend USD 0.212047 per Share - US Tax,-1.26,
+Withholding Tax,Data,USD,2025-09-19,IYW(US4642877215) Cash Dividend USD 0.059573 per Share - US Tax,-0.14,
+Withholding Tax,Data,USD,2025-09-19,IYW(US4642877215) Cash Dividend USD 0.059573 per Share - US Tax,0.14,
+Withholding Tax,Data,USD,2025-09-19,IYW(US4642877215) Cash Dividend USD 0.059573 per Share - US Tax,-0.13,
+Withholding Tax,Data,USD,2025-10-01,VOO(US9229083632) Cash Dividend USD 1.74 per Share - US Tax,-1.31,
+Withholding Tax,Data,USD,2025-10-01,VOO(US9229083632) Cash Dividend USD 1.74 per Share - US Tax,1.31,
+Withholding Tax,Data,USD,2025-10-01,VOO(US9229083632) Cash Dividend USD 1.74 per Share - US Tax,-1.3,
+Withholding Tax,Data,USD,2025-10-06,TIP(US4642871762) Cash Dividend USD 0.198069 per Share - US Tax,-0.45,
+Withholding Tax,Data,USD,2025-10-06,TIP(US4642871762) Cash Dividend USD 0.198069 per Share - US Tax,0.45,
+Withholding Tax,Data,USD,2025-11-06,TIP(US4642871762) Cash Dividend USD 0.360933 per Share - US Tax,-0.81,
+Withholding Tax,Data,USD,2025-11-06,TIP(US4642871762) Cash Dividend USD 0.360933 per Share - US Tax,0.81,
+Withholding Tax,Data,USD,2025-12-04,TIP(US4642871762) Cash Dividend USD 0.322417 per Share - US Tax,-0.73,
+Withholding Tax,Data,USD,2025-12-04,TIP(US4642871762) Cash Dividend USD 0.322417 per Share - US Tax,0.73,
+Withholding Tax,Data,USD,2025-12-19,IJH(US4642875078) Cash Dividend USD 0.32996 per Share - US Tax,-1.98,
+Withholding Tax,Data,USD,2025-12-19,IJH(US4642875078) Cash Dividend USD 0.32996 per Share - US Tax,1.98,
+Withholding Tax,Data,USD,2025-12-19,IJH(US4642875078) Cash Dividend USD 0.32996 per Share - US Tax,-1.96,
+Withholding Tax,Data,USD,2025-12-19,IYW(US4642877215) Cash Dividend USD 0.055415 per Share - US Tax,-0.13,
+Withholding Tax,Data,USD,2025-12-19,IYW(US4642877215) Cash Dividend USD 0.055415 per Share - US Tax,0.13,
+Withholding Tax,Data,USD,2025-12-19,IYW(US4642877215) Cash Dividend USD 0.055415 per Share - US Tax,-0.12,
+Withholding Tax,Data,USD,2025-12-19,MCHI(US46429B6719) Cash Dividend USD 0.735007 per Share - US Tax,-4.41,
+Withholding Tax,Data,USD,2025-12-19,MCHI(US46429B6719) Cash Dividend USD 0.735007 per Share - US Tax,4.41,
+Withholding Tax,Data,USD,2025-12-19,MCHI(US46429B6719) Cash Dividend USD 0.735007 per Share - US Tax,-4.4,
+Withholding Tax,Data,USD,2025-12-24,TIP(US4642871762) Cash Dividend USD 0.341961 per Share - US Tax,-0.77,
+Withholding Tax,Data,USD,2025-12-24,TIP(US4642871762) Cash Dividend USD 0.341961 per Share - US Tax,0.77,
+Withholding Tax,Data,USD,2025-12-24,VOO(US9229083632) Cash Dividend USD 1.771 per Share - US Tax,-1.33,
+Deposits & Withdrawals,Header,Currency,Settle Date,Description,Amount
+Interest,Header,Currency,Date,Description,Amount
+Interest,Data,USD,2025-01-06,USD Credit Interest for Dec-2024,0.06
+Financial Instrument Information,Header,Asset Category,Symbol,Description,Conid,Security ID,Underlying,Listing Exch,Multiplier,Type,Code
+Financial Instrument Information,Data,Stocks,IJH,ISHARES CORE S&P MID-CAP ETF,9579987,US4642875078,IJH,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,INDA,ISHARES MSCI INDIA ETF,101484826,US46429B5984,INDA,BATS,1,ETF
+Financial Instrument Information,Data,Stocks,IYW,ISHARES USTECHNOLOGY ETF,10158652,US4642877215,IYW,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,MCHI,ISHARES MSCI CHINA ETF,86326988,US46429B6719,MCHI,NASDAQ,1,ETF
+Financial Instrument Information,Data,Stocks,SLV,ISHARES SILVER TRUST,39039301,US46428Q1094,SLV,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,TIP,ISHARES TIPS BOND ETF,26787475,US4642871762,TIP,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,VOO,VANGUARD S&P 500 ETF,136155102,US9229083632,VOO,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,GLD,SPDR GOLD SHARES,51529211,US78463V1070,GLD,ARCA,1,ETF
