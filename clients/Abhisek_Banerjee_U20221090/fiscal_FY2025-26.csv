@@ -1,0 +1,479 @@
+﻿Statement,Header,Field Name,Field Value
+Statement,Data,Title,Activity Statement
+Statement,Data,Period,"May 16, 2025 - March 31, 2026"
+Statement,Data,WhenGenerated,"2026-08-21, 04:01:56 EDT"
+Account Information,Header,Field Name,Field Value
+Account Information,Data,Name,Abhisek Banerjee
+Account Information,Data,Account,U20221090
+Account Information,Data,Investment Advisor,Financial Hospital Advisory LLP
+Account Information,Data,Account Type,Advisor Client
+Account Information,Data,Customer Type,Individual
+Account Information,Data,Account Capabilities,Cash
+Account Information,Data,Base Currency,USD
+Net Asset Value,Header,Asset Class,Prior Total,Current Long,Current Short,Current Total,Change
+Net Asset Value,Data,Cash ,0,686.593637311,0,686.593637311,686.593637311
+Net Asset Value,Data,Stock,0,12122.681608,0,12122.681608,12122.681608
+Net Asset Value,Data,Dividend Accruals,0,20.8102212,0,20.8102212,20.8102212
+Net Asset Value,Data,Total,0,12830.085466511,0,12830.085466511,12830.085466511
+Net Asset Value,Header,Time Weighted Rate of Return
+Net Asset Value,Data,8.729537852%
+Change in NAV,Header,Field Name,Field Value
+Change in NAV,Data,Starting Value,0
+Change in NAV,Data,Mark-to-Market,1094.2199852
+Change in NAV,Data,Deposits & Withdrawals,11800
+Change in NAV,Data,Dividends,170.258569
+Change in NAV,Data,Withholding Tax,-36.0465725
+Change in NAV,Data,Change in Dividend Accruals,21.7060974
+Change in NAV,Data,Interest,0.22
+Change in NAV,Data,Advisor Fees,-195.67
+Change in NAV,Data,Commissions,-20.410306886
+Change in NAV,Data,Transaction Fees,-3.29643
+Change in NAV,Data,Other FX Translations,-0.8958762
+Change in NAV,Data,Ending Value,12830.085466511
+Mark-to-Market Performance Summary,Header,Asset Category,Symbol,Prior Quantity,Current Quantity,Prior Price,Current Price,Mark-to-Market P/L Position,Mark-to-Market P/L Transaction,Mark-to-Market P/L Commissions,Mark-to-Market P/L Other,Mark-to-Market P/L Total,Code
+Mark-to-Market Performance Summary,Data,Stocks,4568.T,0,100,--,"2,766.0000",-738.5883,-21.084528,-2.177476886,21.1705785,-740.679726386,
+Mark-to-Market Performance Summary,Data,Stocks,AIR,0,3,--,160.8200,-6.020748,-0.477414,-3.4101,0,-9.908262,
+Mark-to-Market Performance Summary,Data,Stocks,BAC,0,12,--,48.7500,54.12,0.6,-1.000552,9.9,63.619448,
+Mark-to-Market Performance Summary,Data,Stocks,CAT,0,2,--,708.4600,713.34,-1.02,-1.000092,6.78,718.099908,
+Mark-to-Market Performance Summary,Data,Stocks,COPX,0,6,--,76.3500,43.2,5.4,-1,7.52,55.12,
+Mark-to-Market Performance Summary,Data,Stocks,DB,0,24,--,29.7800,48.24,3.6,-1.001104,0,50.838896,
+Mark-to-Market Performance Summary,Data,Stocks,GLD,0,3,--,430.2900,111.15,12.75,-1,0,122.9,
+Mark-to-Market Performance Summary,Data,Stocks,GOOG,0,5,--,286.8600,569.5,-8.4955,-1.00023,3.16,563.16427,
+Mark-to-Market Performance Summary,Data,Stocks,MC,0,1.5,--,463.1000,-28.9577395,-4.77414,-6.70653,7.207017,-33.2313925,
+Mark-to-Market Performance Summary,Data,Stocks,SHELL,0,15,--,40.2300,193.8910565,-1.7903025,-3.4101,0,188.690654,
+Mark-to-Market Performance Summary,Data,Stocks,SHELL.DDR,0,0,--,--,0,0,0,5.591652,5.591652,
+Mark-to-Market Performance Summary,Data,Stocks,SHELL.DRS,0,0,--,--,0,0,0,5.4349,5.4349,
+Mark-to-Market Performance Summary,Data,Stocks,SHELL1.DI,0,0,--,--,0,0,0,5.397849,5.397849,
+Mark-to-Market Performance Summary,Data,Stocks,TGT,0,12,--,121.2000,315.96,-21.48,-1.000552,30.78,324.259448,
+Mark-to-Market Performance Summary,Data,Stocks,URA,0,20,--,48.4300,-11.4,30.8,-1,31.27,49.67,
+Mark-to-Market Performance Summary,Data,Total,,,,,,1264.434269,-5.9718845,-23.706736886,134.2119965,1368.967644114,
+Mark-to-Market Performance Summary,Data,Forex,EUR,0,20.24,--,1.1553,26.252767,0,0,0,26.252767,
+Mark-to-Market Performance Summary,Data,Forex,JPY,0,3302.999999987,--,0.0063004,-219.8429973,26.09411,0,0,-193.7488873,
+Mark-to-Market Performance Summary,Data,Forex,USD,0,642.400144111,1.0000,1.0000,0,3.253721,0,0,3.253721,
+Mark-to-Market Performance Summary,Data,Total,,,,,,-193.5902303,29.347831,0,0,-164.2423993,
+Mark-to-Market Performance Summary,Data,Total (All Assets),,,,,,1070.8440387,23.3759465,-23.706736886,134.2119965,1204.725244814,
+Mark-to-Market Performance Summary,Data,Broker Interest Paid and Received,,,,,,,,,,0.22,
+Mark-to-Market Performance Summary,Data,Advisor Fees,,,,,,,,,,-195.67,
+Total P/L for Statement Period,,,,,,,,,,,,1009.275244814,
+Realized & Unrealized Performance Summary,Header,Asset Category,Symbol,Cost Adj.,Realized S/T Profit,Realized S/T Loss,Realized L/T Profit,Realized L/T Loss,Realized Total,Unrealized S/T Profit,Unrealized S/T Loss,Unrealized L/T Profit,Unrealized L/T Loss,Unrealized Total,Total,Code
+Realized & Unrealized Performance Summary,Data,Stocks,4568.T,0,0,0,0,0,0,0,-731.816359181,0,0,-731.816359181,-731.816359181,
+Realized & Unrealized Performance Summary,Data,Stocks,AIRd,0,0,0,0,0,0,0,-9.981792,0,0,-9.981792,-9.981792,
+Realized & Unrealized Performance Summary,Data,Stocks,BAC,0,0,0,0,0,0,53.719448,0,0,0,53.719448,53.719448,
+Realized & Unrealized Performance Summary,Data,Stocks,CAT,0,0,0,0,0,0,711.319908,0,0,0,711.319908,711.319908,
+Realized & Unrealized Performance Summary,Data,Stocks,COPX,0,0,0,0,0,0,47.6,0,0,0,47.6,47.6,
+Realized & Unrealized Performance Summary,Data,Stocks,DB,0,0,0,0,0,0,50.838896,0,0,0,50.838896,50.838896,
+Realized & Unrealized Performance Summary,Data,Stocks,GLD,0,0,0,0,0,0,122.9,0,0,0,122.9,122.9,
+Realized & Unrealized Performance Summary,Data,Stocks,GOOG,0,0,0,0,0,0,560.00427,0,0,0,560.00427,560.00427,
+Realized & Unrealized Performance Summary,Data,Stocks,MC,0,0,0,0,0,0,0,-39.7712025,0,0,-39.7712025,-39.7712025,
+Realized & Unrealized Performance Summary,Data,Stocks,SHELL,0,0,0,0,0,0,186.985305,0,0,0,186.985305,186.985305,
+Realized & Unrealized Performance Summary,Data,Stocks,TGT,0,0,0,0,0,0,293.479448,0,0,0,293.479448,293.479448,
+Realized & Unrealized Performance Summary,Data,Stocks,URA,0,0,0,0,0,0,18.4,0,0,0,18.4,18.4,
+Realized & Unrealized Performance Summary,Data,Total,,0,0,0,0,0,0,2045.247275,-781.569353681,0,0,1263.677921319,1263.677921319,
+Realized & Unrealized Performance Summary,Data,Forex,EUR,0,3.253911,-0.03331,0,0,3.220601,0.044044,-0.217247,0,0,-0.173203,3.047398,
+Realized & Unrealized Performance Summary,Data,Forex,JPY,0,26.094928,-0.000818,0,0,26.09411,0,-0.360357,0,0,-0.360357,25.733753,
+Realized & Unrealized Performance Summary,Data,Total,,0,29.348839,-0.034128,0,0,29.314711,0.044044,-0.577604,0,0,-0.53356,28.781151,
+Realized & Unrealized Performance Summary,Data,Total (All Assets),,0,29.348839,-0.034128,0,0,29.314711,2045.291319,-782.146957681,0,0,1263.144361319,1292.459072319,
+Month & Year to Date Performance Summary,Header,Asset Category,Symbol,Description,Mark-to-Market MTD,Mark-to-Market YTD,Realized S/T MTD,Realized S/T YTD,Realized L/T MTD,Realized L/T YTD
+Month & Year to Date Performance Summary,Data,Stocks,4568.T,DAIICHI SANKYO CO LTD,-188.57281,-370.29146,0,0,0,0
+Month & Year to Date Performance Summary,Data,Stocks,AIR,AIRBUS SE,-81.081414,-131.841267,0,0,0,0
+Month & Year to Date Performance Summary,Data,Stocks,BAC,BANK OF AMERICA CORP,-10.44,-72.48,0,0,0,0
+Month & Year to Date Performance Summary,Data,Stocks,CAT,CATERPILLAR INC,-68.74,273.44,0,0,0,0
+Month & Year to Date Performance Summary,Data,Stocks,COPX,GLOBAL X COPPER MINERS ETF,-116.1,34.88,0,0,0,0
+Month & Year to Date Performance Summary,Data,Stocks,DB,DEUTSCHE BANK AG-REGISTERED,-135.36,-210.72,0,0,0,0
+Month & Year to Date Performance Summary,Data,Stocks,GLD,SPDR GOLD SHARES,-160.38,101.94,0,0,0,0
+Month & Year to Date Performance Summary,Data,Stocks,GOOG,ALPHABET INC-CL C,-122.06,-133.91,0,0,0,0
+Month & Year to Date Performance Summary,Data,Stocks,MC,LVMH MOET HENNESSY LOUIS VUI,-140.601775,-319.2001,0,0,0,0
+Month & Year to Date Performance Summary,Data,Stocks,SHELL,SHELL PLC,85.920851,153.539292,0,0,0,0
+Month & Year to Date Performance Summary,Data,Stocks,SHELL.DDR,SHELL PLC - DIVIDEND RIGHTS,5.591652,5.591652,0,0,0,0
+Month & Year to Date Performance Summary,Data,Stocks,TGT,TARGET CORP,99.18,291.66,0,0,0,0
+Month & Year to Date Performance Summary,Data,Stocks,URA,GLOBAL X URANIUM ETF,-118.2,145.27,0,0,0,0
+Month & Year to Date Performance Summary,Data,Total,,,-950.843496,-232.121883,0,0,0,0
+Month & Year to Date Performance Summary,Data,Total (All Assets),,,-950.843496,-232.121883,0,0,0,0
+Cash Report,Header,Currency Summary,Currency,Total,Securities,Futures,Month to Date,Year to Date,
+Cash Report,Data,Starting Cash,Base Currency Summary,0,0,0,,,
+Cash Report,Data,Commissions,Base Currency Summary,-20.410306886,-20.410306886,0,0,0,
+Cash Report,Data,Deposits,Base Currency Summary,11800,11800,0,0,0,
+Cash Report,Data,Dividends,Base Currency Summary,170.258569,170.258569,0,23.681652,78.421652,
+Cash Report,Data,Broker Interest Paid and Received,Base Currency Summary,0.22,0.22,0,0,0,
+Cash Report,Data,Trades (Sales),Base Currency Summary,4617.964851628,4617.964851628,0,0,0,
+Cash Report,Data,Trades (Purchase),Base Currency Summary,-15645.817970621,-15645.817970621,0,0,0,
+Cash Report,Data,Advisor Fees,Base Currency Summary,-195.67,-195.67,0,-20.65,-65.41,
+Cash Report,Data,Transaction Fees,Base Currency Summary,-3.29643,-3.29643,0,0,0,
+Cash Report,Data,Withholding Tax,Base Currency Summary,-36.0465725,-36.0465725,0,-4.52,-18.21,
+Cash Report,Data,Cash FX Translation Gain/Loss,Base Currency Summary,-0.6085033,-0.6085033,0,,,
+Cash Report,Data,Ending Cash,Base Currency Summary,686.593637311,686.593637311,0,,,
+Cash Report,Data,Ending Settled Cash,Base Currency Summary,686.593637311,686.593637311,0,,,
+Cash Report,Data,Starting Cash,EUR,0,0,0,,,
+Cash Report,Data,Commissions,EUR,-9,-9,0,0,0,
+Cash Report,Data,Dividends,EUR,22.31,22.31,0,4.84,4.84,
+Cash Report,Data,Trades (Sales),EUR,1664.675,1664.675,0,0,0,
+Cash Report,Data,Trades (Purchase),EUR,-1652.775,-1652.775,0,0,0,
+Cash Report,Data,Transaction Fees,EUR,-2.9,-2.9,0,0,0,
+Cash Report,Data,Withholding Tax,EUR,-2.07,-2.07,0,0,0,
+Cash Report,Data,Ending Cash,EUR,20.24,20.24,0,,,
+Cash Report,Data,Ending Settled Cash,EUR,20.24,20.24,0,,,
+Cash Report,Data,Starting Cash,JPY,0,0,0,,,
+Cash Report,Data,Commissions,JPY,-313.952,-313.952,0,0,0,
+Cash Report,Data,Dividends,JPY,3900,3900,0,0,0,
+Cash Report,Data,Trades (Sales),JPY,392876.92599994,392876.92599994,0,0,0,
+Cash Report,Data,Trades (Purchase),JPY,-392562.97399995,-392562.97399995,0,0,0,
+Cash Report,Data,Withholding Tax,JPY,-597,-597,0,0,0,
+Cash Report,Data,Ending Cash,JPY,3302.999999987,3302.999999987,0,,,
+Cash Report,Data,Ending Settled Cash,JPY,3302.999999987,3302.999999987,0,,,
+Cash Report,Data,Starting Cash,USD,0,0,0,,,
+Cash Report,Data,Commissions,USD,-8.00253,-8.00253,0,0,0,
+Cash Report,Data,Deposits,USD,11800,11800,0,0,0,
+Cash Report,Data,Dividends,USD,119.22,119.22,0,18.09,72.83,
+Cash Report,Data,Broker Interest Paid and Received,USD,0.22,0.22,0,0,0,
+Cash Report,Data,Trades (Sales),USD,0.85228347,0.85228347,0,0,0,
+Cash Report,Data,Trades (Purchase),USD,-11044.40960935,-11044.40960935,0,0,0,
+Cash Report,Data,Advisor Fees,USD,-195.67,-195.67,0,-20.65,-65.41,
+Cash Report,Data,Withholding Tax,USD,-29.81,-29.81,0,-4.52,-18.21,
+Cash Report,Data,Ending Cash,USD,642.400144111,642.400144111,0,,,
+Cash Report,Data,Ending Settled Cash,USD,642.400144111,642.400144111,0,,,
+Open Positions,Header,DataDiscriminator,Asset Category,Currency,Symbol,Quantity,Mult,Cost Price,Cost Basis,Close Price,Value,Unrealized P/L,Code
+Open Positions,Data,Summary,Stocks,EUR,AIR,3,1,163.7,491.1,160.82,482.46,-8.64,
+Open Positions,Data,Summary,Stocks,EUR,MC,1.5,1,486.05,729.075,463.1,694.65,-34.425,
+Open Positions,Data,Summary,Stocks,EUR,SHELL,15,1,29.44,441.6,40.23,603.45,161.85,
+Open Positions,Total,,Stocks,EUR,,,,,1661.775,,1780.56,118.785,
+Open Positions,Total,,Stocks,USD,,,,,1919.8486575,,2057.080968,137.2323105,
+Open Positions,Data,Summary,Stocks,JPY,4568.T,100,1,3927.53952,392753.952,2766,276600,-116153.952,
+Open Positions,Total,,Stocks,JPY,,,,,392753.952,,276600,-116153.952,
+Open Positions,Total,,Stocks,USD,,,,,2474.506999181,,1742.69064,-731.816359181,
+Open Positions,Data,Summary,Stocks,USD,BAC,12,1,44.273379333,531.280552,48.75,585,53.719448,
+Open Positions,Data,Summary,Stocks,USD,CAT,2,1,352.800046,705.600092,708.46,1416.92,711.319908,
+Open Positions,Data,Summary,Stocks,USD,COPX,6,1,68.416666667,410.5,76.35,458.1,47.6,
+Open Positions,Data,Summary,Stocks,USD,DB,24,1,27.661712667,663.881104,29.78,714.72,50.838896,
+Open Positions,Data,Summary,Stocks,USD,GLD,3,1,389.323333333,1167.97,430.29,1290.87,122.9,
+Open Positions,Data,Summary,Stocks,USD,GOOG,5,1,174.859146,874.29573,286.86,1434.3,560.00427,
+Open Positions,Data,Summary,Stocks,USD,TGT,12,1,96.743379333,1160.920552,121.2,1454.4,293.479448,
+Open Positions,Data,Summary,Stocks,USD,URA,20,1,47.51,950.2,48.43,968.6,18.4,
+Open Positions,Total,,Stocks,USD,,,,,6464.64803,,8322.91,1858.26197,
+Open Positions,Total,,Stocks,USD,,,,,10859.003686681,,12122.681608,1263.677921319,
+Forex Balances,Header,Asset Category,Currency,Description,Quantity,Cost Price,Cost Basis in USD,Close Price,Value in USD,Unrealized P/L in USD,Code
+Forex Balances,Data,Forex,USD,EUR,20.24,1.16385746,-23.556475,1.1553,23.383272,-0.173203,
+Forex Balances,Data,Forex,USD,JPY,3303,0.0064095,-21.170579,0.0063004,20.810221,-0.360357,
+Forex Balances,Data,Forex,USD,USD,642.400144111,0,-642.400144111,1,642.400144111,0,
+Forex Balances,Data,Total,,,,,-687.127198111,,686.593637111,-0.53356,
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,C. Price,Proceeds,Comm/Fee,Basis,Realized P/L,MTM P/L,Code
+Trades,Data,Order,Stocks,EUR,AIRd,"2025-05-29, 09:41:03",3,162.7,162.56,-488.1,-3,491.1,0,-0.42,IA;O
+Trades,SubTotal,,Stocks,EUR,AIRd,,3,,,-488.1,-3,491.1,0,-0.42,
+Trades,Data,Order,Stocks,EUR,MC,"2025-05-29, 09:44:40",1.5,484.05,481.25,-726.075,-3,729.075,0,-4.2,FPA;IM;O;P
+Trades,SubTotal,,Stocks,EUR,MC,,1.5,,,-726.075,-3,729.075,0,-4.2,
+Trades,Data,Order,Stocks,EUR,R6C0d,"2025-05-29, 09:40:19",15,29.24,29.135,-438.6,-3,441.6,0,-1.575,IA;O
+Trades,SubTotal,,Stocks,EUR,R6C0d,,15,,,-438.6,-3,441.6,0,-1.575,
+Trades,Total,,Stocks,EUR,,,,,,-1652.775,-9,1661.775,0,-6.195, 
+Trades,Total,,Stocks,USD,,,,,,-1878.7093425,-10.2303,1888.9396425,0,-7.0418565, 
+Trades,Data,Order,Stocks,JPY,4568.T,"2025-05-28, 23:35:49",100,3924.4,3894,-392440,-313.952,392753.952,0,-3040,O
+Trades,SubTotal,,Stocks,JPY,4568.T,,100,,,-392440,-313.952,392753.952,0,-3040,
+Trades,Total,,Stocks,JPY,,,,,,-392440,-313.952,392753.952,0,-3040, 
+Trades,Total,,Stocks,USD,,,,,,-2721.846108,-2.177476886,2724.023584886,0,-21.084528, 
+Trades,Data,Order,Stocks,USD,BAC,"2025-05-29, 09:42:04",12,44.19,44.24,-530.28,-1.000552,531.280552,0,0.6,O
+Trades,SubTotal,,Stocks,USD,BAC,,12,,,-530.28,-1.000552,531.280552,0,0.6,
+Trades,Data,Order,Stocks,USD,CAT,"2025-05-29, 09:43:54",2,352.3,351.79,-704.6,-1.000092,705.600092,0,-1.02,O
+Trades,SubTotal,,Stocks,USD,CAT,,2,,,-704.6,-1.000092,705.600092,0,-1.02,
+Trades,Data,Order,Stocks,USD,COPX,"2025-12-11, 09:30:00",6,68.25,69.15,-409.5,-1,410.5,0,5.4,O
+Trades,SubTotal,,Stocks,USD,COPX,,6,,,-409.5,-1,410.5,0,5.4,
+Trades,Data,Order,Stocks,USD,DB,"2025-05-29, 09:41:31",24,27.62,27.77,-662.88,-1.001104,663.881104,0,3.6,O
+Trades,SubTotal,,Stocks,USD,DB,,24,,,-662.88,-1.001104,663.881104,0,3.6,
+Trades,Data,Order,Stocks,USD,GLD,"2025-12-11, 09:30:00",3,388.99,393.24,-1166.97,-1,1167.97,0,12.75,O
+Trades,SubTotal,,Stocks,USD,GLD,,3,,,-1166.97,-1,1167.97,0,12.75,
+Trades,Data,Order,Stocks,USD,GOOG,"2025-05-29, 09:43:24",5,174.6591,172.96,-873.2955,-1.00023,874.29573,0,-8.4955,IA;O
+Trades,SubTotal,,Stocks,USD,GOOG,,5,,,-873.2955,-1.00023,874.29573,0,-8.4955,
+Trades,Data,Order,Stocks,USD,TGT,"2025-05-29, 09:42:39",12,96.66,94.87,-1159.92,-1.000552,1160.920552,0,-21.48,O
+Trades,SubTotal,,Stocks,USD,TGT,,12,,,-1159.92,-1.000552,1160.920552,0,-21.48,
+Trades,Data,Order,Stocks,USD,URA,"2025-12-11, 09:30:00",20,47.46,49,-949.2,-1,950.2,0,30.8,O
+Trades,SubTotal,,Stocks,USD,URA,,20,,,-949.2,-1,950.2,0,30.8,
+Trades,Total,,Stocks,USD,,,,,,-6456.6455,-8.00253,6464.64803,0,22.1545, 
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,,Proceeds,Comm in USD,,,MTM in USD,Code
+Trades,Data,Order,Forex,JPY,USD.JPY,"2025-05-28, 23:35:50",-3,145.642,,436.926,0,,,0.030388,AFx
+Trades,Data,Order,Forex,JPY,USD.JPY,"2025-05-28, 23:35:50",-1,145.576,,145.576,0,,,0.009671,AFx
+Trades,Data,Order,Forex,JPY,USD.JPY,"2025-05-28, 23:35:50","-2,694",145.576,,392181.744,0,,,26.054922,AFx
+Trades,Data,Order,Forex,JPY,USD.JPY,"2025-05-29, 17:00:00",0.85228347,144.2876749,,-122.973999953,0,,,-0.000628,
+Trades,Data,Order,Forex,JPY,USD.JPY,"2025-05-29, 17:00:00",-0.78175762,144.136746,,112.67999994,0,,,-0.000243,
+Trades,SubTotal,,Forex,JPY,USD.JPY,,-2697.92947415,,,392753.951999987,0,,,26.09411,
+Trades,Total,,Forex,JPY,,,,,,392753.951999987,0,,,26.09411, 
+Trades,Total,,Forex,USD,,,,,,2724.023584886,0,,,26.09411, 
+Trades,Data,Order,Forex,USD,EUR.USD,"2025-05-29, 09:40:19",438.6,1.1347,,-497.67942,0,,,0.8772,AFx
+Trades,Data,Order,Forex,USD,EUR.USD,"2025-05-29, 09:40:19",3,1.13442,,-3.40326,0,,,0.00684,AFx
+Trades,Data,Order,Forex,USD,EUR.USD,"2025-05-29, 09:41:03",3,1.13427,,-3.40281,0,,,0.00729,AFx
+Trades,Data,Order,Forex,USD,EUR.USD,"2025-05-29, 09:41:04",488.1,1.13455,,-553.773855,0,,,1.049415,AFx
+Trades,Data,Order,Forex,USD,EUR.USD,"2025-05-29, 09:44:40",726.07,1.1349,,-824.016843,0,,,1.306926,AFx
+Trades,Data,Order,Forex,USD,EUR.USD,"2025-05-29, 09:44:40",3,1.13462,,-3.40386,0,,,0.00624,AFx
+Trades,Data,Order,Forex,USD,EUR.USD,"2025-05-29, 17:00:00",2.9,1.13676501,,-3.296618529,0,,,-0.000189,
+Trades,Data,Order,Forex,USD,EUR.USD,"2025-05-29, 17:00:00",0.005,1.13704101,,-0.005685205,0,,,-0.000001,
+Trades,SubTotal,,Forex,USD,EUR.USD,,1664.675,,,-1888.982351734,0,,,3.253721,
+Trades,Total,,Forex,USD,,,,,,-1888.982351734,0,,,3.253721, 
+Transaction Fees,Header,Asset Category,Currency,Date/Time,Symbol,Description,Quantity,Trade Price,Amount,Code
+Transaction Fees,Data,Stocks,EUR,"2025-05-29, 20:20:00",MC,French Daily Trade Charge Tax,1.5,484.05,-2.9,
+Transaction Fees,Data,Total,,,,,,,-2.9,
+Transaction Fees,Data,Total in USD,,,,,,,-3.29643,
+Corporate Actions,Header,Asset Category,Currency,Report Date,Date/Time,Description,Quantity,Proceeds,Value,Realized P/L,Code
+Corporate Actions,Data,Stocks,EUR,2025-08-14,"2025-08-13, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002L33)",15,0,0,0,
+Corporate Actions,Data,Stocks,EUR,2025-09-23,"2025-09-22, 20:20:00","SHELL.DRS(NL0015002L33) Expire Dividend Right (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002L33)",-15,0,0,0,
+Corporate Actions,Data,Stocks,EUR,2025-11-13,"2025-11-12, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL1.DI, SHELL PLC - DIVIDEND RIGHTS, NL0015002SG4)",15,0,0,0,
+Corporate Actions,Data,Stocks,EUR,2025-12-19,"2025-12-18, 20:20:00","SHELL1.DI(NL0015002SG4) Expire Dividend Right (SHELL1.DI, SHELL PLC - DIVIDEND RIGHTS, NL0015002SG4)",-15,0,0,0,
+Corporate Actions,Data,Stocks,EUR,2026-02-19,"2026-02-18, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL.DDR, SHELL PLC - DIVIDEND RIGHTS, NL0015073VB0)",15,0,0,0,
+Corporate Actions,Data,Stocks,EUR,2026-03-31,"2026-03-30, 20:20:00","SHELL.DDR(NL0015073VB0) Expire Dividend Right (SHELL.DDR, SHELL PLC - DIVIDEND RIGHTS, NL0015073VB0)",-15,0,0,0,
+Corporate Actions,Data,Total,,,,,,0,0,0,
+Corporate Actions,Data,Total in USD,,,,,,0,0,0,
+Deposits & Withdrawals,Header,Currency,Settle Date,Description,Amount
+Deposits & Withdrawals,Data,USD,2025-05-16,Electronic Fund Transfer,500
+Deposits & Withdrawals,Data,USD,2025-05-19,Electronic Fund Transfer,11300
+Deposits & Withdrawals,Data,Total,,,11800
+Fees,Header,Subtitle,Currency,Date,Description,Amount
+Fees,Data,Advisor Fees,USD,2025-06-02,"FA Fee: Percent of Equity, Posted Monthly",-7.47
+Fees,Data,Advisor Fees,USD,2025-07-01,"FA Fee: Percent of Equity, Posted Monthly",-18.27
+Fees,Data,Advisor Fees,USD,2025-08-01,"FA Fee: Percent of Equity, Posted Monthly",-20.66
+Fees,Data,Advisor Fees,USD,2025-09-01,"FA Fee: Percent of Equity, Posted Monthly",-20.28
+Fees,Data,Advisor Fees,USD,2025-10-01,"FA Fee: Percent of Equity, Posted Monthly",-20.51
+Fees,Data,Advisor Fees,USD,2025-11-03,"FA Fee: Percent of Equity, Posted Monthly",-23.56
+Fees,Data,Advisor Fees,USD,2025-12-01,"FA Fee: Percent of Equity, Posted Monthly",-19.51
+Fees,Data,Advisor Fees,USD,2026-01-02,"FA Fee: Percent of Equity, Posted Monthly",-23.01
+Fees,Data,Advisor Fees,USD,2026-02-02,"FA Fee: Percent of Equity, Posted Monthly",-21.75
+Fees,Data,Advisor Fees,USD,2026-03-02,"FA Fee: Percent of Equity, Posted Monthly",-20.65
+Fees,Data,Total,,,,-195.67
+Dividends,Header,Currency,Date,Description,Amount
+Dividends,Data,EUR,2025-09-22,SHELL.DRS(NL0015002L33) Expire Dividend Right (Ordinary Dividend),4.6
+Dividends,Data,EUR,2025-12-04,MC(FR0000121014) Cash Dividend EUR 5.50 per Share (Ordinary Dividend),8.26
+Dividends,Data,EUR,2025-12-18,SHELL1.DI(NL0015002SG4) Expire Dividend Right (Ordinary Dividend),4.61
+Dividends,Data,EUR,2026-03-30,SHELL.DDR(NL0015073VB0) Expire Dividend Right (Ordinary Dividend),4.84
+Dividends,Data,Total,,,22.31
+Dividends,Data,Total in USD,,,26.041519
+Dividends,Data,JPY,2025-12-10,4568.T(JP3475350009) Cash Dividend JPY 39 per Share (Ordinary Dividend),3900
+Dividends,Data,Total,,,3900
+Dividends,Data,Total in USD,,,24.99705
+Dividends,Data,USD,2025-06-16,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share (Ordinary Dividend),1.05
+Dividends,Data,USD,2025-06-27,BAC(US0605051046) Cash Dividend USD 0.26 per Share (Ordinary Dividend),3.12
+Dividends,Data,USD,2025-08-20,CAT(US1491231015) Cash Dividend USD 1.51 per Share (Ordinary Dividend),3.02
+Dividends,Data,USD,2025-09-02,TGT(US87612E1064) Cash Dividend USD 1.14 per Share (Ordinary Dividend),13.68
+Dividends,Data,USD,2025-09-15,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share (Ordinary Dividend),1.05
+Dividends,Data,USD,2025-09-26,BAC(US0605051046) Cash Dividend USD 0.28 per Share (Ordinary Dividend),3.36
+Dividends,Data,USD,2025-11-20,CAT(US1491231015) Cash Dividend USD 1.51 per Share (Ordinary Dividend),3.02
+Dividends,Data,USD,2025-12-01,TGT(US87612E1064) Cash Dividend USD 1.14 per Share (Ordinary Dividend),13.68
+Dividends,Data,USD,2025-12-15,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share (Ordinary Dividend),1.05
+Dividends,Data,USD,2025-12-26,BAC(US0605051046) Cash Dividend USD 0.28 per Share (Ordinary Dividend),3.36
+Dividends,Data,USD,2026-01-07,COPX(US37954Y8306) Cash Dividend USD 1.672477 per Share (Ordinary Dividend),10.03
+Dividends,Data,USD,2026-01-07,URA(US37954Y8710) Cash Dividend USD 2.084331 per Share (Ordinary Dividend),41.69
+Dividends,Data,USD,2026-02-19,CAT(US1491231015) Cash Dividend USD 1.51 per Share (Ordinary Dividend),3.02
+Dividends,Data,USD,2026-03-01,TGT(US87612E1064) Cash Dividend USD 1.14 per Share (Ordinary Dividend),13.68
+Dividends,Data,USD,2026-03-16,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share (Ordinary Dividend),1.05
+Dividends,Data,USD,2026-03-27,BAC(US0605051046) Cash Dividend USD 0.28 per Share (Ordinary Dividend),3.36
+Dividends,Data,Total,,,119.22
+Dividends,Data,Total Dividends in USD,,,170.258569
+Withholding Tax,Header,Currency,Date,Description,Amount,Code
+Withholding Tax,Data,EUR,2025-12-04,MC(FR0000121014) Cash Dividend EUR 5.50 per Share - FR Tax,-2.07,
+Withholding Tax,Data,Total,,,-2.07,
+Withholding Tax,Data,Total in USD,,,-2.410101,
+Withholding Tax,Data,JPY,2025-12-10,4568.T(JP3475350009) Cash Dividend JPY 39 per Share - JP Tax,-597,
+Withholding Tax,Data,Total,,,-597,
+Withholding Tax,Data,Total in USD,,,-3.8264715,
+Withholding Tax,Data,USD,2025-06-04,Withholding @ 30% on Credit Interest for May-2025,-0.07,
+Withholding Tax,Data,USD,2025-06-16,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share - US Tax,-0.32,
+Withholding Tax,Data,USD,2025-06-16,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share - US Tax,0.32,
+Withholding Tax,Data,USD,2025-06-16,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share - US Tax,-0.26,
+Withholding Tax,Data,USD,2025-06-27,BAC(US0605051046) Cash Dividend USD 0.26 per Share - US Tax,-0.94,
+Withholding Tax,Data,USD,2025-06-27,BAC(US0605051046) Cash Dividend USD 0.26 per Share - US Tax,0.94,
+Withholding Tax,Data,USD,2025-06-27,BAC(US0605051046) Cash Dividend USD 0.26 per Share - US Tax,-0.78,
+Withholding Tax,Data,USD,2025-07-24,CANCEL WITHHOLDING ON Credit Interest for May-2025,0.07,
+Withholding Tax,Data,USD,2025-08-20,CAT(US1491231015) Cash Dividend USD 1.51 per Share - US Tax,-0.76,
+Withholding Tax,Data,USD,2025-09-02,TGT(US87612E1064) Cash Dividend USD 1.14 per Share - US Tax,-3.42,
+Withholding Tax,Data,USD,2025-09-15,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share - US Tax,-0.26,
+Withholding Tax,Data,USD,2025-09-26,BAC(US0605051046) Cash Dividend USD 0.28 per Share - US Tax,-0.84,
+Withholding Tax,Data,USD,2025-11-20,CAT(US1491231015) Cash Dividend USD 1.51 per Share - US Tax,-0.76,
+Withholding Tax,Data,USD,2025-12-01,TGT(US87612E1064) Cash Dividend USD 1.14 per Share - US Tax,-3.42,
+Withholding Tax,Data,USD,2025-12-15,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share - US Tax,-0.26,
+Withholding Tax,Data,USD,2025-12-26,BAC(US0605051046) Cash Dividend USD 0.28 per Share - US Tax,-0.84,
+Withholding Tax,Data,USD,2026-01-07,COPX(US37954Y8306) Cash Dividend USD 1.672477 per Share - US Tax,-2.51,
+Withholding Tax,Data,USD,2026-01-07,URA(US37954Y8710) Cash Dividend USD 2.084331 per Share - US Tax,-10.42,
+Withholding Tax,Data,USD,2026-02-19,CAT(US1491231015) Cash Dividend USD 1.51 per Share - US Tax,-0.76,
+Withholding Tax,Data,USD,2026-03-01,TGT(US87612E1064) Cash Dividend USD 1.14 per Share - US Tax,-3.42,
+Withholding Tax,Data,USD,2026-03-16,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share - US Tax,-0.26,
+Withholding Tax,Data,USD,2026-03-27,BAC(US0605051046) Cash Dividend USD 0.28 per Share - US Tax,-0.84,
+Withholding Tax,Data,Total,,,-29.81,
+Withholding Tax,Data,Total Withholding Tax in USD,,,-36.0465725,
+Interest,Header,Currency,Date,Description,Amount
+Interest,Data,USD,2025-06-04,USD Credit Interest for May-2025,0.22
+Interest,Data,Total,,,0.22
+Interest Accruals,Header,Currency,Field Name,Field Value
+Interest Accruals,Data,Base Currency Summary,Starting Accrual Balance,0
+Interest Accruals,Data,Base Currency Summary,Interest Accrued,0.22
+Interest Accruals,Data,Base Currency Summary,Accrual Reversal,-0.22
+Interest Accruals,Data,Base Currency Summary,Ending Accrual Balance,0
+Change in Dividend Accruals,Header,Asset Category,Currency,Symbol,Date,Ex Date,Pay Date,Quantity,Tax,Fee,Gross Rate,Gross Amount,Net Amount,Code
+Change in Dividend Accruals,Data,Starting Dividend Accruals in USD,,,,,,,,,,,0,
+Change in Dividend Accruals,Data,Stocks,EUR,MOHd,2025-12-01,2025-12-02,2025-12-04,1.5,2.07,0,5.5,8.26,6.19,Po
+Change in Dividend Accruals,Data,Stocks,EUR,MOHd,2025-12-01,2025-12-02,2025-12-04,1.5,1.38,0,5.5,8.25,6.87,Po
+Change in Dividend Accruals,Data,Stocks,EUR,MOHd,2025-12-01,2025-12-02,2025-12-04,1.5,-2.07,0,5.5,-8.26,-6.19,Re
+Change in Dividend Accruals,Data,Stocks,EUR,MOHd,2025-12-04,2025-12-02,2025-12-04,1.5,-1.38,0,5.5,-8.25,-6.87,Re
+Change in Dividend Accruals,Data,Total,,,,,,,0,0,,-0,0,
+Change in Dividend Accruals,Data,Total in USD,,,,,,,-0.003795,0,,-0.014869,-0.011074,
+Change in Dividend Accruals,Data,Stocks,JPY,4568.T,2025-09-26,2025-09-29,-,100,532,0,39,3900,3368,Po
+Change in Dividend Accruals,Data,Stocks,JPY,4568.T,2025-09-26,2025-09-29,2025-12-10,100,597,0,39,3900,3303,Po
+Change in Dividend Accruals,Data,Stocks,JPY,4568.T,2025-09-26,2025-09-29,-,100,-532,0,39,-3900,-3368,Re
+Change in Dividend Accruals,Data,Stocks,JPY,4568.T,2025-12-10,2025-09-29,2025-12-10,100,-597,0,39,-3900,-3303,Re
+Change in Dividend Accruals,Data,Stocks,JPY,4568.T,2026-03-27,2026-03-30,-,100,466,0,39,3900,3434,Po
+Change in Dividend Accruals,Data,Stocks,JPY,4568.T,2026-03-27,2026-03-30,2026-06-23,100,597,0,39,3900,3303,Po
+Change in Dividend Accruals,Data,Stocks,JPY,4568.T,2026-03-27,2026-03-30,-,100,-466,0,39,-3900,-3434,Re
+Change in Dividend Accruals,Data,Total,,,,,,,597,0,,3900,3303,
+Change in Dividend Accruals,Data,Total in USD,,,,,,,3.9356086,0,,25.66278,21.7271714,
+Change in Dividend Accruals,Data,Stocks,USD,BAC,2025-06-05,2025-06-06,2025-06-27,12,0.94,0,0.26,3.12,2.18,Po
+Change in Dividend Accruals,Data,Stocks,USD,BAC,2025-06-27,2025-06-06,2025-06-27,12,-0.94,0,0.26,-3.12,-2.18,Re
+Change in Dividend Accruals,Data,Stocks,USD,BAC,2025-09-04,2025-09-05,2025-09-26,12,0.84,0,0.28,3.36,2.52,Po
+Change in Dividend Accruals,Data,Stocks,USD,BAC,2025-09-26,2025-09-05,2025-09-26,12,-0.84,0,0.28,-3.36,-2.52,Re
+Change in Dividend Accruals,Data,Stocks,USD,BAC,2025-12-04,2025-12-05,2025-12-26,12,0.84,0,0.28,3.36,2.52,Po
+Change in Dividend Accruals,Data,Stocks,USD,BAC,2025-12-26,2025-12-05,2025-12-26,12,-0.84,0,0.28,-3.36,-2.52,Re
+Change in Dividend Accruals,Data,Stocks,USD,BAC,2026-03-05,2026-03-06,2026-03-27,12,0.84,0,0.28,3.36,2.52,Po
+Change in Dividend Accruals,Data,Stocks,USD,BAC,2026-03-27,2026-03-06,2026-03-27,12,-0.84,0,0.28,-3.36,-2.52,Re
+Change in Dividend Accruals,Data,Stocks,USD,CAT,2025-07-18,2025-07-21,2025-08-20,2,0.91,0,1.51,3.02,2.11,Po
+Change in Dividend Accruals,Data,Stocks,USD,CAT,2025-07-18,2025-07-21,2025-08-20,2,0.76,0,1.51,3.02,2.26,Po
+Change in Dividend Accruals,Data,Stocks,USD,CAT,2025-07-18,2025-07-21,2025-08-20,2,-0.91,0,1.51,-3.02,-2.11,Re
+Change in Dividend Accruals,Data,Stocks,USD,CAT,2025-08-20,2025-07-21,2025-08-20,2,-0.76,0,1.51,-3.02,-2.26,Re
+Change in Dividend Accruals,Data,Stocks,USD,CAT,2025-10-17,2025-10-20,2025-11-20,2,0.76,0,1.51,3.02,2.26,Po
+Change in Dividend Accruals,Data,Stocks,USD,CAT,2025-11-20,2025-10-20,2025-11-20,2,-0.76,0,1.51,-3.02,-2.26,Re
+Change in Dividend Accruals,Data,Stocks,USD,CAT,2026-01-19,2026-01-20,2026-02-19,2,0.76,0,1.51,3.02,2.26,Po
+Change in Dividend Accruals,Data,Stocks,USD,CAT,2026-02-19,2026-01-20,2026-02-19,2,-0.76,0,1.51,-3.02,-2.26,Re
+Change in Dividend Accruals,Data,Stocks,USD,COPX,2025-12-29,2025-12-30,2026-01-07,6,2.51,0,1.672477,10.03,7.52,Po
+Change in Dividend Accruals,Data,Stocks,USD,COPX,2026-01-07,2025-12-30,2026-01-07,6,-2.51,0,1.672477,-10.03,-7.52,Re
+Change in Dividend Accruals,Data,Stocks,USD,GOOG,2025-06-06,2025-06-09,2025-06-16,5,0.32,0,0.21,1.05,0.73,Po
+Change in Dividend Accruals,Data,Stocks,USD,GOOG,2025-06-16,2025-06-09,2025-06-16,5,-0.32,0,0.21,-1.05,-0.73,Re
+Change in Dividend Accruals,Data,Stocks,USD,GOOG,2025-09-05,2025-09-08,2025-09-15,5,0.26,0,0.21,1.05,0.79,Po
+Change in Dividend Accruals,Data,Stocks,USD,GOOG,2025-09-15,2025-09-08,2025-09-15,5,-0.26,0,0.21,-1.05,-0.79,Re
+Change in Dividend Accruals,Data,Stocks,USD,GOOG,2025-12-05,2025-12-08,2025-12-15,5,0.26,0,0.21,1.05,0.79,Po
+Change in Dividend Accruals,Data,Stocks,USD,GOOG,2025-12-15,2025-12-08,2025-12-15,5,-0.26,0,0.21,-1.05,-0.79,Re
+Change in Dividend Accruals,Data,Stocks,USD,GOOG,2026-03-06,2026-03-09,2026-03-16,5,0.26,0,0.21,1.05,0.79,Po
+Change in Dividend Accruals,Data,Stocks,USD,GOOG,2026-03-16,2026-03-09,2026-03-16,5,-0.26,0,0.21,-1.05,-0.79,Re
+Change in Dividend Accruals,Data,Stocks,USD,TGT,2025-08-12,2025-08-13,2025-09-02,12,3.42,0,1.14,13.68,10.26,Po
+Change in Dividend Accruals,Data,Stocks,USD,TGT,2025-09-02,2025-08-13,2025-09-02,12,-3.42,0,1.14,-13.68,-10.26,Re
+Change in Dividend Accruals,Data,Stocks,USD,TGT,2025-11-11,2025-11-12,2025-12-01,12,3.42,0,1.14,13.68,10.26,Po
+Change in Dividend Accruals,Data,Stocks,USD,TGT,2025-12-01,2025-11-12,2025-12-01,12,-3.42,0,1.14,-13.68,-10.26,Re
+Change in Dividend Accruals,Data,Stocks,USD,TGT,2026-02-10,2026-02-11,2026-03-01,12,3.42,0,1.14,13.68,10.26,Po
+Change in Dividend Accruals,Data,Stocks,USD,TGT,2026-03-01,2026-02-11,2026-03-01,12,-3.42,0,1.14,-13.68,-10.26,Re
+Change in Dividend Accruals,Data,Stocks,USD,URA,2025-12-29,2025-12-30,2026-01-07,20,10.43,0,2.084331,41.69,31.26,Po
+Change in Dividend Accruals,Data,Stocks,USD,URA,2026-01-07,2025-12-30,2026-01-07,20,-10.42,0,2.084331,-41.69,-31.27,Re
+Change in Dividend Accruals,Data,Total,,,,,,,0.01,0,,-0,-0.01,
+Change in Dividend Accruals,Data,Total Stocks in USD,,,,,,,3.9418136,0,,25.647911,21.7060974,
+Change in Dividend Accruals,Data,Ending Dividend Accruals in USD,,,,,,,,,,,20.8102212,
+Financial Instrument Information,Header,Asset Category,Symbol,Description,Conid,Security ID,Underlying,Listing Exch,Multiplier,Type,Code
+Financial Instrument Information,Data,Stocks,4568.T,DAIICHI SANKYO CO LTD,35928149,JP3475350009,4568,TSEJ,1,COMMON,
+Financial Instrument Information,Data,Stocks,"AIRd, AIR",AIRBUS SE,29612256,NL0000235190,AIR,SBF,1,COMMON,
+Financial Instrument Information,Data,Stocks,BAC,BANK OF AMERICA CORP,10098,US0605051046,BAC,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,CAT,CATERPILLAR INC,5437,US1491231015,CAT,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,COPX,GLOBAL X COPPER MINERS ETF,211651700,US37954Y8306,COPX,ARCA,1,ETF,
+Financial Instrument Information,Data,Stocks,DB,DEUTSCHE BANK AG-REGISTERED,13435352,DE0005140008,DB,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,GLD,SPDR GOLD SHARES,51529211,US78463V1070,GLD,ARCA,1,ETF,
+Financial Instrument Information,Data,Stocks,GOOG,ALPHABET INC-CL C,208813720,US02079K1079,GOOG,NASDAQ,1,COMMON,
+Financial Instrument Information,Data,Stocks,"MC, MOHd",LVMH MOET HENNESSY LOUIS VUI,29612150,FR0000121014,MC,SBF,1,COMMON,
+Financial Instrument Information,Data,Stocks,"SHELL, R6C0d",SHELL PLC,541411967,GB00BP6MXD84,SHELL,AEB,1,COMMON,
+Financial Instrument Information,Data,Stocks,SHELL.DDR,SHELL PLC - DIVIDEND RIGHTS,855707034,NL0015073VB0,SHELL.DDR,CORPACT,1,RIGHT,
+Financial Instrument Information,Data,Stocks,SHELL.DRS,SHELL PLC - DIVIDEND RIGHTS,806536925,NL0015002L33,SHELL.DRS,CORPACT,1,RIGHT,
+Financial Instrument Information,Data,Stocks,SHELL1.DI,SHELL PLC - DIVIDEND RIGHTS,830625049,NL0015002SG4,SHELL1.DI,CORPACT,1,RIGHT,
+Financial Instrument Information,Data,Stocks,TGT,TARGET CORP,6437,US87612E1064,TGT,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,URA,GLOBAL X URANIUM ETF,211651685,US37954Y8710,URA,ARCA,1,ETF,
+Codes,Header,Code,Meaning,Code (Cont.),Meaning (Cont.)
+Codes,Data,A,Assignment
+Codes,Data,ADR,ADR Fee Accrual
+Codes,Data,AEx,Automatic exercise for dividend-related recommendation.
+Codes,Data,AFx,AutoFX conversion resulting from trading
+Codes,Data,Adj,Adjustment
+Codes,Data,Al,Allocation
+Codes,Data,Aw,Away Trade
+Codes,Data,B,Automatic Buy-in
+Codes,Data,Bo,Direct Borrow
+Codes,Data,C,Closing Trade
+Codes,Data,CD,Cash Delivery
+Codes,Data,CP,Complex Position
+Codes,Data,Ca,Cancelled
+Codes,Data,Co,Corrected Trade
+Codes,Data,Cx,Part or all of this transaction was a Crossing executed as dual agent by Broker for two Broker customers
+Codes,Data,DT,Discounted Trade
+Codes,Data,De,Delivery or Conversion Action
+Codes,Data,ETF,ETF Creation/Redemption
+Codes,Data,Ep,Resulted from an Expired Position
+Codes,Data,Ex,Exercise
+Codes,Data,FP,"Broker acted as agent for the fractional share portion of this trade, which was executed by a Broker affiliate as principal."
+Codes,Data,FPA,Broker acted as agent for both the fractional share portion and the whole share portion of this trade; the fractional share portion was executed by a Broker Affiliate as principal.
+Codes,Data,G,Trade in Guaranteed Account Segment
+Codes,Data,GEA,Exercise or Assignment resulting from offsetting positions
+Codes,Data,HC,Highest Cost tax basis election
+Codes,Data,HFI,Investment Transferred to Hedge Fund
+Codes,Data,HFR,Redemption from Hedge Fund
+Codes,Data,I,Internal Transfer
+Codes,Data,IA,This transaction was executed against a Broker affiliate
+Codes,Data,IM,A portion of the order was executed against a Broker affiliate; A broker acted as agent on a portion.
+Codes,Data,INV,Investment Transfer from Investor
+Codes,Data,IPO,This transaction was executed as part of an IPO in which Broker was a member of the selling group and is classified as a Principal trade.
+Codes,Data,L,Ordered by Broker (Margin Violation)
+Codes,Data,LD,Adjusted by Loss Disallowed from Wash Sale
+Codes,Data,LF,Liquidation of fractional position by IB
+Codes,Data,LI,"Last In, First Out (LIFO) tax basis election"
+Codes,Data,LT,Long Term P/L
+Codes,Data,Lo,Direct Loan
+Codes,Data,M,Entered manually by Broker
+Codes,Data,MEx,Manual exercise for dividend-related recommendation.
+Codes,Data,ML,Maximize Losses tax basis election
+Codes,Data,MLG,Maximize Long Term Gain tax basis election
+Codes,Data,MLL,Maximize Long Term Loss tax basis election
+Codes,Data,MSG,Maximize Short Term Gain tax basis election
+Codes,Data,MSL,Maximize Short Term Loss tax basis election
+Codes,Data,O,Opening Trade
+Codes,Data,Off,Yes and No contracts offset to $1.00 cash settlement
+Codes,Data,P,Partial Execution
+Codes,Data,PE,Perpetual Investment
+Codes,Data,PI,Price Improvement
+Codes,Data,PTA,Post Trade Allocation
+Codes,Data,Po,Interest or Dividend Accrual Posting
+Codes,Data,Pr,Part or all of this transaction was executed by the Exchange as a Crossing by Broker against a Broker affiliate and is therefore classified as a Principal and not an agency trade
+Codes,Data,R,Dividend Reinvestment
+Codes,Data,RED,Redemption to Investor
+Codes,Data,RI,Recurring Investment
+Codes,Data,RP,"Broker acted as agent for the fractional share portion of this trade, which was executed by a Broker affiliate as riskless principal."
+Codes,Data,RPA,Broker acted as agent for both the fractional share portion and the whole share portion of this trade; the fractional share portion was executed by a Broker Affiliate as riskless principal.
+Codes,Data,Rb,Rebill
+Codes,Data,Re,Interest or Dividend Accrual Reversal
+Codes,Data,Ri,Reimbursement
+Codes,Data,S0,Contract settled to zero value
+Codes,Data,S1,Contract settled to $1.00
+Codes,Data,SF,Trade is subject to IBKR Lite Surcharge Fee if volume of such trades exceeds 10% of the total monthly Lite trade volume
+Codes,Data,SI,This order was solicited by Broker
+Codes,Data,SL,Specific Lot tax basis election
+Codes,Data,SO,This order was marked as solicited by your Introducing Broker
+Codes,Data,SS,Customer designated this trade for shortened settlement and so is subject to execution at prices above the prevailing market
+Codes,Data,ST,Short Term P/L
+Codes,Data,Sw,Money Market Fund Sweep
+Codes,Data,T,Transfer
+Codes,Data,TO,This cryptocurrency is not supported in your account. You will not be able to sell it from your account but may transfer it out at any time.
+Codes,Data,Un,Unvested shares from stock grant
+Codes,Data,XCH,Mutual Fund Exchange Transaction
+Notes/Legal Notes,Header,Type,Note
+Notes/Legal Notes,Data,Notes,"Stock exchange transactions generally settle on the trade date plus one business day (T+1). Options, futures and US open-end mutual fund transactions also settle on trade date plus one business day. Some exchanges and other transaction types may have longer or shorter settlement periods. Ending settled cash reflects the cash that has actually settled."
+Notes/Legal Notes,Data,Notes,Initial and maintenance margin requirements are available within the Account Window of the Trader Workstation.
+Notes/Legal Notes,Data,Notes,"Interactive Brokers LLC receives compensation from fund companies in connection with the purchase and holding of fund shares by customers of Interactive Brokers LLC. Such compensation includes, but is not limited to, Rule 12b-1 fees that are paid out of the funds assets. The source and amount of any remuneration received by Interactive Brokers LLC in connection with a transaction will be furnished upon written request of the customer.  IB may share a portion of the compensation received from fund companies with your independent advisor or introducing broker."
+Notes/Legal Notes,Data,Notes,"Quantities preceded by a ""-"" sign indicate sell transactions. Other transactions are purchases. "
+Notes/Legal Notes,Data,Notes,"IB acts as agent in executing the fractional share portion of your order. In certain circumstances, IB routes the fractional portion of your order to an affiliate, which may execute the fractional portion of the order as principal. In such circumstances, this is indicated by the codes associated with the trade. If an IB affiliate acts as principal in executing any fractional share portion of your order, the order will be executed at the price displayed for the opposite side of the NBBO from your order (the offer if you are buying and the bid if you are selling) at the time of execution. If an IB affiliate is acting as riskless principal in connection with filling the fractional share portion of your order, the affiliate will execute the fractional share portion of your order at the price it receives for the execution of the whole share."
+Notes/Legal Notes,Data,Notes,"In case of partial executions, commissions are charged on the total quantity executed on the original order. The commission is displayed on the first partial execution only."
+Notes/Legal Notes,Data,Notes,Trade execution times are displayed in Eastern Time.
+Notes/Legal Notes,Data,Notes,Applicable regulatory fees for your transactions are available on the IB website at www.interactivebrokers.com/en/accounts/fees/exchangeAndRegulatoryFees.php.
+Notes/Legal Notes,Data,Notes,"Borrow Fee Rate represents the cost to borrow stock expressed in percent per annum. It is applied to the collateral value on the stock borrow contract and is separate from any interest earned on credit cash balances. Similarly, Loan Fee Rate represents the benefit to lend stock. A positive rate indicates a cost to the borrower/benefit to the lender and a negative rate indicates a benefit to the borrower/cost to the lender. In general, the fee rates for hard-to-borrow stocks are higher than for normal availability stocks."
+Notes/Legal Notes,Data,Notes,Interest Rate on Customer Collateral represents the interest paid on the collateral posted to the customer's account and received from lending stock.  A positive rate indicates a benefit to the lender.
+Notes/Legal Notes,Data,Notes,"The closing prices on this Activity Statement are indicative and may come from third-party sources. Interactive Brokers does not warrant the accuracy of the prices provided by third-party sources. Due to time zone differences, certain non-US mutual funds may deliver closing prices after the Activity Statement has been produced and the closing prices for such funds will reflect the previous day's price."
+Notes/Legal Notes,Data,Notes,All Market Data and Research services are provided through Global Financial Information Services (GmbH).
+Notes/Legal Notes,Data,Notes,"Market data is provided by Global Financial Information Services (GmbH). Your local broker collects amounts owed for fees and tax for such data on behalf of Global Financial Information Services (GmbH). Note, you are responsible for any applicable taxes relating to the provision of these services."
+Notes/Legal Notes,Data,Notes,"For clients whose accounts are being managed by an advisor, trades shown may be part of a larger trade that was allocated across multiple client accounts, based on an allocation algorithm specified by the advisor prior to execution of the trade.  Times shown are times that trades were allocated to your account.  Execution time on the relevant market center is available upon your request."
+Notes/Legal Notes,Data,Notes,"If you specified that your advisor is to receive a per-trade advisory fee, please note that the figures in the ""Commiss"" column in the transaction listings are gross amounts that include both IB's brokerage commission for the trade as well as the advisor's per-trade fee.  IB receives its standard published brokerage commissions on your trades ( see www.interactivebrokers.com ). To determine the advisor's per-trade fee for any trade, subtract IB's standard commission from the amount shown."
+Notes/Legal Notes,Data,Notes,The stated commission rate on the Interactive Brokers website is for direct clients of Interactive Brokers. Clients managed by an advisor may pay additional commissions set by their advisor. Clients should contact their advisor about the rates that will apply to their account.
+Notes/Legal Notes,Data,Notes,RUS denotes Ruble balances that have been restricted by Russian authorities.
+Notes/Legal Notes,Data,Mutual Fund Notes,"All purchase and sales of mutual funds are calculated against the published NAV (Net Asset Value) of the underlying fund and is displayed on this confirmation as the ""C. Price"" (Closing Price). Due to any fees charged by a fund and/or any share rounding, the net price you pay may vary from the published NAV and is shown on this confirmation as the ""T. Price"" (Trade Price)."
+Notes/Legal Notes,Data,Fixed Income Notes,"Call features for bonds or preferred stocks may affect the yield. For zero coupon, compound interest and multiplier securities, there are no periodic payments and securities may be callable below maturity value without notice to holder unless registered. For asset-backed securities, the actual yield may vary depending on the speed at which the underlying note is pre-paid. For additional information regarding bond yield, please contact the IB Help Desk at: ibkr.com/help. If this debt security is unrated by a nationally recognized statistical rating organization, it may pose a high risk of default. You should consult an independent advisor to determine whether unrated bonds are appropriate for your portfolio in light of your goals and your financial circumstances. Fees charged by bond trading centers are included in the cost of bond transactions."
+Notes/Legal Notes,Data,Legal Notes,"Please promptly report any inaccuracy or discrepancy in this statement, or in your account. Contact the IB Customer Service Department in writing using the form available on the IB website. You may also contact IB by phone, but if you report an error by phone, you should re-confirm such oral communication in writing in order to protect your rights, including rights under the Securities Investor Protection Act (SIPA).Interactive Brokers:Interactive Brokers LLC, www.interactivebrokers.com, 877-442-2757 (U.S.)Interactive Brokers (UK) (Ltd), www.interactivebrokers.co.uk, 00800-42-276537 (Intl)Interactive Brokers Canada Inc., www.interactivebrokers.ca, 877-745-4222 (Can.)"
+Notes/Legal Notes,Data,Legal Notes,"Unless otherwise noted, Interactive Brokers acted as agent in the execution of the above transactions. For those exchanges where IB is not a direct clearing member or custodian, IB may use one of the following clearing agents or sub-custodians: Interactive Brokers Australia Pty Limited; Interactive Brokers Canada Inc.; Interactive Brokers Hong Kong Limited; Interactive Brokers Ireland, Limited; Interactive Brokers Securities Japan, Inc.; Interactive Brokers (U.K.) Limited; IBKR Financial Services AG; ABN Amro Clearing Singapore Pte. Ltd.; Allfunds Bank, S.A.U.; Banco B3 S.A.; BBVA Bancomer, S.A.; BNP Securities Services, Milan Branch; BMO Bank N.A.; Citibank Europe plc; Skandinaviska Enskilda Banken AB (including select branches)."
+Notes/Legal Notes,Data,Legal Notes,"IB acts as agent or riskless principal in foreign currency exchange transactions and as riskless principal in spot precious metals transactions.  Such transactions are executed against an IB affiliate or a third party, which acts as principal in such transactions and may have a long or short position and may have profited or lost in connection with the transaction.  Foreign currency exchange and spot precious metals transactions executed by Customer through IB are not regulated or overseen by the SEC or the CFTC."
+Notes/Legal Notes,Data,Legal Notes,"IB accepts liquidity rebates or other order flow payments from Alternative Trading Systems, market makers and exchanges for certain orders in stocks. IB receives payment for some option orders pursuant to exchange-mandated marketing fee programs or other arrangements. The source and nature of any compensation received by IB in connection with any transaction is available upon written request of the customer. For further information, check the IB website and the Order Routing and Payment for Order Flow Disclosure provided when you opened your account and annually or visit ibkr.com/help.  "
+Notes/Legal Notes,Data,Legal Notes,"For security futures trades, if not already indicated on this statement, information about the time of any transaction, the identity of the counterparty to the transaction, and whether IB is acting as agent or principal, as agent for the counterparty, as agent for both parties to the contract, or as principal, and if acting as principal, whether the transaction was a block transaction or an exchange for physicals transaction, will be available upon written request of the customer."
+Notes/Legal Notes,Data,Legal Notes,Customer is requested to promptly advise Interactive Brokers of any material change in Customers investment objectives.
+Notes/Legal Notes,Data,Legal Notes,"Interactive Brokers LLC, member Securities Investor Protection Corporation (SIPC), provides execution, clearing and carrying services for your account pursuant to an agreement with Financial Hospital Advisory LLP. As with all securities firms, SIPC coverage provides protection against failure of a broker-dealer, not against loss of market value of securities.  Futures and options on futures are not covered by SIPC."
+Notes/Legal Notes,Data,Legal Notes,"A financial statement of Interactive Brokers LLC is available for your personal inspection at www.interactivebrokers.com or at its offices, or a copy of it will be mailed upon your written request."
+Notes/Legal Notes,Data,Legal Notes,"For trades executed on the ASX market, the ASX 24 market and the Cboe Australia market, this confirmation is issued subject to: (i) the Applicable Laws, the directions, decisions and requirements of the relevant market operator, the operating rules of the relevant market, the clearing rules and where relevant, the relevant settlement rules, (ii) the customs and usages of the relevant financial market, and (iii) the correction of errors and omissions. Trades in Cash Market Products (as that term is defined in the relevant ASIC market integrity rules) on ASX market and Cboe Australia are cleared by BNP Paribas, ARBN 149 440 291, AFSL 402467, who is a participant of ASX Clear Pty Ltd and ASX Settlement Pty Ltd. Trades in Derivative Products on ASX and all products on ASX 24 are cleared by Interactive Brokers Australia (“IBA”) as a participant of ASX Clear Pty Ltd and ASX Clear (Futures) Pty Ltd. If your transaction was a crossing transaction, IBA may have either acted on behalf of (i) both the buyer and seller of this transaction, or (ii) on behalf of the buyer or seller on one side of the transaction and acted as Principal on the other side. Under the Corporations Act 2001, where IBA enters into an exchange traded derivative on a customer's behalf, IBA is regarded as having issued the derivative to the customer."
+Notes/Legal Notes,Data,Legal Notes,"For All Options Trades Executed on the Stock Exchange of Hong Kong (""SEHK""): (a) Options can involve a high degree of risk and may not be suitable for every investor. Investors should ensure they understand those risks before participating in the options market. (b) All options contracts executed on the SEHK were executed by Interactive Brokers Hong Kong Limited on behalf of Interactive Brokers LLC. (c) In the event of a default committed by Interactive Brokers LLC resulting in the client suffering any pecuniary loss, the client shall have a right to claim under the Investor Compensation Fund established under the Hong Kong Securities and Futures Ordinance, subject to the terms of the Investor Compensation Fund from time to time. (d) All Exchange Traded Options Business made for or on behalf of a client shall be subject to the relevant provisions of the constitution, Rules of The Stock Exchange of Hong Kong Limited (""SEHK Rules""), regulations, the Articles, customs and usages of SEHK, the Options Trading Rules, the Clearing Rules of SEOCH, the CCASS Rules and the laws of Hong Kong, which shall be binding on both Interactive Brokers LLC and the client."
+Notes/Legal Notes,Data,Legal Notes,"Interactive Brokers LLC is a SIPC member. Deposits held away from Interactive Brokers LLC may not qualify under SIPC protection. Also, futures and options on futures are not covered by SIPC."
+Notes/Legal Notes,Data,,Interactive Brokers LLC is a SIPC Member

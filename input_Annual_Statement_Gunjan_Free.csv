@@ -1,0 +1,36 @@
+Statement,Header,Field Name,Field Value
+Statement,Data,Title,Activity Statement
+Statement,Data,Period,"January 1, 2025 - December 31, 2025"
+Statement,Data,WhenGenerated,Synthesized from Free since-inception statement (opened 03-Dec-2025)
+Account Information,Header,Field Name,Field Value
+Account Information,Data,Name,Gunjan Narulkar
+Account Information,Data,Account,U22995548
+Account Information,Data,Investment Advisor,MATCAP WEALTH ADVISORS PRIVATE LIMITED
+Account Information,Data,Account Type,Advisor Client
+Account Information,Data,Customer Type,Individual
+Account Information,Data,Account Capabilities,Cash
+Account Information,Data,Base Currency,USD
+Open Positions,Header,DataDiscriminator,Asset Category,Currency,Symbol,Quantity,Mult,Cost Price,Cost Basis,Close Price,Value,Unrealized P/L,Code
+Open Positions,Data,Summary,Stocks,USD,GOOG,179.0,1,241.039217877,43146.02,241.039218,43146.02,0.0,
+Net Asset Value,Header,Asset Class,Prior Total,Current Long,Current Short,Current Total,Change
+Net Asset Value,Data,Stock,0,43146.02,0,43146.02,43146.02
+Net Asset Value,Data,Total,0,43146.02,0,43146.02,43146.02
+Change in NAV,Header,Field Name,Field Value
+Change in NAV,Data,Starting Value,0
+Change in NAV,Data,Ending Value,43146.02
+Mark-to-Market Performance Summary,Header,Asset Category,Symbol,Prior Quantity,Current Quantity,Prior Price,Current Price,Mark-to-Market P/L Position,Mark-to-Market P/L Transaction,Mark-to-Market P/L Commissions,Mark-to-Market P/L Other,Mark-to-Market P/L Total,Code
+Mark-to-Market Performance Summary,Data,Stocks,GOOG,0,179.0,--,241.03921787709496,0,0,0,0,0,
+Transfers,Header,Asset Category,Currency,Symbol,Date,Type,Direction,Xfer Company,Xfer Account,Qty,Xfer Price,Market Value,Realized P/L,Cash Amount,Code
+Transfers,Data,Stocks,USD,GOOG,2025-12-03,Internal,In,--,U16931511,179,--,"56,696.46",0,0
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,C. Price,Proceeds,Comm/Fee,Basis,Realized P/L,MTM P/L,Code
+Corporate Actions,Header,Asset Category,Currency,Report Date,Date/Time,Description,Quantity,Proceeds,Value,Realized P/L,Code
+Dividends,Header,Currency,Date,Description,Amount
+Dividends,Data,USD,2025-12-15,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share (Ordinary Dividend),37.59
+Withholding Tax,Header,Currency,Date,Description,Amount,Code
+Withholding Tax,Data,USD,2025-12-15,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share - US Tax,-11.28,
+Withholding Tax,Data,USD,2025-12-15,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share - US Tax,11.28,
+Withholding Tax,Data,USD,2025-12-15,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share - US Tax,-9.4,
+Deposits & Withdrawals,Header,Currency,Settle Date,Description,Amount
+Interest,Header,Currency,Date,Description,Amount
+Financial Instrument Information,Header,Asset Category,Symbol,Description,Conid,Security ID,Underlying,Listing Exch,Multiplier,Type,Code
+Financial Instrument Information,Data,Stocks,GOOG,ALPHABET INC-CL C,208813720,US02079K1079,GOOG,NASDAQ,1,COMMON

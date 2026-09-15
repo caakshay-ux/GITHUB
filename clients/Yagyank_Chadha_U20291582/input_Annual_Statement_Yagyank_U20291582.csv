@@ -1,0 +1,46 @@
+Statement,Header,Field Name,Field Value
+Statement,Data,Title,Activity Statement
+Statement,Data,Period,"January 1, 2025 - December 31, 2025"
+Statement,Data,WhenGenerated,Synthesized for Schedule FA from FY Activity Statement; YE marks from PortfolioAnalyst CY2025
+Account Information,Header,Field Name,Field Value
+Account Information,Data,Name,Yagyank Chadha
+Account Information,Data,Account,U20291582
+Account Information,Data,Investment Advisor,MATCAP WEALTH ADVISORS PRIVATE LIMITED
+Account Information,Data,Account Type,Advisor Client
+Account Information,Data,Customer Type,Individual
+Account Information,Data,Account Capabilities,Cash
+Account Information,Data,Base Currency,USD
+Open Positions,Header,DataDiscriminator,Asset Category,Currency,Symbol,Quantity,Mult,Cost Price,Cost Basis,Close Price,Value,Unrealized P/L,Code
+Open Positions,Data,Summary,Stocks,USD,GOOG,105.0,1,278.918666667,29286.46,313.8,32949.0,3662.54,
+Open Positions,Data,Summary,Mutual Funds,EUR,LU0099574567,511.42,1,66.939990614,34234.45,80.78,41312.5076,7078.0576,
+Open Positions,Data,Summary,Mutual Funds,USD,LU0106831901,792.45,1,49.029995583,38853.82,77.41,61343.5545,22489.7345,
+Open Positions,Data,Summary,Stocks,USD,SHOP,84.0,1,75.22,6318.48,160.97,13521.48,7203.0,
+Net Asset Value,Header,Asset Class,Prior Total,Current Long,Current Short,Current Total,Change
+Net Asset Value,Data,Cash ,0,16.54,0,16.54,16.54
+Net Asset Value,Data,Stock,0,156339.71,0,156339.71,156339.71
+Net Asset Value,Data,Total,0,156356.25,0,156356.25,156356.25
+Change in NAV,Header,Field Name,Field Value
+Change in NAV,Data,Starting Value,0
+Change in NAV,Data,Ending Value,156356.25
+Mark-to-Market Performance Summary,Header,Asset Category,Symbol,Prior Quantity,Current Quantity,Prior Price,Current Price,Mark-to-Market P/L Position,Mark-to-Market P/L Transaction,Mark-to-Market P/L Commissions,Mark-to-Market P/L Other,Mark-to-Market P/L Total,Code
+Mark-to-Market Performance Summary,Data,Stocks,GOOG,0,105.0,--,313.8,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,LU0099574567,0,511.42,--,80.78,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,LU0106831901,0,792.45,--,77.41,0,0,0,0,0,
+Mark-to-Market Performance Summary,Data,Stocks,SHOP,0,84.0,--,160.97,0,0,0,0,0,
+Transfers,Header,Asset Category,Currency,Symbol,Date,Type,Direction,Xfer Company,Xfer Account,Qty,Xfer Price,Market Value,Realized P/L,Cash Amount,Code
+Transfers,Data,Stocks,USD,GOOG,2025-12-01,FOP,In,--,FOP,105,--,"33,612.60",0.00,0.00
+Transfers,Data,Stocks,USD,SHOP,2025-05-23,Internal,In,--,U15172057,84,--,"8,761.20",0.00,0.00
+Transfers,Data,Mutual Funds,EUR,009957456,2025-05-23,Internal,In,--,U15172057,511.42,--,"35,973.28",0.00,0.00
+Transfers,Data,Mutual Funds,USD,010683190,2025-05-23,Internal,In,--,U15172057,792.45,--,"45,510.40",0.00,0.00
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,C. Price,Proceeds,Comm/Fee,Basis,Realized P/L,MTM P/L,Code
+Dividends,Header,Currency,Date,Description,Amount
+Dividends,Data,USD,2025-12-15,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share (Ordinary Dividend),22.05
+Withholding Tax,Header,Currency,Date,Description,Amount,Code
+Withholding Tax,Data,USD,2025-12-15,GOOG(US02079K1079) Cash Dividend USD 0.21 per Share - US Tax,-5.51,
+Deposits & Withdrawals,Header,Currency,Settle Date,Description,Amount
+Interest,Header,Currency,Date,Description,Amount
+Financial Instrument Information,Header,Asset Category,Symbol,Description,Conid,Security ID,Underlying,Listing Exch,Multiplier,Type,Code
+Financial Instrument Information,Data,Stocks,GOOG,ALPHABET INC-CL C,208813720,US02079K1079,GOOG,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,SHOP,SHOPIFY INC - CLASS A,195014116,CA82509L1076,SHOP,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Mutual Funds,"LU0099574567, 009957456","FIDELITY INV INTL (LU) FIDELITY GLOBAL TECHNOLOGY ""A"" INC",717082393,LU0099574567,LU0099574567,,1
+Financial Instrument Information,Data,Mutual Funds,"010683190, LU0106831901","BLACKROCK LUX (LU) BGF WORLD FINANCIALS ""A2"" ACC",404131928,LU0106831901,LU0106831901,,1

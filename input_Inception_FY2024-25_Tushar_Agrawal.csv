@@ -1,0 +1,54 @@
+Statement,Data,Title,Activity Statement
+Statement,Data,Period,"April 1, 2024 - March 31, 2025 (stub — opening lots seeded; no pre-FY Activity Statement furnished)"
+Statement,Data,WhenGenerated,"2026-08-17, 02:00:33 EDT"
+Account Information,Header,Field Name,Field Value
+Account Information,Data,Name,Tushar Agrawal
+Account Information,Data,Account,U16595399
+Account Information,Data,Investment Advisor,MATCAP WEALTH ADVISORS PRIVATE LIMITED
+Account Information,Data,Account Type,Advisor Client
+Account Information,Data,Customer Type,Individual
+Account Information,Data,Account Capabilities,Cash
+Account Information,Data,Base Currency,USD
+Financial Instrument Information,Header,Asset Category,Symbol,Description,Conid,Security ID,Underlying,Listing Exch,Multiplier,Type,Code
+Financial Instrument Information,Data,Stocks,1810,XIAOMI CORP-CLASS B,323608988,KYG9830T1067,1810,SEHK,1,COMMON,
+Financial Instrument Information,Data,Stocks,1919,COSCO SHIPPING HOLDINGS CO-H,46636761,CNE1000002J7,1919,SEHK,1,COMMON,
+Financial Instrument Information,Data,Stocks,4568.T,DAIICHI SANKYO CO LTD,35928149,JP3475350009,4568,TSEJ,1,COMMON,
+Financial Instrument Information,Data,Stocks,AAPL,APPLE INC,265598,US0378331005,AAPL,NASDAQ,1,COMMON,
+Financial Instrument Information,Data,Stocks,AAXJ,ISHARES MSCI ALL COUNTRY ASI,53224215,US4642881829,AAXJ,NASDAQ,1,ETF,
+Financial Instrument Information,Data,Stocks,ACN,ACCENTURE PLC-CL A,67889930,IE00B4BNMY34,ACN,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,AMD,ADVANCED MICRO DEVICES,4391,US0079031078,AMD,NASDAQ,1,COMMON,
+Financial Instrument Information,Data,Stocks,AMZN,AMAZON.COM INC,3691937,US0231351067,AMZN,NASDAQ,1,COMMON,
+Financial Instrument Information,Data,Stocks,ASML,ASML HOLDING NV,117589399,NL0010273215,ASML,AEB,1,COMMON,
+Financial Instrument Information,Data,Stocks,ASML,ASML HOLDING NV-NY REG SHS,117902840,USN070592100,ASML,NASDAQ,1,NY REG SHRS,
+Financial Instrument Information,Data,Stocks,BLBD,BLUE BIRD CORP,185200225,US0953061068,BLBD,NASDAQ,1,COMMON,
+Financial Instrument Information,Data,Stocks,BOTZ,GLOBAL X ROBOTICS & ARTIFICI,247691382,US37954Y7159,BOTZ,NASDAQ,1,ETF,
+Financial Instrument Information,Data,Stocks,BX,BLACKSTONE INC,372834689,US09260D1072,BX,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,CAT,CATERPILLAR INC,5437,US1491231015,CAT,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,COPX,GLOBAL X COPPER MINERS ETF,211651700,US37954Y8306,COPX,ARCA,1,ETF,
+Financial Instrument Information,Data,Stocks,CPNG,COUPANG INC,475686899,US22266T1097,CPNG,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,GD,GENERAL DYNAMICS CORP,7496,US3695501086,GD,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,GE,GENERAL ELECTRIC,498843743,US3696043013,GE,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,GLD,SPDR GOLD SHARES,51529211,US78463V1070,GLD,ARCA,1,ETF,
+Financial Instrument Information,Data,Stocks,GOOG,ALPHABET INC-CL C,208813720,US02079K1079,GOOG,NASDAQ,1,COMMON,
+Financial Instrument Information,Data,Stocks,ICLN,ISHARES GLOBAL CLEAN ENERGY,52170893,US4642882249,ICLN,NASDAQ,1,ETF,
+Financial Instrument Information,Data,Stocks,IEF,ISHARES 7-10 YEAR TREASURY B,15547844,US4642874402,IEF,NASDAQ,1,ETF,
+Financial Instrument Information,Data,Stocks,IWR,ISHARES RUSSELL MID-CAP ETF,13002600,US4642874998,IWR,ARCA,1,ETF,
+Financial Instrument Information,Data,Stocks,LLY,ELI LILLY & CO,9160,US5324571083,LLY,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,META,META PLATFORMS INC-CLASS A,107113386,US30303M1027,META,NASDAQ,1,COMMON,
+Financial Instrument Information,Data,Stocks,NBIS,NEBIUS GROUP NV,88819736,NL0009805522,NBIS,NASDAQ,1,COMMON,
+Financial Instrument Information,Data,Stocks,NFLX,NETFLIX INC,15124833,US64110L1061,NFLX,NASDAQ,1,COMMON,
+Financial Instrument Information,Data,Stocks,NOVd,NOVO NORDISK A/S-B,652806388,DK0062498333,NOV,IBIS,1,COMMON,
+Financial Instrument Information,Data,Stocks,QQQ,INVESCO QQQ TRUST SERIES 1,320227571,US46090E1038,QQQ,NASDAQ,1,ETF,
+Financial Instrument Information,Data,Stocks,R6C0d,SHELL PLC,541411967,GB00BP6MXD84,SHELL,AEB,1,COMMON,
+Financial Instrument Information,Data,Stocks,SHELL.DVD,SHELL PLC - DIVIDEND RIGHTS,784210270,NL0015002HW4,SHELL.DVD,CORPACT,1,RIGHT,
+Financial Instrument Information,Data,Stocks,SLV,ISHARES SILVER TRUST,39039301,US46428Q1094,SLV,ARCA,1,ETF,
+Financial Instrument Information,Data,Stocks,TGT,TARGET CORP,6437,US87612E1064,TGT,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,TIP,ISHARES TIPS BOND ETF,26787475,US4642871762,TIP,ARCA,1,ETF,
+Financial Instrument Information,Data,Stocks,TSLA,TESLA INC,76792991,US88160R1014,TSLA,NASDAQ,1,COMMON,
+Financial Instrument Information,Data,Stocks,TSM,TAIWAN SEMICONDUCTOR-SP ADR,6223250,US8740391003,TSM,NYSE,1,ADR,
+Financial Instrument Information,Data,Stocks,URA,GLOBAL X URANIUM ETF,211651685,US37954Y8710,URA,ARCA,1,ETF,
+Financial Instrument Information,Data,Stocks,VT,VANGUARD TOT WORLD STK ETF,52197301,US9220427424,VT,ARCA,1,ETF,
+Financial Instrument Information,Data,Stocks,VTV,VANGUARD VALUE ETF,27638093,US9229087443,VTV,ARCA,1,ETF,
+Financial Instrument Information,Data,Stocks,WCBR,WISDOMTREE CYBERSECURITY FND,468091276,US97717Y6591,WCBR,NASDAQ,1,ETF,
+Financial Instrument Information,Data,Stocks,WFC,WELLS FARGO & CO,10375,US9497461015,WFC,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,XOM,EXXON MOBIL CORP,13977,US30231G1022,XOM,NYSE,1,COMMON,
