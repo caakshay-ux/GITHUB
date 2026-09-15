@@ -61,8 +61,8 @@ Mark-to-Market Performance Summary,Data,Stocks,TIP,0,8.0,--,111.09,0,0,0,0,0,
 Mark-to-Market Performance Summary,Data,Stocks,TSM,0,8.0,--,166.0,0,0,0,0,0,
 Mark-to-Market Performance Summary,Data,Stocks,XOM,0,17.0,--,118.93,0,0,0,0,0,
 Transfers,Header,Asset Category,Currency,Symbol,Date,Type,Direction,Xfer Company,Xfer Account,Qty,Xfer Price,Market Value,Realized P/L,Cash Amount,Code
-Transfers,Data,Stocks,USD,ADBE,2024-12-11,FOP,In,--,FOP,27,--,"14,770.35",0.00,0.00,
-Transfers,Data,Stocks,USD,ADBE,2024-12-19,FOP,In,--,FOP,62,--,"27,361.22",0.00,0.00,
+Transfers,Data,Stocks,USD,ADBE,2024-12-11,FOP,In,--,FOP,27,--,"14,770.35",0.00,0.00
+Transfers,Data,Stocks,USD,ADBE,2024-12-19,FOP,In,--,FOP,62,--,"27,361.22",0.00,0.00
 Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,C. Price,Proceeds,Comm/Fee,Basis,Realized P/L,MTM P/L,Code
 Trades,Data,Order,Stocks,EUR,R6C0d,"2025-01-29, 09:08:55",25.16,31.04,31.135,-780.9664,-3,783.9664,0,2.3902,FPA;IM;O;P
 Trades,Data,Order,Stocks,EUR,SHELL.DRS,"2025-02-12, 20:25:00",-0.16,0,0,0,0,0,0,0,C;LF
@@ -111,15 +111,15 @@ Trades,Data,Order,Stocks,USD,TGT,"2025-04-07, 10:41:34",10,92.94,94.38,-929.4,-1
 Trades,Data,Order,Stocks,USD,TSM,"2025-04-07, 10:42:09",6,140.84,146.17,-845.04,-1.00021,846.04021,0,31.98,O
 Trades,Data,Order,Stocks,USD,XOM,"2025-04-07, 10:42:51",10,101.145,102.94,-1011.45,-1.00046,1012.45046,0,17.95,O
 Corporate Actions,Header,Asset Category,Currency,Report Date,Date/Time,Description,Quantity,Proceeds,Value,Realized P/L,Code
-Corporate Actions,Data,Stocks,EUR,2025-02-13,"2025-02-12, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002E16)",25.16,0,0,0,
-Corporate Actions,Data,Stocks,EUR,2025-03-25,"2025-03-24, 20:20:00","SHELL.DRS(NL0015002E16) Expire Dividend Right (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002E16)",-25,0,0,0,
-Corporate Actions,Data,Stocks,EUR,2025-05-15,"2025-05-14, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL.DVD, SHELL PLC - DIVIDEND RIGHTS, NL0015002HW4)",50.16,0,0,0,
-Corporate Actions,Data,Stocks,EUR,2025-06-23,"2025-06-23, 20:20:00","SHELL.DVD(NL0015002HW4) Expire Dividend Right (SHELL.DVD, SHELL PLC - DIVIDEND RIGHTS, NL0015002HW4)",-50,0,0,0,
-Corporate Actions,Data,Stocks,EUR,2025-08-14,"2025-08-13, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002L33)",50.16,0,0,0,
-Corporate Actions,Data,Stocks,EUR,2025-09-23,"2025-09-22, 20:20:00","SHELL.DRS(NL0015002L33) Expire Dividend Right (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002L33)",-50,0,0,0,
-Corporate Actions,Data,Stocks,EUR,2025-11-13,"2025-11-12, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL1.DI, SHELL PLC - DIVIDEND RIGHTS, NL0015002SG4)",50.16,0,0,0,
-Corporate Actions,Data,Stocks,EUR,2025-12-19,"2025-12-18, 20:20:00","SHELL1.DI(NL0015002SG4) Expire Dividend Right (SHELL1.DI, SHELL PLC - DIVIDEND RIGHTS, NL0015002SG4)",-50,0,0,0,
-Corporate Actions,Data,Stocks,USD,2025-11-17,"2025-11-14, 20:25:00","NFLX(US64110L1061) Split 10 for 1 (NFLX, NETFLIX INC, US64110L1061)",25.29,0,0,0,
+Corporate Actions,Data,Stocks,EUR,2025-02-13,"2025-02-12, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002E16)",25.16,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-03-25,"2025-03-24, 20:20:00","SHELL.DRS(NL0015002E16) Expire Dividend Right (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002E16)",-25,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-05-15,"2025-05-14, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL.DVD, SHELL PLC - DIVIDEND RIGHTS, NL0015002HW4)",50.16,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-06-23,"2025-06-23, 20:20:00","SHELL.DVD(NL0015002HW4) Expire Dividend Right (SHELL.DVD, SHELL PLC - DIVIDEND RIGHTS, NL0015002HW4)",-50,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-08-14,"2025-08-13, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002L33)",50.16,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-09-23,"2025-09-22, 20:20:00","SHELL.DRS(NL0015002L33) Expire Dividend Right (SHELL.DRS, SHELL PLC - DIVIDEND RIGHTS, NL0015002L33)",-50,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-11-13,"2025-11-12, 20:25:00","SHELL(GB00BP6MXD84) Dividend Rights Issue  1 for 1 (SHELL1.DI, SHELL PLC - DIVIDEND RIGHTS, NL0015002SG4)",50.16,0,0,0
+Corporate Actions,Data,Stocks,EUR,2025-12-19,"2025-12-18, 20:20:00","SHELL1.DI(NL0015002SG4) Expire Dividend Right (SHELL1.DI, SHELL PLC - DIVIDEND RIGHTS, NL0015002SG4)",-50,0,0,0
+Corporate Actions,Data,Stocks,USD,2025-11-17,"2025-11-14, 20:25:00","NFLX(US64110L1061) Split 10 for 1 (NFLX, NETFLIX INC, US64110L1061)",25.29,0,0,0
 Dividends,Header,Currency,Date,Description,Amount
 Dividends,Data,USD,2025-02-18,BX(US09260D1072) Cash Dividend USD 1.44 per Share (Ordinary Dividend),9.22
 Dividends,Data,USD,2025-03-03,TGT(US87612E1064) Cash Dividend USD 1.12 per Share (Ordinary Dividend),6.19
@@ -263,33 +263,33 @@ Deposits & Withdrawals,Header,Currency,Settle Date,Description,Amount
 Deposits & Withdrawals,Data,USD,2025-07-21,Internal Transfer In From Account U17334752,95
 Interest,Header,Currency,Date,Description,Amount
 Financial Instrument Information,Header,Asset Category,Symbol,Description,Conid,Security ID,Underlying,Listing Exch,Multiplier,Type,Code
-Financial Instrument Information,Data,Stocks,ACN,ACCENTURE PLC-CL A,67889930,IE00B4BNMY34,ACN,NYSE,1,COMMON,
-Financial Instrument Information,Data,Stocks,ADBE,ADOBE INC,265768,US00724F1012,ADBE,NASDAQ,1,COMMON,
-Financial Instrument Information,Data,Stocks,AMZN,AMAZON.COM INC,3691937,US0231351067,AMZN,NASDAQ,1,COMMON,
-Financial Instrument Information,Data,Stocks,BAC,BANK OF AMERICA CORP,10098,US0605051046,BAC,NYSE,1,COMMON,
-Financial Instrument Information,Data,Stocks,BLBD,BLUE BIRD CORP,185200225,US0953061068,BLBD,NASDAQ,1,COMMON,
-Financial Instrument Information,Data,Stocks,BX,BLACKSTONE INC,372834689,US09260D1072,BX,NYSE,1,COMMON,
-Financial Instrument Information,Data,Stocks,CAT,CATERPILLAR INC,5437,US1491231015,CAT,NYSE,1,COMMON,
-Financial Instrument Information,Data,Stocks,GD,GENERAL DYNAMICS CORP,7496,US3695501086,GD,NYSE,1,COMMON,
-Financial Instrument Information,Data,Stocks,GE,GENERAL ELECTRIC,498843743,US3696043013,GE,NYSE,1,COMMON,
-Financial Instrument Information,Data,Stocks,LLY,ELI LILLY & CO,9160,US5324571083,LLY,NYSE,1,COMMON,
-Financial Instrument Information,Data,Stocks,NFLX,NETFLIX INC,15124833,US64110L1061,NFLX,NASDAQ,1,COMMON,
-Financial Instrument Information,Data,Stocks,R6C0d,SHELL PLC,541411967,GB00BP6MXD84,SHELL,AEB,1,COMMON,
-Financial Instrument Information,Data,Stocks,RTX,RTX CORP,415342104,US75513E1010,RTX,NYSE,1,COMMON,
-Financial Instrument Information,Data,Stocks,SHELL.DRS,SHELL PLC - DIVIDEND RIGHTS,760961438,NL0015002E16,SHELL.DRS,CORPACT,1,RIGHT,
-Financial Instrument Information,Data,Stocks,SLV,ISHARES SILVER TRUST,39039301,US46428Q1094,SLV,ARCA,1,ETF,
-Financial Instrument Information,Data,Stocks,TGT,TARGET CORP,6437,US87612E1064,TGT,NYSE,1,COMMON,
-Financial Instrument Information,Data,Stocks,TIP,ISHARES TIPS BOND ETF,26787475,US4642871762,TIP,ARCA,1,ETF,
-Financial Instrument Information,Data,Stocks,TSM,TAIWAN SEMICONDUCTOR-SP ADR,6223250,US8740391003,TSM,NYSE,1,ADR,
-Financial Instrument Information,Data,Stocks,XOM,EXXON MOBIL CORP,13977,US30231G1022,XOM,NYSE,1,COMMON,
-Financial Instrument Information,Data,Stocks,1810,XIAOMI CORP-CLASS B,323608988,KYG9830T1067,1810,SEHK,1,COMMON,
-Financial Instrument Information,Data,Stocks,3069,CHINAAMC HS BIOTECH,476977359,HK0000711199,3069,SEHK,1,ETF,
-Financial Instrument Information,Data,Stocks,3110,GLOBAL X HS HIGH DIV YIE,129227990,HK0000151933,3110,SEHK,1,ETF,
-Financial Instrument Information,Data,Stocks,3416,GLOBAL X HSCEI COVERED C,687069442,HK0000978954,3416,SEHK,1,ETF,
-Financial Instrument Information,Data,Stocks,BNO,UNITED STATES BRENT OIL FUND,75961365,US91167Q1004,BNO,ARCA,1,ETF,
-Financial Instrument Information,Data,Stocks,CSCO,CISCO SYSTEMS INC,268084,US17275R1023,CSCO,NASDAQ,1,COMMON,
-Financial Instrument Information,Data,Stocks,ORCL,ORACLE CORP,272800,US68389X1054,ORCL,NYSE,1,COMMON,
-Financial Instrument Information,Data,Stocks,"SHELL, R6C0d",SHELL PLC,541411967,GB00BP6MXD84,SHELL,AEB,1,COMMON,
-Financial Instrument Information,Data,Stocks,SHELL.DDR,SHELL PLC - DIVIDEND RIGHTS,855707034,NL0015073VB0,SHELL.DDR,CORPACT,1,RIGHT,
-Financial Instrument Information,Data,Stocks,SHELL.DVD,SHELL PLC - DIVIDEND RIGHTS,784210270,NL0015002HW4,SHELL.DVD,CORPACT,1,RIGHT,
-Financial Instrument Information,Data,Stocks,SHELL1.DI,SHELL PLC - DIVIDEND RIGHTS,830625049,NL0015002SG4,SHELL1.DI,CORPACT,1,RIGHT,
+Financial Instrument Information,Data,Stocks,ACN,ACCENTURE PLC-CL A,67889930,IE00B4BNMY34,ACN,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,ADBE,ADOBE INC,265768,US00724F1012,ADBE,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,AMZN,AMAZON.COM INC,3691937,US0231351067,AMZN,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,BAC,BANK OF AMERICA CORP,10098,US0605051046,BAC,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,BLBD,BLUE BIRD CORP,185200225,US0953061068,BLBD,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,BX,BLACKSTONE INC,372834689,US09260D1072,BX,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,CAT,CATERPILLAR INC,5437,US1491231015,CAT,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,GD,GENERAL DYNAMICS CORP,7496,US3695501086,GD,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,GE,GENERAL ELECTRIC,498843743,US3696043013,GE,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,LLY,ELI LILLY & CO,9160,US5324571083,LLY,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,NFLX,NETFLIX INC,15124833,US64110L1061,NFLX,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,R6C0d,SHELL PLC,541411967,GB00BP6MXD84,SHELL,AEB,1,COMMON
+Financial Instrument Information,Data,Stocks,RTX,RTX CORP,415342104,US75513E1010,RTX,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,SHELL.DRS,SHELL PLC - DIVIDEND RIGHTS,760961438,NL0015002E16,SHELL.DRS,CORPACT,1,RIGHT
+Financial Instrument Information,Data,Stocks,SLV,ISHARES SILVER TRUST,39039301,US46428Q1094,SLV,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,TGT,TARGET CORP,6437,US87612E1064,TGT,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,TIP,ISHARES TIPS BOND ETF,26787475,US4642871762,TIP,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,TSM,TAIWAN SEMICONDUCTOR-SP ADR,6223250,US8740391003,TSM,NYSE,1,ADR
+Financial Instrument Information,Data,Stocks,XOM,EXXON MOBIL CORP,13977,US30231G1022,XOM,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,1810,XIAOMI CORP-CLASS B,323608988,KYG9830T1067,1810,SEHK,1,COMMON
+Financial Instrument Information,Data,Stocks,3069,CHINAAMC HS BIOTECH,476977359,HK0000711199,3069,SEHK,1,ETF
+Financial Instrument Information,Data,Stocks,3110,GLOBAL X HS HIGH DIV YIE,129227990,HK0000151933,3110,SEHK,1,ETF
+Financial Instrument Information,Data,Stocks,3416,GLOBAL X HSCEI COVERED C,687069442,HK0000978954,3416,SEHK,1,ETF
+Financial Instrument Information,Data,Stocks,BNO,UNITED STATES BRENT OIL FUND,75961365,US91167Q1004,BNO,ARCA,1,ETF
+Financial Instrument Information,Data,Stocks,CSCO,CISCO SYSTEMS INC,268084,US17275R1023,CSCO,NASDAQ,1,COMMON
+Financial Instrument Information,Data,Stocks,ORCL,ORACLE CORP,272800,US68389X1054,ORCL,NYSE,1,COMMON
+Financial Instrument Information,Data,Stocks,"SHELL, R6C0d",SHELL PLC,541411967,GB00BP6MXD84,SHELL,AEB,1,COMMON
+Financial Instrument Information,Data,Stocks,SHELL.DDR,SHELL PLC - DIVIDEND RIGHTS,855707034,NL0015073VB0,SHELL.DDR,CORPACT,1,RIGHT
+Financial Instrument Information,Data,Stocks,SHELL.DVD,SHELL PLC - DIVIDEND RIGHTS,784210270,NL0015002HW4,SHELL.DVD,CORPACT,1,RIGHT
+Financial Instrument Information,Data,Stocks,SHELL1.DI,SHELL PLC - DIVIDEND RIGHTS,830625049,NL0015002SG4,SHELL1.DI,CORPACT,1,RIGHT
