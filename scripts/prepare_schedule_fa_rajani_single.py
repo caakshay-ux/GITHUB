@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """
-Schedule FA / CG / Dividends for Vinodkrishna Poyyale — IBKR U15388294.
+Schedule FA / CG / Dividends for Rajani J Vallath — IBKR U16003525 (Individual).
 
-Inputs: FY Activity Statements only (10-Sep-2024–31-Mar-2025; 01-Apr-2025–31-Mar-2026).
-CY2025 Annual is synthesized. YE2025 marks proxied from 31-Mar-2025 closes where still held.
-A3 Col C = Symbol only (same as Ray Stephanos latest).
+Inputs:
+  - FY2025-26 Activity Statement (18-Nov-2025–31-Mar-2026)
+  - FY2026-27 YTD Activity Statement (01-Apr-2026–14-Sep-2026)
+CY2025 Annual synthesized. YE AVGO mark from ACATS 18-Dec-2025.
+Internal transfers with Joint U21864112 excluded from taxable CG (code I).
+A3 Col C = Symbol only.
 """
 
 from __future__ import annotations
@@ -17,6 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
+from fy2026_27_append import append_fy2026_27  # noqa: E402
 from prepare_schedule_fa_ray import (  # noqa: E402
     build_lots_as_of,
     extract_dividends,
@@ -26,7 +30,6 @@ from prepare_schedule_fa_ray import (  # noqa: E402
     extract_stock_splits,
     extract_transfers,
     extract_withholding,
-    fin_info,
     merge_orders,
     merge_splits,
     normalize_symbol,
@@ -38,8 +41,10 @@ from prepare_schedule_fa_ray import (  # noqa: E402
 
 INCEPTION = ROOT / "input_Inception_FY2025-26_Rajani_Single.csv"
 FISCAL = ROOT / "input_Fiscal_Statement_Rajani_Single.csv"
+FISCAL_FY2627 = ROOT / "input_Fiscal_Statement_FY2026-27_Rajani_Single.csv"
 ANNUAL = ROOT / "input_Annual_Statement_Rajani_Single.csv"
 OUT = ROOT / "output" / "Foreign_Assets_Schedule_FA_Rajani_J_Vallath_U16003525_AY2026-27.xlsx"
+FY2627_END = date(2026, 9, 14)
 
 
 def _in_cy2025(d: date) -> bool:
@@ -305,14 +310,20 @@ NOTES = [
     ),
     (
         "Related Joint account",
-        "Internal Out of AVGO × 180 to U21864112 (Rajani & Sanjeev Joint) on 30-Jan-2026 — "
-        "excluded from taxable CG (same beneficial owner / related transfer). See Joint workbook.",
+        "Internal transfers of AVGO/BNO with U21864112 (Rajani & Sanjeev Joint) — "
+        "excluded from taxable CG (same beneficial owner / related transfer, code I). See Joint workbook.",
     ),
     (
-        "Capital gains",
+        "Capital gains FY2025-26",
         "Taxable: sold AVGO × 7 on 20-Mar-2026 (proceeds USD 2,229.08, basis USD 439.40; IBKR realized ~USD 1,788.67 as L/T). "
         "FIFO acquisition date in workbook = ACATS In 18-Dec-2025 — IBKR tagged L/T, so original buy date at source "
         "account 27960235 likely predates ACATS. Confirm original AVGO acquisition date and edit yellow Acquisition Date on CG before filing.",
+    ),
+    (
+        "Capital gains FY2026-27 YTD",
+        "Partial (to 14-Sep-2026): taxable AVGO × 55 on 10-Apr-2026 (proceeds USD 20,406.10, basis USD 3,452.46; "
+        "IBKR realized ~USD 16,952 as L/T). Acquisition date in workbook = Internal In 02-Apr-2026 from Joint — "
+        "confirm original buy date for LTCG. Internal Outs to Joint excluded (code I).",
     ),
     (
         "Annual CY2025 / YE marks",
@@ -320,7 +331,11 @@ NOTES = [
         "(USD 326.02 on 18-Dec-2025). Prefer IBKR Annual / PortfolioAnalyst for filing-quality YE & peak.",
     ),
     ("Holdings at 31-Mar-2026", "AVGO × 63 (cost USD 3,954.64); BNO × 39 (cost USD 2,030.09)"),
-    ("Dividends", "CY2025: AVGO USD 162.50 (31-Dec-2025). FY2025-26: USD 203.45 total (incl. 40.95 on 31-Mar-2026)."),
+    (
+        "Dividends",
+        "CY2025: AVGO USD 162.50 (31-Dec-2025). FY2025-26: USD 203.45 total (incl. 40.95 on 31-Mar-2026). "
+        "FY2026-27 YTD: SCHD/AVGO/VOO dividends (see Schedule OS - FY2026-27).",
+    ),
 ]
 
 
@@ -335,6 +350,20 @@ def run():
         assessee_label="Rajani J Vallath (U16003525)",
         notes_extra=NOTES,
     )
+    append_fy2026_27(
+        OUT,
+        statement_paths=[INCEPTION, FISCAL],
+        fy_statement=FISCAL_FY2627,
+        end=FY2627_END,
+        extra_notes=[
+            (
+                "AVGO LTCG clock",
+                "IBKR tagged Apr-2026 AVGO sale as L/T — confirm original acquisition date at 27960235 / prior lots; "
+                "workbook uses Internal In date 02-Apr-2026 → STCG under 730-day test.",
+            ),
+        ],
+    )
+    print(f"Wrote {OUT}")
 
 
 if __name__ == "__main__":

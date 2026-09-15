@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """
-Schedule FA / CG / Dividends for Vinodkrishna Poyyale — IBKR U15388294.
+Schedule FA / CG / Dividends for Rajani J Vallath & Sanjeev K Nair — IBKR U21864112 (Joint).
 
-Inputs: FY Activity Statements only (10-Sep-2024–31-Mar-2025; 01-Apr-2025–31-Mar-2026).
-CY2025 Annual is synthesized. YE2025 marks proxied from 31-Mar-2025 closes where still held.
-A3 Col C = Symbol only (same as Ray Stephanos latest).
+Inputs:
+  - FY2025-26 Activity Statement (30-Jan-2026–31-Mar-2026)
+  - FY2026-27 YTD Activity Statement (01-Apr-2026–14-Sep-2026)
+CY2025 Annual synthesized empty (account opened 30-Jan-2026).
+Internal transfers with Single U16003525 excluded from taxable CG (code I).
+A3 Col C = Symbol only.
 """
 
 from __future__ import annotations
@@ -17,6 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
+from fy2026_27_append import append_fy2026_27  # noqa: E402
 from prepare_schedule_fa_ray import (  # noqa: E402
     build_lots_as_of,
     extract_dividends,
@@ -26,7 +30,6 @@ from prepare_schedule_fa_ray import (  # noqa: E402
     extract_stock_splits,
     extract_transfers,
     extract_withholding,
-    fin_info,
     merge_orders,
     merge_splits,
     normalize_symbol,
@@ -38,8 +41,10 @@ from prepare_schedule_fa_ray import (  # noqa: E402
 
 INCEPTION = ROOT / "input_Inception_FY2025-26_Rajani_Sanjeev_Joint.csv"
 FISCAL = ROOT / "input_Fiscal_Statement_Rajani_Sanjeev_Joint.csv"
+FISCAL_FY2627 = ROOT / "input_Fiscal_Statement_FY2026-27_Rajani_Sanjeev_Joint.csv"
 ANNUAL = ROOT / "input_Annual_Statement_Rajani_Sanjeev_Joint.csv"
 OUT = ROOT / "output" / "Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx"
+FY2627_END = date(2026, 9, 14)
 
 
 def _in_cy2025(d: date) -> bool:
@@ -303,15 +308,25 @@ NOTES = [
         "A2/A3 for CY2025 are N/A / empty. Prefer confirming no other foreign assets for CY2025.",
     ),
     (
-        "Capital gains",
+        "Capital gains FY2025-26",
         "Sold AVGO × 1 on 04-Mar-2026 (proceeds USD 314.05, basis USD 62.772, IBKR realized LTCG USD 250.28). "
         "FIFO acquisition date in workbook = Internal transfer date 30-Jan-2026 (short holding on face) — "
         "IBKR tagged the sale LTCG (code L), so original buy date at source account U16003525 predates the transfer. "
         "Confirm original AVGO acquisition date and edit yellow Acquisition Date on CG sheet before filing.",
     ),
-    ("Related account", "AVGO Internal In from U16003525 on 30-Jan-2026"),
+    (
+        "Capital gains FY2026-27 YTD",
+        "Partial (to 14-Sep-2026): taxable AVGO × 147 + BNO × 39 sales. "
+        "Acquisition dates follow Internal In from U16003525 (Jun/Jul 2026) — IBKR tagged AVGO as L/T; "
+        "confirm original buy dates for LTCG. Internal transfers with Single excluded (code I).",
+    ),
+    ("Related account", "AVGO/BNO Internal transfers with U16003525 throughout FY2026-27 YTD"),
     ("Holdings at 31-Mar-2026", "AVGO × 179 (cost basis USD 11,236.19)"),
     ("Dividends FY2025-26", "AVGO cash dividend 31-Mar-2026 USD 116.35; US WHT USD 29.09"),
+    (
+        "Dividends FY2026-27 YTD",
+        "Multi-currency (DKK/GBP/TWD/USD) — see Schedule OS - FY2026-27. IBKR Total Dividends in USD ≈ 53.18.",
+    ),
     ("Annual CY2025", "Synthesized empty (account not open in CY2025)"),
 ]
 
@@ -327,6 +342,24 @@ def run():
         assessee_label="Rajani J Vallath and Sanjeev K Nair (Joint)",
         notes_extra=NOTES,
     )
+    append_fy2026_27(
+        OUT,
+        statement_paths=[INCEPTION, FISCAL],
+        fy_statement=FISCAL_FY2627,
+        end=FY2627_END,
+        extra_notes=[
+            (
+                "AVGO LTCG clock",
+                "IBKR tagged FY2026-27 AVGO sales as L/T — confirm original acquisition dates; "
+                "workbook uses Internal In dates → STCG under 730-day test.",
+            ),
+            (
+                "Corporate actions",
+                "2890 spinoff/merge (Jul–Aug 2026) and APH 2-for-1 split (03-Sep-2026) — see Notes / FIFO.",
+            ),
+        ],
+    )
+    print(f"Wrote {OUT}")
 
 
 if __name__ == "__main__":

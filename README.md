@@ -135,9 +135,11 @@ python3 scripts/prepare_schedule_fa_waseem.py
 ### Source inputs — Rajani J Vallath (Single) U16003525
 
 - `input_Inception_FY2025-26_Rajani_Single.csv` / `input_Fiscal_Statement_Rajani_Single.csv` — 18-Nov-2025–31-Mar-2026
+- `input_Fiscal_Statement_FY2026-27_Rajani_Single.csv` — **real** IBKR FY 2026-27 YTD (01-Apr-2026–14-Sep-2026)
 - `input_Annual_Statement_Rajani_Single.csv` — **synthesized** CY 2025 (YE AVGO mark from ACATS 18-Dec-2025)
 - Also under `clients/Rajani_J_Vallath_U16003525/`
-- Output: `output/Foreign_Assets_Schedule_FA_Rajani_J_Vallath_U16003525_AY2026-27.xlsx`
+- Output: `output/Foreign_Assets_Schedule_FA_Rajani_J_Vallath_U16003525_AY2026-27.xlsx` (includes CG/OS for FY2026-27 YTD)
+- Runner: `python3 scripts/prepare_schedule_fa_rajani_single.py`
 
 ### Source inputs — Vineet Dev U18045590
 
@@ -211,9 +213,11 @@ python3 scripts/prepare_schedule_fa_waseem.py
 ### Source inputs — Rajani J Vallath & Sanjeev K Nair (Joint) U21864112
 
 - `input_Inception_FY2025-26_Rajani_Sanjeev_Joint.csv` / `input_Fiscal_Statement_Rajani_Sanjeev_Joint.csv` — 30-Jan-2026–31-Mar-2026 (opened via AVGO Internal In)
+- `input_Fiscal_Statement_FY2026-27_Rajani_Sanjeev_Joint.csv` — **real** IBKR FY 2026-27 YTD (01-Apr-2026–14-Sep-2026)
 - `input_Annual_Statement_Rajani_Sanjeev_Joint.csv` — **synthesized empty** CY 2025 (account not open in CY2025)
 - Also under `clients/Rajani_Sanjeev_Joint_U21864112/`
-- Output: `output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx`
+- Output: `output/Foreign_Assets_Schedule_FA_Rajani_Sanjeev_Joint_AY2026-27.xlsx` (includes CG/OS for FY2026-27 YTD)
+- Runner: `python3 scripts/prepare_schedule_fa_rajani_sanjeev_joint.py`
 
 ### Source inputs — Phanindra V Gottipati U15817316
 
@@ -253,8 +257,8 @@ python3 scripts/prepare_schedule_fa_waseem.py
 6. Gunjan Free: YE close proxied at cost; no trades / nil CG.
 7. Abhisek: opened mid-May 2025; nil CG (buys only); YE2025 marks at cost — prefer IBKR Annual for filing.
 8. Phanindra: nil CG (buys only); YE2025 marks proxied from 31-Mar-2025 (GLD at cost); prefer IBKR Annual for filing.
-9. Rajani/Sanjeev Joint: opened 30-Jan-2026 — FA CY2025 N/A; AVGO sale 04-Mar-2026 — confirm original buy date at U16003525 for LTCG (IBKR tagged L).
-10. Rajani Single U16003525: ACATS AVGO In 18-Dec-2025; Internal Out to Joint excluded from CG; YE mark from ACATS price; confirm original AVGO buy date at 27960235 for LTCG on Mar-2026 sale.
+9. Rajani/Sanjeev Joint: opened 30-Jan-2026 — FA CY2025 N/A; AVGO sale 04-Mar-2026 — confirm original buy date at U16003525 for LTCG (IBKR tagged L); FY2026-27 YTD (to 14-Sep-2026) STCG ≈ ₹46.76L (AVGO+BNO) / Div ≈ USD 53 / Interest ≈ USD 31.
+10. Rajani Single U16003525: ACATS AVGO In 18-Dec-2025; Internal transfers with Joint excluded from CG; YE mark from ACATS price; confirm original AVGO buy date at 27960235 for LTCG; FY2026-27 YTD STCG ≈ ₹15.79L (AVGO × 55) / Div ≈ USD 233.
 11. Arulselvam Individual U22748155 (SGD base): GOOG FOP × 447 then full sale 10-Nov-2025; cost = IBKR Basis USD 52,506.73; IBKR used Highest Cost (HC) — confirm original buy dates for LTCG (workbook uses FOP date → STCG). Peak NAV max(start,end) understates mid-year GOOG holding — use PortfolioAnalyst.
 12. Arulselvam Joint U22929455 (SGD base): nil stock CG; YE marks from real Annual; A2 NAV SGD→USD via YE USD.SGD 1.286.
 13. Yagyank Chadha U20291582: real FY Activity Statement; Internal In from U15172057; FOP GOOG; nil CG in FY2025-26; YE from PortfolioAnalyst; FY2026-27 YTD (to 10-Sep-2026) STCG ≈ ₹15.50L (GOOG+SHOP) / Div nil / Interest ≈ USD 127; confirm original buy dates for LTCG.
@@ -265,8 +269,8 @@ python3 scripts/prepare_schedule_fa_waseem.py
 6. Gunjan Free: YE close proxied at cost; no trades / nil CG.
 7. Abhisek: opened mid-May 2025; nil CG (buys only); YE2025 marks at cost — prefer IBKR Annual for filing.
 8. Phanindra: nil CG (buys only); YE2025 marks proxied from 31-Mar-2025 (GLD at cost); prefer IBKR Annual for filing.
-9. Rajani/Sanjeev Joint: opened 30-Jan-2026 — FA CY2025 N/A; AVGO sale 04-Mar-2026 — confirm original buy date at U16003525 for LTCG (IBKR tagged L).
-10. Rajani Single U16003525: ACATS AVGO In 18-Dec-2025; Internal Out to Joint excluded from CG; YE mark from ACATS price; confirm original AVGO buy date at 27960235 for LTCG on Mar-2026 sale.
+9. Rajani/Sanjeev Joint: opened 30-Jan-2026 — FA CY2025 N/A; AVGO sale 04-Mar-2026 — confirm original buy date at U16003525 for LTCG (IBKR tagged L); FY2026-27 YTD (to 14-Sep-2026) STCG ≈ ₹46.76L (AVGO+BNO) / Div ≈ USD 53 / Interest ≈ USD 31.
+10. Rajani Single U16003525: ACATS AVGO In 18-Dec-2025; Internal transfers with Joint excluded from CG; YE mark from ACATS price; confirm original AVGO buy date at 27960235 for LTCG; FY2026-27 YTD STCG ≈ ₹15.79L (AVGO × 55) / Div ≈ USD 233.
 11. Arulselvam Individual U22748155 (SGD base): GOOG FOP × 447 then full sale 10-Nov-2025; cost = IBKR Basis USD 52,506.73; IBKR used Highest Cost (HC) — confirm original buy dates for LTCG (workbook uses FOP date → STCG). Peak NAV max(start,end) understates mid-year GOOG holding — use PortfolioAnalyst.
 12. Arulselvam Joint U22929455 (SGD base): nil stock CG; YE marks from real Annual; A2 NAV SGD→USD via YE USD.SGD 1.286.
 13. Yagyank Chadha U20291582: real FY Activity Statement; Internal In from U15172057; FOP GOOG; nil CG in FY2025-26; YE from PortfolioAnalyst; FY2026-27 YTD (to 10-Sep-2026) STCG ≈ ₹15.50L (GOOG+SHOP) / Div nil / Interest ≈ USD 127; confirm original buy dates for LTCG.
