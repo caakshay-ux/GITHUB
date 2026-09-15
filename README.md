@@ -80,8 +80,11 @@ This repository contains workings to convert Interactive Brokers (IBKR) Activity
 
 - `input_Inception_FY2024-25_Kohli.csv` — FY 2024-25 (FOP transfer of MSFT)
 - `input_Fiscal_Statement_Kohli.csv` — FY 2025-26
+- `input_Fiscal_Statement_FY2026-27_Kohli.csv` — **real** IBKR FY 2026-27 YTD (01-Apr-2026–14-Sep-2026)
 - `input_Annual_Statement_Kohli.csv` — **synthesized** CY 2025 (no Annual furnished; YE MSFT close 481.48)
 - Also under `clients/Puneet_Kohli/`
+- Output: `output/Foreign_Assets_Schedule_FA_Puneet_Kohli_AY2026-27.xlsx` (includes CG/OS for FY2026-27 YTD)
+- Runner: `python3 scripts/prepare_schedule_fa_puneet_kohli.py`
 
 ### FIFO method
 
@@ -255,7 +258,7 @@ python3 scripts/prepare_schedule_fa_waseem.py
 1. SBI TT Buy rates are month-end card compilations — confirm exact card rates on sbi.co.in for filing.
 2. Peak NAV uses max(start, end) — use PortfolioAnalyst for true peak.
 3. Foreign listed shares (no Indian STT): holding period > 24 months → LTCG @ 12.5% (post 23-Jul-2024); else STCG at slab rates.
-4. Kohli U16755051: FY2026-27 YTD (to 14-Sep-2026) STCG ≈ ₹7.85L / Div ≈ USD 332; multi-currency EUR/HKD/USD. U17334752 MSFT via FOP 29-Jan-2025 — confirm original buy date for LTCG; prefer IBKR Annual CY2025 for YE closing.
+4. Kohli U16755051: FY2026-27 YTD (to 14-Sep-2026) STCG ≈ ₹7.85L / Div ≈ USD 332; multi-currency EUR/HKD/USD. U17334752 MSFT-only: FY2026-27 YTD nil CG / Div USD 140.14 (MSFT × 77 held); confirm original FOP buy date for LTCG; prefer IBKR Annual CY2025 for YE closing.
 5. Gunjan Paid: GOOG 216 held before statement start — seeded 31-Dec-2024 @ USD 19,300.32; confirm original buy date for LTCG. Internal Out of GOOG 179 to Free (03-Dec-2025) excluded from taxable CG.
 6. Gunjan Free: YE close proxied at cost; no trades / nil CG.
 7. Abhisek: opened mid-May 2025; nil CG (buys only); YE2025 marks at cost — prefer IBKR Annual for filing.
@@ -267,7 +270,7 @@ python3 scripts/prepare_schedule_fa_waseem.py
 13. Yagyank Chadha U20291582: real FY Activity Statement; Internal In from U15172057; FOP GOOG; nil CG in FY2025-26; YE from PortfolioAnalyst; FY2026-27 YTD (to 10-Sep-2026) STCG ≈ ₹15.50L (GOOG+SHOP) / Div nil / Interest ≈ USD 127; confirm original buy dates for LTCG.
 14. Yagyank Chadha U15172057: multi-currency portfolio; taxable CG on BLBD/NOVd/ORCL/1810; Internal Out of SHOP+Lux UCITS to U20291582 excluded (code I); YE marks proxied from 31-Mar-2025; FY2026-27 YTD (to 08-Sep-2026) STCG ≈ ₹21.79L / Div ≈ USD 825 (TWD FX YE 0.031725; APH 2-for-1 split 03-Sep-2026).
 15. Vineet Dev U18045590: real Annual+Fiscal; CRM FOP In Feb-2025 (confirm original buy dates for LTCG); multi-currency USD/EUR/CHF/JPY; CHF→USD YE 1.2615.
-4. Kohli U16755051: FY2026-27 YTD (to 14-Sep-2026) STCG ≈ ₹7.85L / Div ≈ USD 332; multi-currency EUR/HKD/USD. U17334752 MSFT via FOP 29-Jan-2025 — confirm original buy date for LTCG; prefer IBKR Annual CY2025 for YE closing.
+4. Kohli U16755051: FY2026-27 YTD (to 14-Sep-2026) STCG ≈ ₹7.85L / Div ≈ USD 332; multi-currency EUR/HKD/USD. U17334752 MSFT-only: FY2026-27 YTD nil CG / Div USD 140.14 (MSFT × 77 held); confirm original FOP buy date for LTCG; prefer IBKR Annual CY2025 for YE closing.
 5. Gunjan Paid: GOOG 216 held before statement start — seeded 31-Dec-2024 @ USD 19,300.32; confirm original buy date for LTCG. Internal Out of GOOG 179 to Free (03-Dec-2025) excluded from taxable CG.
 6. Gunjan Free: YE close proxied at cost; no trades / nil CG.
 7. Abhisek: opened mid-May 2025; nil CG (buys only); YE2025 marks at cost — prefer IBKR Annual for filing.
